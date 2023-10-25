@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1003476149816",
+    "firebase_url": "https://cp470-fridge-friend-default-rtdb.firebaseio.com",
+    "project_id": "cp470-fridge-friend",
+    "storage_bucket": "cp470-fridge-friend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003476149816:android:096e4bd63b7f96981c28cd",
+        "android_client_info": {
+          "package_name": "com.example.fridge_friend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzk07IRDVWvHsLOjYAzR8ND5eHK2k9n5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
