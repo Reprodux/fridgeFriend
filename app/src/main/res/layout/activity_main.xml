@@ -9,6 +9,22 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/camera_access_btn"
+        android:layout_width="250dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="495dp"
+        android:onClick="checkData"
+        android:text="Open Camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
         android:id="@+id/sign_out_btn"
         android:layout_width="250dp"
         android:layout_height="51dp"

@@ -4,19 +4,28 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-
+    Button open_cam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        open_cam = findViewById(R.id.camera_access_btn);
+        open_cam.setOnClickListener(view -> {
+            //Intent intent = new Intent(view.getContext(), ListItemsActivity.class);
+            //intent.putExtra("request_code", String.valueOf(REQUEST_CODE));
+            //ListItemsActivityLauncher.launch(intent);
+
+        });
     }
 
     public void checkData(View V){
