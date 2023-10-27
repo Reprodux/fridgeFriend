@@ -25,7 +25,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.ZoomSuggestionOptions;
 import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.CaptureActivity;
-import com.google.zxing.integration.android.IntentIntegrator;
+//import com.google.zxing.integration.android.IntentIntegrator;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -61,6 +61,7 @@ public class barcodeScanner extends AppCompatActivity {
         start_scan_btn.setOnClickListener((view -> {
             ScanOptions options = new ScanOptions();
             options.setDesiredBarcodeFormats(ScanOptions.ALL_CODE_TYPES);
+            options.setOrientationLocked(false);
             options.setBeepEnabled(true);
             barcode_scanner.launch(new ScanOptions());
             //startBarcodeScanner();
