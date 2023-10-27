@@ -15,6 +15,8 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
+import com.google.mlkit.vision.barcode.ZoomSuggestionOptions;
 
 import java.io.IOException;
 
@@ -39,6 +41,14 @@ public class barcodeScanner extends AppCompatActivity {
 
     }
 
+    private void startBarcodeScanner(){
+        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
+                .setBarcodeFormats(
+                    Barcode.ALL_FORMATS
+                ).build();
+
+    }
     private void initialiseDetectorsAndSources() {
 
         Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
