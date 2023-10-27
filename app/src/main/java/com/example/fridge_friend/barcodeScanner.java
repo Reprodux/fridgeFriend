@@ -9,6 +9,7 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -40,7 +41,7 @@ public class barcodeScanner extends AppCompatActivity {
 
     private void initialiseDetectorsAndSources() {
 
-        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -121,14 +122,14 @@ public class barcodeScanner extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        getSupportActionBar().hide();
+
         cam.release();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getSupportActionBar().hide();
+
         initialiseDetectorsAndSources();
     }
 }

@@ -21,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         open_cam = findViewById(R.id.camera_access_btn);
         open_cam.setOnClickListener(view -> {
-            //Intent intent = new Intent(view.getContext(), ListItemsActivity.class);
-            //intent.putExtra("request_code", String.valueOf(REQUEST_CODE));
-            //ListItemsActivityLauncher.launch(intent);
+            Intent intent = new Intent(view.getContext(), barcodeScanner.class);
+            MainActivity.this.startActivity(intent);
 
         });
     }
