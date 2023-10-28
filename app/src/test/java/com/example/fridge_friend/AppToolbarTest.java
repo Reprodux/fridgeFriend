@@ -21,7 +21,6 @@ public class AppToolbarTest extends TestCase {
 
     public void testAddMenuItems() {
         testToolbar.addMenuItems(mockMenu);
-        System.out.println(mockMenu.getCalls().get(0));
         assertTrue(mockMenu.toHaveBeenCalled("hasVisibleItems"));
     }
 
