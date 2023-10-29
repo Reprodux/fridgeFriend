@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("A2 - Login Activity");
+            getSupportActionBar().setTitle("Fridge Friend Login Page");
         }
 
         loadUserData();
@@ -221,5 +221,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }
