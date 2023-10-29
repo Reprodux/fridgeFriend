@@ -38,8 +38,14 @@
         <activity
             android:name=".barcodeScanner"
             android:exported="false"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation" />
+            tools:replace="screenOrientation"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:exported="false"
+            tools:replace="screenOrientation"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
