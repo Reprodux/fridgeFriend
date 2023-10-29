@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridge_friend.LoginActivity;
 import com.example.fridge_friend.MainActivity;
 import com.example.fridge_friend.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +53,7 @@ public abstract class AppToolbar extends AppCompatActivity implements ToolBarInt
             startActivity(intent);
         } else if (id == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

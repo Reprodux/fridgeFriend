@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             valid = false;
         }
         if (valid){
+            saveEmail();
             mAuth.signInWithEmailAndPassword(inputted_email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -108,6 +109,10 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
+
+                                //Toast.makeText(getApplicationContext(), "Logged in",Toast.LENGTH_SHORT).show();
+                                Intent passLogin = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(passLogin);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -117,7 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-            saveEmail();
         }
 
     }
@@ -137,11 +141,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void saveEmail(){
-
         saveUserData();
-        //Toast.makeText(getApplicationContext(), "Logged in",Toast.LENGTH_SHORT).show();
-        Intent passLogin = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(passLogin);
     }
     protected void onResume(){
         super.onResume();
