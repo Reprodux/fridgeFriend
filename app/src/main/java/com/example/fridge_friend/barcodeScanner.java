@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -31,7 +32,7 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.io.IOException;
 
-public class barcodeScanner extends AppCompatActivity {
+public class barcodeScanner extends AppToolbar {
 
     private SurfaceView surfaceView;
     private BarcodeDetector barcodeDetector;

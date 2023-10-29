@@ -8,39 +8,49 @@
 
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/sign_out_btn"
-        android:layout_width="250dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="263dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="417dp"
-        android:onClick="checkData"
-        android:text="Sign Out"
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="251dp"
+        android:layout_marginBottom="252dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/camera_access_btn"
-        android:layout_width="250dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="185dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="495dp"
-        android:text="Open barcode scanner section"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/sign_out_btn"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/sign_out_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        <TableRow>
+
+            <Button
+                android:id="@+id/myFridgeButton"
+                style="@style/MainActivity_Button"
+                android:drawableTop="@drawable/fridge"
+                android:text="@string/my_fridges"
+                android:onClick="onMyFridge" />
+
+            <Button
+                android:id="@+id/addFridgeButton"
+                style="@style/MainActivity_Button"
+                android:drawableTop="@drawable/new_fridge"
+                android:text="@string/new_fridge"
+                android:onClick="onNewFridge" />
+        </TableRow>
+
+        <TableRow android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/barcodeScannerButton"
+                style="@style/MainActivity_Button"
+                android:drawableTop="@drawable/barcode"
+                android:text="@string/barcode_scanner"
+                android:onClick="onBarcodeScan" />
+
+            <Button
+                android:id="@+id/listButton"
+                style="@style/MainActivity_Button"
+                android:drawableTop="@drawable/list"
+                android:text="@string/shopping_list"
+                android:onClick="onShoppingList" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
