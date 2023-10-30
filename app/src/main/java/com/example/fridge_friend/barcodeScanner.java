@@ -32,6 +32,7 @@ public class barcodeScanner extends AppToolbar {
                 if(result.getContents() == null){
                     Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
                         } else {
+
                     Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                     barcode_txt = findViewById(R.id.barcode_text);
                     AlertDialog.Builder alert_builder = new AlertDialog.Builder((barcodeScanner.this));
@@ -42,8 +43,9 @@ public class barcodeScanner extends AppToolbar {
 
                     });
 
-
                     alert_builder.show();
+
+
                 }
             });
     @Override
