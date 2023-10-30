@@ -6,6 +6,8 @@ plugins {
 android {
     namespace = "com.example.fridge_friend"
     compileSdk = 34
+
+
     defaultConfig {
         applicationId = "com.example.fridge_friend"
         minSdk = 24
@@ -32,11 +34,18 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
+    implementation ("com.google.mlkit:barcode-scanning:17.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.android.gms:play-services-vision:20.1.3")
+    implementation("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
+    //implementation("com.google.zxing:android-integration:3.3.0")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.android.gms:play-services-vision-common:19.1.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
 }
