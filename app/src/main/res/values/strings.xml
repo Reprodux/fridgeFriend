@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">fridge_friend</string>
+    <string name="welcome_text">Welcome to Fridge Friend</string>
+    <string name="qr_code_desc">Barcode scanner </string>
+    <string name="fridge_instance">Fridge Instance</string>
+    <string name="profile_setting">Profile Setting</string>
+    <string name="profile_setting_welcome">"Welcome User"</string>
+    <string name="personal_settings">"Personal Settings"</string>
+    <string name="notifications">"Notifications"</string>
+    <string name="account_management">"Account Management"</string>
+    <string name="diet_preferences">"Dietary Preferences"</string>
+    <string name="first_name">"First Name"</string>
+    <string name="last_name">"Last Name"</string>
+    <string name="email">"Email"</string>
+    <string name="save_button">"Save"</string>
+    <string name="allow_notifications">"Allow Notifications"</string>
+    <string name="recipes">"Displaying recipes and filtering options"</string>
+    <string name="heading_fridge_list">"Fridges Available for use, click on Plus icon to add a fridge"</string>
+    <string name="join_fridge">"Join Fridge"</string>
+    <string name="fridge_name">"Fridge Name"</string>
+    <string name="heading_fridge_detail">"Fridges Detail"</string>
+    <string name="item_icon_description">"A fruit basket"</string>
+    <string name="item_name">"Apples"</string>
+    <string name="forward_arrow_description">"View item detail"</string>
+    <string name="item_owner">Owner: %1$s</string>
+    <string name="item_quantity">Quantity: %1$s</string>
+    <string name="item_expiry">Expiry Date: %1$s</string>
+    <string name="add_item">Add Item</string>
+    <string name="item_addition_activity_heading">Add New Item To The Fridge</string>
+    <string name="item_name_hint">Enter item name</string>
+    <string name="item_quantity_hint">Enter quantity</string>
+    <string name="expiry_date_hint">Enter expiry date (YYYY-MM-DD)</string>
+    <string name="save">Save</string>
+
+
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/purple_background"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <!-- Fridge Name TextView -->
+    <TextView
+        android:id="@+id/textViewFridgeName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:textSize="18sp"
+        android:gravity="start|center_vertical"
+        android:text="@string/fridge_name" />
+
+    <!-- Join Icon ImageView -->
+    <ImageView
+        android:id="@+id/imageViewJoinFridge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plus_icon"
+        android:contentDescription="@string/join_fridge"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless" />
+</LinearLayout>
