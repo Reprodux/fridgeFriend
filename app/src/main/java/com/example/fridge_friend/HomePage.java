@@ -5,8 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fridge_friend.toolbar.AppToolbar;
+
 //this is the primary navigation hub after login, provides quick access to fridges, setting, qr code scanning
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppToolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +19,7 @@ public class HomePage extends AppCompatActivity {
 
 
         ImageView qrCodeImageView = findViewById(R.id.imageViewQRCode);
-        ImageView fridgeImageView = findViewById(R.id.buttonFridgeInstance);
+        ImageView fridgeImageView = findViewById(R.id.imageViewJoinFridge);
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

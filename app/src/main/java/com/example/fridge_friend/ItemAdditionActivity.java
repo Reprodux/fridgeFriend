@@ -7,7 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ItemAdditionActivity extends AppCompatActivity {
+import com.example.fridge_friend.toolbar.AppToolbar;
+
+public class ItemAdditionActivity extends AppToolbar {
 
     private EditText editTextItemName;
     private EditText editTextItemQuantity;

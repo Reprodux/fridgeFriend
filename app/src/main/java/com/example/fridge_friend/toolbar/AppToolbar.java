@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fridge_friend.LoginActivity;
 import com.example.fridge_friend.MainActivity;
 import com.example.fridge_friend.R;
+import com.example.fridge_friend.UserSettingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -51,7 +52,10 @@ public abstract class AppToolbar extends AppCompatActivity implements ToolBarInt
         if (id == R.id.action_home) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        } else if (id == R.id.action_logout) {
+        } else if (id == R.id.user_settings){
+            Intent intent = new Intent(this, UserSettingActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

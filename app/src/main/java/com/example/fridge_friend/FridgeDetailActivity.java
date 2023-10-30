@@ -8,10 +8,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fridge_friend.toolbar.AppToolbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FridgeDetailActivity extends AppCompatActivity implements FridgeItemsAdapter.ItemClickListener {
+public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapter.ItemClickListener {
 
     private RecyclerView recyclerView;
     private FridgeItemsAdapter adapter;

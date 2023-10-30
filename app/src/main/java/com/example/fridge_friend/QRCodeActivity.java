@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class QRCodeActivity extends AppCompatActivity {
+import com.example.fridge_friend.toolbar.AppToolbar;
+
+public class QRCodeActivity extends AppToolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

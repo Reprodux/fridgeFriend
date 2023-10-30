@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class ItemDetailActivity extends AppCompatActivity {
+import com.example.fridge_friend.toolbar.AppToolbar;
+
+public class ItemDetailActivity extends AppToolbar {
 
     public static final String EXTRA_ITEM_ID = "EXTRA_ITEM_ID";
     private TextView textViewWelcomeUser;

@@ -88,7 +88,7 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:scaleType="centerInside"
-            android:src="@drawable/fridge"
+            android:src="@drawable/woman_fridge"
             android:contentDescription="@string/fridge_instance"/>
     </androidx.cardview.widget.CardView>
 

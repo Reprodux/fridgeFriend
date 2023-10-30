@@ -18,6 +18,7 @@ public class MainActivity extends AppToolbar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Homepage");
     }
 
     public void checkData(View V){
@@ -29,14 +30,20 @@ public class MainActivity extends AppToolbar {
 
     public void onMyFridge(View v) {
         // TODO: Launch My Fridge Activity
-        Log.i(TAG, String.valueOf(R.string.my_fridges_clicked));
+        Log.i(TAG, String.valueOf(
+                R.string.my_fridges_clicked));
         showToast(R.string.my_fridges_clicked);
+        Intent intent = new Intent(this, FridgeDetailActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     public void onNewFridge(View v) {
         // TODO: Launch New Fridge Activity
         Log.i(TAG, String.valueOf(R.string.new_fridge_clicked));
         showToast(R.string.new_fridge_clicked);
+        Intent intent = new Intent(this, FridgeListActivity.class);
+        MainActivity.this.startActivity(intent);
+
     }
 
     public void onBarcodeScan(View v) {

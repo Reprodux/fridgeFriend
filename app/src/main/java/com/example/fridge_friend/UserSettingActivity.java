@@ -7,7 +7,9 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
-public class UserSettingActivity extends AppCompatActivity {
+import com.example.fridge_friend.toolbar.AppToolbar;
+
+public class UserSettingActivity extends AppToolbar {
 
     private LinearLayout layoutPersonalSettingsInfo;
     private LinearLayout layoutNotificationSettings;

@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.fridge_friend.toolbar.AppToolbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FridgeListActivity extends AppCompatActivity implements FridgeAdapter.ItemClickListener {
+public class FridgeListActivity extends AppToolbar implements FridgeAdapter.ItemClickListener {
 
     private RecyclerView recyclerView;
     private FridgeAdapter adapter;

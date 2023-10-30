@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_background"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,38 +14,63 @@
         android:layout_height="50dp"
         android:layout_marginBottom="475dp"
         android:padding="5dp"
-        android:text="Barcode Text"
+        android:text="Barcode Text Here"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewQRCode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="4dp"
+
+        app:cardBackgroundColor="@color/purple_background"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barcode_text"
-        android:gravity="center"
-        android:weightSum="1">
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <ImageView
+            android:id="@+id/imageViewQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/qr_code_desc"
+            android:scaleType="centerInside"
+            android:src="@drawable/qr_code" />
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/start_scan_btn"
-            style="@style/MainActivity_Button"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/cam_art"
-            android:onClick="onMyFridge"
-            android:text="Scan"
-            />
+    <Button
+        android:id="@+id/start_scan_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barcode_text"
+        app:layout_constraintVertical_bias="0.505"
+        android:text="Press to Scan"
+        app:srcCompat="@drawable/barcode" />
 
-
-    </LinearLayout>
-
-
-
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="538dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="174dp"
+        android:text="Press to Scan"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,20 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="@color/purple_background"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textViewWelcome2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/label"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/welcome_text"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="251dp"
         android:layout_marginBottom="252dp"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        android:weightSum="2">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,10 +56,10 @@
                 android:id="@+id/addFridgeButton"
                 style="@style/MainActivity_Button"
                 android:layout_gravity="center"
-                android:drawableTop="@drawable/new_fridge"
-                android:text="@string/new_fridge"
                 android:layout_weight="1"
-                android:onClick="onNewFridge" />
+                android:drawableTop="@drawable/new_fridge"
+                android:onClick="onNewFridge"
+                android:text="@string/new_fridge" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,11 +81,11 @@
             <Button
                 android:id="@+id/listButton"
                 style="@style/MainActivity_Button"
-                android:drawableTop="@drawable/list"
                 android:layout_gravity="center"
-                android:text="@string/shopping_list"
                 android:layout_weight="1"
-                android:onClick="onShoppingList" />
+                android:drawableTop="@drawable/list"
+                android:onClick="onShoppingList"
+                android:text="@string/shopping_list" />
         </LinearLayout>
     </TableLayout>
 
