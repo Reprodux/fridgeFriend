@@ -33,7 +33,7 @@ public class MainActivity extends AppToolbar {
         Log.i(TAG, String.valueOf(
                 R.string.my_fridges_clicked));
         showToast(R.string.my_fridges_clicked);
-        Intent intent = new Intent(this, FridgeDetailActivity.class);
+        Intent intent = new Intent(this, FridgeListActivity.class);
         MainActivity.this.startActivity(intent);
     }
 
@@ -41,8 +41,6 @@ public class MainActivity extends AppToolbar {
         // TODO: Launch New Fridge Activity
         Log.i(TAG, String.valueOf(R.string.new_fridge_clicked));
         showToast(R.string.new_fridge_clicked);
-        Intent intent = new Intent(this, FridgeListActivity.class);
-        MainActivity.this.startActivity(intent);
 
     }
 

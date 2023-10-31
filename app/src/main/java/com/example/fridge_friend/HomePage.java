@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
-
+//NOT BEING USED, REPLACED BY MAINACTIVITY.java
 //this is the primary navigation hub after login, provides quick access to fridges, setting, qr code scanning
 public class HomePage extends AppToolbar {
 

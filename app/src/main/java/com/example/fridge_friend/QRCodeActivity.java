@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
-
+//NOT BEING USED, REPLACED BY barcodeScanner
 public class QRCodeActivity extends AppToolbar {
 
     @Override

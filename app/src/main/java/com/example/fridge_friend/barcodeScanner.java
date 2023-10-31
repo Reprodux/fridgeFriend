@@ -7,19 +7,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SurfaceView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
-
-import java.io.IOException;
 
 public class barcodeScanner extends AppToolbar {
 
@@ -45,6 +39,7 @@ public class barcodeScanner extends AppToolbar {
                     });
 
                     alert_builder.show();
+                    barcode_txt.setText(result.getContents());
 
 
                 }

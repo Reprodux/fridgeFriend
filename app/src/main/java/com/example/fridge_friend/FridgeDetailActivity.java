@@ -63,4 +63,10 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         // Add more items as needed
         return items;
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
 }
