@@ -53,7 +53,7 @@
         <activity
             android:name=".ItemDetailActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".FridgeDetailActivity"/>
         <activity
             android:name=".ItemAdditionActivity"
             android:exported="false"
