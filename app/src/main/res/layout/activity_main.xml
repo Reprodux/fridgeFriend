@@ -50,7 +50,8 @@
                 android:layout_weight="1"
                 android:drawableTop="@drawable/fridge"
                 android:onClick="onMyFridge"
-                android:text="@string/my_fridges" />
+                android:text="@string/my_fridges"
+                android:textColorHighlight="@color/off_red" />
 
             <Button
                 android:id="@+id/addFridgeButton"

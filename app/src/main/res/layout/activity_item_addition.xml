@@ -66,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/editTextExpiryDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/off_yellow"
         android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+
+    <style name="MainActivity_Button" parent="Widget.Material3.Button">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:gravity">bottom|end</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">@color/off_yellow</item>
+    </style>
     <style name="Base.Theme.Fridge_friend" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Customize your theme here. -->
+        <!-- This code is for changing the color of the bar. -->
+        <!-- Type your colour code which you want to set in colorPrimary item -->
+        <item name="colorPrimary">@color/off_yellow</item>
+        <item name="colorPrimaryDark">@color/off_red</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+
+    <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/off_yellow</item>
     </style>
 
     <style name="Theme.Fridge_friend" parent="Base.Theme.Fridge_friend" />

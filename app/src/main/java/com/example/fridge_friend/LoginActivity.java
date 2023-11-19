@@ -3,6 +3,8 @@ package com.example.fridge_friend;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -65,6 +67,11 @@ public class LoginActivity extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Fridge Friend Login Page");
         }
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#e1ebf0"));
+
+        // Set BackgroundDrawable
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
 
         loadUserData();
         login_request_btn = findViewById(R.id.login_request_btn);
@@ -214,7 +221,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if (user != null) {
 
-            Toast.makeText(LoginActivity.this, "User id: " + user.getUid(),
+            Toast.makeText(LoginActivity.this, "Successful sign-in",
                     Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(LoginActivity.this, "Failed sign-in",
