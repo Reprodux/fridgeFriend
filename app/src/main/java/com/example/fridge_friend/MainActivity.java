@@ -39,8 +39,8 @@ public class MainActivity extends AppToolbar {
 
     public void onNewFridge(View v) {
         // TODO: Launch New Fridge Activity
-        Log.i(TAG, String.valueOf(R.string.new_fridge_clicked));
-        showToast(R.string.new_fridge_clicked);
+        Intent intent = new Intent(this, FridgeSettingActivity.class);
+        startActivity(intent);
 
     }
 

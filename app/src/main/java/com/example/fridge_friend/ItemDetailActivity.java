@@ -1,7 +1,5 @@
 package com.example.fridge_friend;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -20,7 +18,7 @@ public class ItemDetailActivity extends AppToolbar {
         setContentView(R.layout.activity_item_detail);
 
         // Bind the TextViews from the layout
-        textViewWelcomeUser = findViewById(R.id.textViewWelcomeUser);
+        textViewWelcomeUser = findViewById(R.id.textViewFridgeSettings);
         textViewItemOwner = findViewById(R.id.textViewItemOwner);
         textViewItemQuantity = findViewById(R.id.textViewItemQuantity);
         textViewExpiryDate = findViewById(R.id.textViewExpiryDate);

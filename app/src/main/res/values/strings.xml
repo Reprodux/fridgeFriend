@@ -47,4 +47,6 @@
     <string name="new_fridge_clicked">New Fridge Clicked</string>
     <string name="barcode_scanner_clicked">Barcode Scanner Clicked</string>
     <string name="shopping_list_clicked">Shopping List Clicked</string>
+    <string name="join_existing_fridge">Join Existing Fridge</string>
+    <string name="fridge_settings">Fridge Settings</string>
 </resources>

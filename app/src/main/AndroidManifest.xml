@@ -51,6 +51,10 @@
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
         <activity
+            android:name=".FridgeSettingActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".ItemDetailActivity"
             android:exported="false"
             android:parentActivityName=".FridgeDetailActivity"/>
