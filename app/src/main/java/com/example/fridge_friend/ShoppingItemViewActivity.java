@@ -21,7 +21,7 @@ public class ShoppingItemViewActivity extends AppToolbar {
 
 
         // Bind the TextViews from the layout
-        textViewWelcomeUser = findViewById(R.id.textViewFridgeSettings);
+
         textViewItemOwner = findViewById(R.id.textViewItemOwner);
         textViewItemQuantity = findViewById(R.id.textViewItemQuantity);
         textViewExpiryDate = findViewById(R.id.textViewExpiryDate);
@@ -37,5 +37,12 @@ public class ShoppingItemViewActivity extends AppToolbar {
         textViewItemOwner.setText(getString(R.string.item_owner, dummyOwner));
         textViewItemQuantity.setText(getString(R.string.item_quantity, dummyQuantity));
         textViewExpiryDate.setText(getString(R.string.item_expiry, dummyExpiryDate));
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 }
