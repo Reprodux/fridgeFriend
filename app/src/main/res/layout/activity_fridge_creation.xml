@@ -42,7 +42,7 @@
 
     <!-- Hidden expandable layout for Personal Settings -->
     <LinearLayout
-        android:id="@+id/layoutPersonalSettingsInfo"
+        android:id="@+id/layoutNewFridgeInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -52,36 +52,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- First Name Field -->
+        <!-- New Fridge Name Field -->
         <EditText
-            android:id="@+id/editTextFirstName"
+            android:id="@+id/editTextNewFridgeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/first_name"
+            android:hint="@string/fridge_name"
             android:inputType="textPersonName" />
 
-        <!-- Last Name Field -->
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/last_name"
-            android:inputType="textPersonName" />
-
-        <!-- Email Field -->
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress" />
-
-        <!-- Save Button (Optional) -->
+        <!-- Save Button -->
         <Button
-            android:id="@+id/buttonSavePersonalSettings"
+            android:id="@+id/buttonCreateNewFridge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_button"
+            android:text="@string/create"
             android:layout_gravity="end" />
     </LinearLayout>
 
@@ -103,11 +87,12 @@
         android:text="@string/join_existing_fridge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutPersonalSettingsInfo" />
+        app:layout_constraintTop_toBottomOf="@id/layoutNewFridgeInfo" />
 
     <!-- Hidden expandable layout for Notification Settings -->
+    <!-- Hidden expandable layout for Personal Settings -->
     <LinearLayout
-        android:id="@+id/layoutNotificationSettings"
+        android:id="@+id/layoutJoinExistingFridgeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -117,25 +102,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Allow Notifications Switch -->
-        <LinearLayout
+        <!-- New Fridge Name Field -->
+        <EditText
+            android:id="@+id/editTextExistingFridgeID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:hint="@string/existing_fridge_name"
+            android:inputType="textPersonName" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/allow_notifications"
-                android:layout_marginEnd="8dp"/>
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/buttonRequestJoinFridge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/join"
+            android:layout_gravity="end" />
 
-            <Switch
-                android:id="@+id/switchAllowNotifications"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true" />
-        </LinearLayout>
     </LinearLayout>
 
     <!-- Account Management Option -->

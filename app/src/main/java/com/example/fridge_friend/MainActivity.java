@@ -54,8 +54,8 @@ public class MainActivity extends AppToolbar {
 
     public void onShoppingList(View v) {
         // TODO: Launch Shopping List Activity
-        Log.i(TAG, String.valueOf(R.string.shopping_list_clicked));
-        showToast(R.string.shopping_list_clicked);
+        Intent intent = new Intent(this, ShoppingListActivity.class);
+        startActivity(intent);
     }
 
     private void showToast(int resId) {

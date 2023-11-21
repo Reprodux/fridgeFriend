@@ -49,4 +49,8 @@
     <string name="shopping_list_clicked">Shopping List Clicked</string>
     <string name="join_existing_fridge">Join Existing Fridge</string>
     <string name="fridge_settings">Fridge Settings</string>
+    <string name="create">Create</string>
+    <string name="existing_fridge_name">Existing Fridge Name</string>
+    <string name="join">join</string>
+    <string name="clear_list">Clear Shopping List</string>
 </resources>

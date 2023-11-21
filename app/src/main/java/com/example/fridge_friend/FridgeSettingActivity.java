@@ -21,10 +21,10 @@ public class FridgeSettingActivity extends AppToolbar {
         setContentView(R.layout.activity_fridge_creation);
 
         // Initializing the hidden layout for personal settings
-        layoutPersonalSettingsInfo = findViewById(R.id.layoutPersonalSettingsInfo);
+        layoutPersonalSettingsInfo = findViewById(R.id.layoutNewFridgeInfo);
         // Initialize the hidden layout for notifications
-        layoutNotificationSettings = findViewById(R.id.layoutNotificationSettings);
-        switchAllowNotifications = findViewById(R.id.switchAllowNotifications);
+        layoutNotificationSettings = findViewById(R.id.layoutJoinExistingFridgeInput);
+
     }
 
     // toggling the Personal Settings section
