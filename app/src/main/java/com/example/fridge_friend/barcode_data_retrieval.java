@@ -19,9 +19,8 @@ import java.util.Iterator;
 public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
 
     private final String TAG = "barcode_to_data Class";
-
-    // Replace this with your actual API endpoint
     private final String API_LINK = "https://world.openfoodfacts.org/api/v2/product/";
+    //replace variable barcode with sample_barcode for demoing(maybe)
     private final String sample_barcode = "060410010983";
 
     @Override
