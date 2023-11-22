@@ -1,5 +1,6 @@
 package com.example.fridge_friend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ public class ShoppingItemViewActivity extends AppToolbar {
         setContentView(R.layout.activity_item_detail);
 
         //TODO: replace all this with formatted JSON code retrieved from API/Database
+        //assume that intent.getStringExtra("barcode_str") should return the 13 digit barcode
+
 
 
         // Bind the TextViews from the layout

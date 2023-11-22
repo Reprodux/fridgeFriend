@@ -64,6 +64,10 @@
             android:exported="false"
             android:parentActivityName=".FridgeDetailActivity" />
         <activity
+            android:name=".ShoppingItemViewActivity"
+            android:exported="false"
+            android:parentActivityName=".ShoppingListActivity" />
+        <activity
             android:name=".ItemAdditionActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
