@@ -49,7 +49,7 @@ public class ShoppingListActivity extends AppToolbar implements FridgeItemsAdapt
         // Get the clicked item
         FridgeItem item = shoppingItems.get(position);
         // Start the ItemDetailActivity
-        Intent detailIntent = new Intent(this, ItemDetailActivity.class);
+        Intent detailIntent = new Intent(this, ShoppingItemViewActivity.class);
         detailIntent.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, item.getId());
         startActivity(detailIntent);
     }

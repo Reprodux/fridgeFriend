@@ -10,13 +10,13 @@ public class ShoppingItemViewActivity extends AppToolbar {
 
     public static final String EXTRA_ITEM_ID = "EXTRA_ITEM_ID";
     private TextView textViewWelcomeUser;
-    private TextView textViewItemOwner;
+    private TextView textViewItemName;
     private TextView textViewItemQuantity;
     private TextView textViewExpiryDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_detail);
+        setContentView(R.layout.activity_item_barcode_data);
 
         //TODO: replace all this with formatted JSON code retrieved from API/Database
         //assume that intent.getStringExtra("barcode_str") should return the 13 digit barcode
@@ -25,21 +25,10 @@ public class ShoppingItemViewActivity extends AppToolbar {
 
         // Bind the TextViews from the layout
 
-        textViewItemOwner = findViewById(R.id.textViewItemOwner);
-        textViewItemQuantity = findViewById(R.id.textViewItemQuantity);
-        textViewExpiryDate = findViewById(R.id.textViewExpiryDate);
+        textViewItemName= findViewById(R.id.itemName);
+        textViewItemQuantity = findViewById(R.id.itemData);
 
-        // Replace these with actual data retrieval logic
-        // For demonstration, we're setting dummy data
-        String dummyOwner = "John Doe";
-        String dummyItemName = "Eggs";
-        String dummyQuantity = "50";
-        String dummyExpiryDate = "2023-05-15";
 
-        textViewWelcomeUser.setText(dummyItemName);
-        textViewItemOwner.setText(getString(R.string.item_owner, dummyOwner));
-        textViewItemQuantity.setText(getString(R.string.item_quantity, dummyQuantity));
-        textViewExpiryDate.setText(getString(R.string.item_expiry, dummyExpiryDate));
 
     }
 

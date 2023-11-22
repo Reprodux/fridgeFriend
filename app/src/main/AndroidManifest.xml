@@ -45,10 +45,6 @@
             android:value=".MainActivity" />
 
         <activity
-            android:name=".QRCodeActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
