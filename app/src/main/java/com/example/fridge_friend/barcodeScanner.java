@@ -40,6 +40,9 @@ public class barcodeScanner extends AppToolbar {
 
                     alert_builder.show();
                     barcode_txt.setText(result.getContents());
+                    Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    barcode_data_retrieval bdr = new barcode_data_retrieval();
+                    bdr.execute(result.getContents());
 
 
                 }
