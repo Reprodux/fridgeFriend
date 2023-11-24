@@ -43,6 +43,15 @@ public class Database {
         }).addOnCanceledListener(activity, apiResultListener::onCanceled).addOnFailureListener(activity, apiResultListener::onFailure);
     }
 
+    public static void putAPIResult(Activity activity, String upc, String apiResult, OperationCompleteListener operationCompleteListener) {
+        DatabaseConnection dbc = DatabaseConnection.getConnection();
+        DatabaseReference db = dbc.getDatabase();
+        db.child("apiCache").child(upc).setValue(apiResult)
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
+    }
+
     public static void joinFridge(Activity activity, String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
         dbc.getDatabase().child("fridgeMembers").get()
