@@ -6,15 +6,20 @@ import androidx.annotation.NonNull;
 
 import com.example.fridge_friend.database.listener.APIResultListener;
 import com.example.fridge_friend.database.listener.FridgeListListener;
-import com.example.fridge_friend.database.listener.FridgeResultListener;
 import com.example.fridge_friend.database.listener.ItemListener;
 import com.example.fridge_friend.database.listener.OperationCompleteListener;
 import com.example.fridge_friend.database.listener.UserListListener;
 import com.example.fridge_friend.database.listener.UserNameListener;
+import com.example.fridge_friend.database.util.CreateFridgeContinuation;
 import com.example.fridge_friend.database.util.DatabaseConnection;
+import com.example.fridge_friend.database.util.JoinFridgeContinuation;
+import com.example.fridge_friend.database.util.LeaveFridgeContinuation;
 import com.example.fridge_friend.database.util.UserListContinuation;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.GenericTypeIndicator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +27,10 @@ public class Database {
     public static void listFridges(Activity activity, @NonNull FridgeListListener fridgeListListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
         dbc.getDatabase().child("userAccess").child(dbc.getUid()).get().addOnSuccessListener(activity, taskResult -> {
-            List<String> fridgeNames = taskResult.getValue(new GenericTypeIndicator<List<String>>() {});
+            List<String> fridgeNames = new ArrayList<>();
+            for(DataSnapshot snapshot: taskResult.getChildren()) {
+                fridgeNames.add(snapshot.getKey());
+            }
             fridgeListListener.onListResult(fridgeNames);
         }).addOnCanceledListener(activity, fridgeListListener::onCanceled).addOnFailureListener(activity, fridgeListListener::onFailure);
     }
@@ -35,16 +43,31 @@ public class Database {
         }).addOnCanceledListener(activity, apiResultListener::onCanceled).addOnFailureListener(activity, apiResultListener::onFailure);
     }
 
-    public static void joinFridge(Activity activity, String fridgeName, OperationCompleteListener operationCompleteListener) {
+    public static void joinFridge(Activity activity, String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        dbc.getDatabase().child("fridgeMembers").get()
+                .continueWithTask(new JoinFridgeContinuation(fridgeName, dbc.getUid()))
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
-    public static void newFridge(Activity activity, String fridgeName, FridgeResultListener fridgeResultListener) {
+    public static void newFridge(Activity activity, String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        dbc.getDatabase().child("fridgeMembers").get()
+                .continueWithTask(new CreateFridgeContinuation(fridgeName, dbc.getUid()))
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
-    public static void leaveFridge(Activity activity, String fridgeName, OperationCompleteListener operationCompleteListener) {
+    public static void leaveFridge(Activity activity, String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        dbc.getDatabase().child("fridgeMembers").child(fridgeName).get()
+                .continueWithTask(new LeaveFridgeContinuation(fridgeName, dbc.getUid()))
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
     public static void getItems(Activity activity, String fridgeName, @NonNull ItemListener itemListener) {
@@ -57,22 +80,36 @@ public class Database {
 
     public static void addItem(Activity activity, String fridgeName, Item item, OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        DatabaseReference db = dbc.getDatabase();
+        db.child("fridges").child(fridgeName).push().setValue(item)
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
-    public static void removeItem(Activity activity, String fridgeName, String itemId, OperationCompleteListener operationCompleteListener) {
+    public static void removeItem(Activity activity, String fridgeName, String itemId, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        dbc.getDatabase().child("fridges").child(fridgeName).child(itemId).removeValue()
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
-    public static void updateItem(Activity activity, String fridgeName, String itemId, Item item, OperationCompleteListener operationCompleteListener) {
+    public static void updateItem(Activity activity, String fridgeName, String itemId, Item item, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
+        DatabaseReference db = dbc.getDatabase();
+        db.child("fridges").child(fridgeName).child(itemId).setValue(item)
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
     public static void setName(Activity activity, String name, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
         dbc.getDatabase().child("users").child(dbc.getUid()).child("name").setValue(name)
-                .addOnSuccessListener(activity, unused -> {
-                    operationCompleteListener.onSuccess();
-                }).addOnCanceledListener(activity, operationCompleteListener::onCanceled).addOnFailureListener(activity, operationCompleteListener::onFailure);
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
     }
 
     public static void getUserName(Activity activity, String userId, @NonNull UserNameListener userNameListener) {
