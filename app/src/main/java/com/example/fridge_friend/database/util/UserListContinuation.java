@@ -13,6 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Task Continuation for retrieving the user list.
+ * Allows for retrieval of user names before returning to the main thread and calling the appropriate listener to notify the caller
+ */
 public class UserListContinuation implements Continuation<DataSnapshot, Task<Map<String, String>>> {
 
     @Override
@@ -29,6 +33,9 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
         return Tasks.whenAllSuccess(tasks).continueWith(new ListMapping());
     }
 
+    /**
+     * Private class for retrieving the user ids and producing the final map from the list of snapshots
+     */
     private static class ListMapping implements Continuation<List<Object>, Map<String,String>> {
 
         @Override

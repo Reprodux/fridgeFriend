@@ -11,6 +11,10 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Task continuation for creating fridges
+ * Checks for fridge existence and then creates the fridge without blocking main thread
+ */
 public class CreateFridgeContinuation implements Continuation<DataSnapshot, Task<Void>> {
 
     private final String fridgeName;

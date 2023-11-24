@@ -11,6 +11,10 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Task continuation for joining fridges
+ * Checks if fridge exists before attempting to join without blocking the main thread
+ */
 public class JoinFridgeContinuation implements Continuation<DataSnapshot, Task<Void>> {
 
     private final String fridgeName;

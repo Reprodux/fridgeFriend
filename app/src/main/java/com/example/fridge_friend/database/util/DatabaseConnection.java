@@ -7,6 +7,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.Contract;
 
+/**
+ * Consolidated Firebase authentication check and Firebase db reference.
+ * Gets around needing to null check in every function before making a db call that needs user id
+ */
 public class DatabaseConnection {
 
     private final String userId;
@@ -17,15 +21,31 @@ public class DatabaseConnection {
         this.reference = ref;
     }
 
+    /**
+     * Get the current users user id
+     * @return user id of the current user
+     */
     @NonNull
     public String getUid() {
         return userId;
     }
 
+    /**
+     * Get the firebase database instance
+     * @return Firebase database instance reference
+     * @see com.google.firebase.database.DatabaseReference
+     */
     public com.google.firebase.database.DatabaseReference getDatabase() {
         return reference;
     }
 
+    /**
+     * Acquire an authenticated database connection to firebase.
+     * This function checks Firebase.getInstance().getUid() doesn't return null before returning references to Firebase components.
+     * This consolidates the null check while also clearing the warnings in android studio.
+     * @return A DataBaseConnection with a reference to Firebase along with the current users id after checking the user is logged in.
+     * @throws IllegalStateException if the user isn't logged into firebase
+     */
     @NonNull
     @Contract(" -> new")
     public static DatabaseConnection getConnection() throws IllegalStateException {
