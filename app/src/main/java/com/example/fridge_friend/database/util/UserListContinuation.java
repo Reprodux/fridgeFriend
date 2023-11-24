@@ -23,7 +23,7 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
         for(DataSnapshot snapshot: result.getChildren()) {
             String userId = snapshot.getValue(String.class);
             if (userId != null) {
-                tasks.add(ref.child("users").child(userId).get());
+                tasks.add(ref.child("users").child(userId).child("name").get());
             }
         }
         return Tasks.whenAllSuccess(tasks).continueWith(new ListMapping());
@@ -38,13 +38,13 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
             for(Object obj: taskResult) {
                 if (obj instanceof DataSnapshot) {
                     DataSnapshot ds = (DataSnapshot) obj;
-                    String uid = ds.getKey();
-                    if (uid != null) {
-                        String name = uid;
-                        if (ds.hasChild("name")) {
-                            name = ds.child("name").getValue(String.class);
+                    DatabaseReference parent = ds.getRef().getParent();
+                    if (parent != null) {
+                        String uid = parent.getKey();
+                        if (uid != null) {
+                            String name = ds.getValue(String.class);
+                            result.put(uid, name);
                         }
-                        result.put(uid, name);
                     }
                 }
             }
