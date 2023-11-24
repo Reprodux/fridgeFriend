@@ -28,10 +28,10 @@ public class LeaveFridgeContinuation implements Continuation<DataSnapshot, Task<
             Map<String, Object> updates = new HashMap<>();
             DatabaseReference root = result.getRef().getRoot();
             updates.put("/fridgeMembers/" + fridgeName + "/" + uid, null);
-            updates.put("/userAccess/" + uid + "/" + fridgeName, null);
             if (count == 1) {
                 updates.put("/fridges" + fridgeName, null);
             }
+            updates.put("/userAccess/" + uid + "/" + fridgeName, null);
             return root.updateChildren(updates);
         }
         // Return a Void task in case there's no work to do
