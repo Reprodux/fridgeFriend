@@ -11,6 +11,10 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Task continuation for leaving fridges
+ * Facilitates the deletion of fridge when all members leave the fridge without needing to block main thread
+ */
 public class LeaveFridgeContinuation implements Continuation<DataSnapshot, Task<Void>> {
 
     private final String fridgeName;
@@ -29,7 +33,10 @@ public class LeaveFridgeContinuation implements Continuation<DataSnapshot, Task<
             DatabaseReference root = result.getRef().getRoot();
             updates.put("/fridgeMembers/" + fridgeName + "/" + uid, null);
             if (count == 1) {
+                // remove fridge
                 updates.put("/fridges" + fridgeName, null);
+                // Remove members node when count becomes 0
+                updates.put("/fridgeMembers/" + fridgeName, null);
             }
             updates.put("/userAccess/" + uid + "/" + fridgeName, null);
             return root.updateChildren(updates);
