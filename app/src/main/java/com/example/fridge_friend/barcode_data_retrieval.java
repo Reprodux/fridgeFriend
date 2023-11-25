@@ -14,7 +14,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
 
@@ -55,27 +57,97 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        //TODO: use the resulting JSON to parse the data and return it BACK to the activity/function calling it to display
+        //TODO: return the variables BACK to the activity/function calling it to display
         if (result != null) {
             try {
+                // Return Variables
+                Boolean product_valid = false;
+                String product_name = "";
+                String product_code = "";
+                List<String> product_categories = new ArrayList<String>();
+                List<String> brands = new ArrayList<String>();
+                HashMap<String, String> product_facts = new HashMap<String, String>();
+
+                // Wanted Nutrients Array filled with the following:
+                // salt_100g, sodium_100g, sugars_100g, fat_100g, saturated-fat_100g, proteins_100g, energy-kcal_100g
+                List<String> wanted_nutrients = new ArrayList<String>();
+                wanted_nutrients.add("salt_100g");
+                wanted_nutrients.add("sodium_100g");
+                wanted_nutrients.add("sugars_100g");
+                wanted_nutrients.add("fat_100g");
+                wanted_nutrients.add("saturated-fat_100g");
+                wanted_nutrients.add("proteins_100g");
+                wanted_nutrients.add("energy-kcal_100g");
+
                 // Parse the JSON response
                 JSONObject itemJSON = new JSONObject(result);
 
-                // Log the outer keys
-                Log.d(TAG, "Outer Keys: " + itemJSON.keys());
-
-                Iterator<String> keysIterator = itemJSON.keys();
-
-                // Iterate over the keys and log each one
-                while (keysIterator.hasNext()) {
-                    String key = keysIterator.next();
-                    Log.d(TAG, "Outer Key: " + key);
+                String status_verbose = itemJSON.getString("status_verbose");
+                if (status_verbose.equals("product found")) {
+                    product_valid = true;
+                } else {
+                    product_valid = false;
                 }
 
-                String productCode = itemJSON.getString("code");
-                Log.d(TAG, "code: " + productCode);
-                String productName = itemJSON.getJSONObject("product").getString("product_name");
-                Log.d(TAG, "name: " +productName);
+                if (itemJSON.has("code")) {
+                    product_code = itemJSON.getString("code");
+                }
+
+                if (product_valid) {
+                    // Get "product" object
+                    JSONObject productJSON = itemJSON.getJSONObject("product");
+
+                    // Check if product is locally sourced + Set product name accordingly
+                    if (productJSON.has("user_data_origin")) {
+                        String user_data_origin = productJSON.getString("user_data_origin");
+                        if (user_data_origin.contains("(en)")) {
+                            product_name = productJSON.getString("product_name");
+                        } else {
+                            product_name = productJSON.getString("abbreviated_product_name");
+                        }
+
+                        if (product_name.equals("")) {
+                            product_name = productJSON.getString("product_name_fr");
+                        }
+                    }
+
+                    // Get "categories" array
+                    if (productJSON.has("categories")) {
+                        JSONArray categoriesJSON = productJSON.getJSONArray("categories");
+                        for (int i = 0; i < categoriesJSON.length(); i++) {
+                            String category = categoriesJSON.getString(i);
+                            category = category.replace("en:", "");
+                            category = category.replace("-", " ");
+                            product_categories.add(category);
+                        }
+                    }
+
+                    // Get "brands" array
+                    if (productJSON.has("brands")) {
+                        JSONArray brandsJSON = productJSON.getJSONArray("brands");
+                        for (int i = 0; i < brandsJSON.length(); i++) {
+                            String brand = brandsJSON.getString(i);
+                            brands.add(brand);
+                        }
+                    }
+
+                    // Get "nutriments" object
+                    if (productJSON.has("nutriments")) {
+                        JSONObject nutrimentsJSON = productJSON.getJSONObject("nutriments");
+
+                        // Iterate through wanted nutrients and add them to product_facts
+                        for (int i = 0; i < wanted_nutrients.size(); i++) {
+                            String nutrient = wanted_nutrients.get(i);
+                            if (nutrimentsJSON.has(nutrient)) {
+                                String nutrient_value = nutrimentsJSON.getString(nutrient);
+                                product_facts.put(nutrient, nutrient_value);
+                            }
+                        }
+                    }
+                }
+
+                // return the parsed data
+
             } catch (JSONException e) {
                 Log.e(TAG, "Error parsing JSON", e);
             }
