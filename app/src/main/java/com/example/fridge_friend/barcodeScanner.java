@@ -15,9 +15,7 @@ import com.example.fridge_friend.toolbar.AppToolbar;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
-public class barcodeScanner extends AppToolbar {
-
-
+public class barcodeScanner extends AppToolbar implements AsyncResponse {
     private Button start_scan_btn;
     private TextView barcode_txt;
 
@@ -41,7 +39,9 @@ public class barcodeScanner extends AppToolbar {
                     alert_builder.show();
                     barcode_txt.setText(result.getContents());
                     Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+
                     barcode_data_retrieval bdr = new barcode_data_retrieval();
+                    bdr.delegate = this;
                     bdr.execute(result.getContents());
 
 
@@ -76,5 +76,24 @@ public class barcodeScanner extends AppToolbar {
     protected void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    public void processFinish(String product_valid, String product_name, String product_code, String product_categories, String brands, String product_facts) {
+        // Log the variables
+        Log.i(TAG, "Product Valid: " + product_valid);
+        Log.i(TAG, "Product Name: " + product_name);
+        Log.i(TAG, "Product Code: " + product_code);
+        Log.i(TAG, "Product Categories: " + product_categories);
+        Log.i(TAG, "Product Brands: " + brands);
+        Log.i(TAG, "Product Facts: " + product_facts);
+
+        // Toast the variables
+        Toast.makeText(barcodeScanner.this, "Product Valid: " + product_valid, Toast.LENGTH_LONG).show();
+        Toast.makeText(barcodeScanner.this, "Product Name: " + product_name, Toast.LENGTH_LONG).show();
+        Toast.makeText(barcodeScanner.this, "Product Code: " + product_code, Toast.LENGTH_LONG).show();
+        Toast.makeText(barcodeScanner.this, "Product Categories: " + product_categories, Toast.LENGTH_LONG).show();
+        Toast.makeText(barcodeScanner.this, "Product Brands: " + brands, Toast.LENGTH_LONG).show();
+        Toast.makeText(barcodeScanner.this, "Product Facts: " + product_facts, Toast.LENGTH_LONG).show();
     }
 }

@@ -24,6 +24,7 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
     private final String API_LINK = "https://world.openfoodfacts.org/api/v2/product/";
     //replace variable barcode with sample_barcode for demoing(maybe)
     private final String sample_barcode = "060410010983";
+    public AsyncResponse delegate = null;
 
     @Override
     protected String doInBackground(String... params) {
@@ -98,7 +99,7 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
                     JSONObject productJSON = itemJSON.getJSONObject("product");
 
                     // Check if product is locally sourced + Set product name accordingly
-                    if (productJSON.has("user_data_origin")) {
+                    if (productJSON.has("user_data_origin")) { // sometimes is found in "traces_from_user" instead
                         String user_data_origin = productJSON.getString("user_data_origin");
                         if (user_data_origin.contains("(en)")) {
                             product_name = productJSON.getString("product_name");
@@ -109,11 +110,17 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
                         if (product_name.equals("")) {
                             product_name = productJSON.getString("product_name_fr");
                         }
+                    } else { // Sometimes the json will not contain "user_data_origin"
+                        if (productJSON.has("product_name")) {
+                            product_name = productJSON.getString("product_name");
+                        } else {
+                            product_name = productJSON.getString("abbreviated_product_name");
+                        }
                     }
 
                     // Get "categories" array
-                    if (productJSON.has("categories")) {
-                        JSONArray categoriesJSON = productJSON.getJSONArray("categories");
+                    if (productJSON.has("categories_hierarchy")) {
+                        JSONArray categoriesJSON = productJSON.getJSONArray("categories_hierarchy");
                         for (int i = 0; i < categoriesJSON.length(); i++) {
                             String category = categoriesJSON.getString(i);
                             category = category.replace("en:", "");
@@ -147,6 +154,14 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
                 }
 
                 // return the parsed data
+                Log.d(TAG, "Product Valid: " + product_valid);
+                Log.d(TAG, "Product Name: " + product_name);
+                Log.d(TAG, "Product Code: " + product_code);
+                Log.d(TAG, "Product Categories: " + product_categories);
+                Log.d(TAG, "Product Brands: " + brands);
+                Log.d(TAG, "Product Facts: " + product_facts);
+
+                delegate.processFinish(product_valid.toString(), product_name, product_code, product_categories.toString(), brands.toString(), product_facts.toString());
 
             } catch (JSONException e) {
                 Log.e(TAG, "Error parsing JSON", e);
