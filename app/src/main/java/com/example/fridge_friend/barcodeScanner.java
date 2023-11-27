@@ -12,14 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
+import com.google.android.material.snackbar.Snackbar;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
-public class barcodeScanner extends AppToolbar {
+import java.util.HashMap;
+import java.util.List;
+
+public class barcodeScanner extends AppToolbar implements barcode_data_retrieval.response {
 
 
     private Button start_scan_btn;
     private TextView barcode_txt;
+
+
 
 
     private final ActivityResultLauncher<ScanOptions> barcode_scanner = registerForActivityResult(new ScanContract(),
@@ -40,13 +46,20 @@ public class barcodeScanner extends AppToolbar {
 
                     alert_builder.show();
                     barcode_txt.setText(result.getContents());
-                    Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                    barcode_data_retrieval bdr = new barcode_data_retrieval();
-                    bdr.execute(result.getContents());
+                    //Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    new barcode_data_retrieval(this).execute(result.getContents());
+
 
 
                 }
             });
+    //TODO: check if this function works
+    @Override
+    public void processFinish(String product_name, String product_code, List product_categories, List brands, HashMap product_facts) {
+        Snackbar.make(findViewById(android.R.id.content), product_name, Snackbar.LENGTH_SHORT).show();
+        barcode_txt.setText(product_name);
+        Log.i(TAG, "processFinish in barcode scanner activity run");
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,4 +90,6 @@ public class barcodeScanner extends AppToolbar {
         super.onResume();
 
     }
+
+
 }

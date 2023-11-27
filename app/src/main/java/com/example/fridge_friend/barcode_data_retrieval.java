@@ -1,6 +1,7 @@
 package com.example.fridge_friend;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,6 +25,16 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
     private final String API_LINK = "https://world.openfoodfacts.org/api/v2/product/";
     //replace variable barcode with sample_barcode for demoing(maybe)
     private final String sample_barcode = "060410010983";
+
+    public interface response {
+        void processFinish(String product_name, String product_code, List product_categories,
+                           List brands, HashMap product_facts);
+    }
+    public response JSONresponse = null;
+
+    public barcode_data_retrieval(response JSONresponse){
+        this.JSONresponse = JSONresponse;
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -58,6 +69,7 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         //TODO: return the variables BACK to the activity/function calling it to display
+
         if (result != null) {
             try {
                 // Return Variables
@@ -147,6 +159,8 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
                 }
 
                 // return the parsed data
+                JSONresponse.processFinish(product_name, product_code,
+                        product_categories, brands, product_facts);
 
             } catch (JSONException e) {
                 Log.e(TAG, "Error parsing JSON", e);
