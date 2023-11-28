@@ -9,8 +9,7 @@
     <string name="notifications">"Notifications"</string>
     <string name="account_management">"Account Management"</string>
     <string name="diet_preferences">"Dietary Preferences"</string>
-    <string name="first_name">"First Name"</string>
-    <string name="last_name">"Last Name"</string>
+    <string name="first_name">"Name"</string>
     <string name="email">"Email"</string>
     <string name="save_button">"Save"</string>
     <string name="allow_notifications">"Allow Notifications"</string>

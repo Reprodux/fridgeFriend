@@ -1,11 +1,11 @@
 package com.example.fridge_friend;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
 import android.view.View;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
 
@@ -13,7 +13,7 @@ public class UserSettingActivity extends AppToolbar {
 
     private LinearLayout layoutPersonalSettingsInfo;
     private LinearLayout layoutNotificationSettings;
-    private Switch switchAllowNotifications;
+    private SwitchCompat switchAllowNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
