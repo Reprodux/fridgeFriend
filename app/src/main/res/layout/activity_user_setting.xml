@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="19dp"
     android:background="@color/purple_background"
-    android:padding="16dp"
     tools:context=".UserSettingActivity">
 
     <!-- Welcome User TextView -->
@@ -13,32 +13,32 @@
         android:id="@+id/textViewWelcomeUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/profile_setting_welcome"
         android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/profile_setting_welcome"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Personal Settings Option -->
     <TextView
         android:id="@+id/textViewPersonalSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/personal_settings"
-        android:drawableStart="@drawable/setting"
-        android:drawablePadding="8dp"
-        android:gravity="start|center_vertical"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
+        android:drawablePadding="8dp"
         android:focusable="true"
+        android:gravity="start|center_vertical"
         android:onClick="togglePersonalSettings"
-        app:layout_constraintTop_toBottomOf="@id/textViewWelcomeUser"
+        android:padding="16dp"
+        android:text="@string/personal_settings"
+        app:drawableStartCompat="@drawable/setting"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textViewWelcomeUser" />
 
     <!-- Hidden expandable layout for Personal Settings -->
     <LinearLayout
@@ -46,45 +46,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewPersonalSettings"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/textViewPersonalSettings">
 
-        <!-- First Name Field -->
+        <!-- Name Field -->
         <EditText
-            android:id="@+id/editTextFirstName"
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="name"
             android:hint="@string/first_name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
 
-        <!-- Last Name Field -->
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/last_name"
-            android:inputType="textPersonName" />
-
-        <!-- Email Field -->
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress" />
-
-        <!-- Save Button (Optional) -->
+        <!-- Save Button -->
         <Button
             android:id="@+id/buttonSavePersonalSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_button"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            android:text="@string/save_button" />
     </LinearLayout>
-
 
 
     <!-- Notifications Option -->
@@ -92,50 +77,47 @@
         android:id="@+id/textViewNotifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/notifications"
-        android:drawableStart="@drawable/notification"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:drawablePadding="8dp"
+        android:focusable="true"
         android:gravity="start|center_vertical"
         android:onClick="toggleNotificationSettings"
         android:padding="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/layoutPersonalSettingsInfo"
+        android:text="@string/notifications"
+        app:drawableStartCompat="@drawable/notification"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/layoutPersonalSettingsInfo" />
 
     <!-- Hidden expandable layout for Notification Settings -->
     <LinearLayout
         android:id="@+id/layoutNotificationSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewNotifications"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/textViewNotifications"
+        tools:visibility="visible">
 
         <!-- Allow Notifications Switch -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_marginEnd="8dp"
+            android:text="@string/allow_notifications" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/allow_notifications"
-                android:layout_marginEnd="8dp"/>
-
-            <Switch
-                android:id="@+id/switchAllowNotifications"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true" />
-        </LinearLayout>
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAllowNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="#535050"
+            app:trackTint="#8A8888" />
     </LinearLayout>
 
     <!-- Account Management Option -->
@@ -143,33 +125,33 @@
         android:id="@+id/textViewAccountManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/account_management"
-        android:drawableStart="@drawable/managing"
-        android:drawablePadding="8dp"
-        android:gravity="start|center_vertical"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
+        android:drawablePadding="8dp"
         android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/layoutNotificationSettings"
+        android:gravity="start|center_vertical"
+        android:padding="16dp"
+        android:text="@string/account_management"
+        app:drawableStartCompat="@drawable/managing"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/layoutNotificationSettings" />
 
     <!-- Dietary Preferences Option -->
     <TextView
         android:id="@+id/textViewDietaryPreferences"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/diet_preferences"
-        android:drawableStart="@drawable/diet"
-        android:drawablePadding="8dp"
-        android:gravity="start|center_vertical"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
+        android:drawablePadding="8dp"
         android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/textViewAccountManagement"
+        android:gravity="start|center_vertical"
+        android:padding="16dp"
+        android:text="@string/diet_preferences"
+        app:drawableStartCompat="@drawable/diet"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textViewAccountManagement" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
