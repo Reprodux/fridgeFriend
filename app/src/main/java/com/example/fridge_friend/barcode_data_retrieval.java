@@ -1,6 +1,7 @@
 package com.example.fridge_friend;
 
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
+
 
     private final String TAG = "barcode_to_data Class";
     private final String API_LINK = "https://world.openfoodfacts.org/api/v2/product/";
@@ -140,11 +142,23 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
 
                     // Get "brands" array
                     if (productJSON.has("brands")) {
-                        JSONArray brandsJSON = productJSON.getJSONArray("brands");
-                        for (int i = 0; i < brandsJSON.length(); i++) {
-                            String brand = brandsJSON.getString(i);
-                            brands.add(brand);
+                        try{
+                            JSONArray brandsJSON = productJSON.getJSONArray("brands");
+                            for (int i = 0; i < brandsJSON.length(); i++) {
+                                String brand = brandsJSON.getString(i);
+                                brands.add(brand);
+                            }
+                        } catch (Exception ignore){
+
+                        }finally {
+                            String brandsJSON = productJSON.getString("brands");
+                            for (int i = 0; i < brandsJSON.length(); i++) {
+                                String brand = brandsJSON;
+                                brands.add(brand);
+                            }
                         }
+
+
                     }
 
                     // Get "nutriments" object

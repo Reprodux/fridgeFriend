@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.activity.result.ActivityResultLauncher;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -27,15 +28,27 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
 
 
 
-
     private final ActivityResultLauncher<ScanOptions> barcode_scanner = registerForActivityResult(new ScanContract(),
             result -> {
-                if(result.getContents() == null){
-                    Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
-                        } else {
+                //Popup for progress bar substitute
+                ProgressDialog progressPopup = new ProgressDialog(this);
+                progressPopup.setMessage("Retrieving data...."); // msg dialog
+                progressPopup.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressPopup.setMax(100);
+                progressPopup.setCancelable(false);
+                progressPopup.show(); // Display Progress Dialog
 
+
+
+                if (result.getContents() == null) {
+                    Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
+                } else {
+                    progressPopup.show(); // Display Progress Dialog
+                    progressPopup.incrementProgressBy(60);
                     Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                     barcode_txt = findViewById(R.id.barcode_text);
+
+                    //Alert Dialog to confirm scan -> enable only for testing purposes
                     AlertDialog.Builder alert_builder = new AlertDialog.Builder((barcodeScanner.this));
                     alert_builder.setTitle("Barcode scanned: ").setMessage(result.getContents());
                     alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
@@ -43,12 +56,15 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
                         Log.i(TAG, "User acknowledged barcode scan");
 
                     });
+                    progressPopup.incrementProgressBy(20);
+                    //alert_builder.show();
 
-                    alert_builder.show();
                     barcode_txt.setText(result.getContents());
+
                     //Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                     new barcode_data_retrieval(this).execute(result.getContents());
-
+                    progressPopup.incrementProgressBy(20);
+                    progressPopup.dismiss();
 
 
                 }

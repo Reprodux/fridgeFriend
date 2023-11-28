@@ -1,6 +1,7 @@
 package com.example.fridge_friend;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -28,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     Button login_request_btn;
     EditText login_email_input;
     EditText pass_input;
+    //Popup for progress bar substitute
+
+
 
     private FirebaseAuth mAuth;
     void loadUserData() {
@@ -85,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void checkData(View V){
+
+        ProgressDialog progressPopup = new ProgressDialog(this);
         Log.i(TAG, "Checking input");
         //declare variables
         String inputted_email = login_email_input.getText().toString();
@@ -108,7 +114,14 @@ public class LoginActivity extends AppCompatActivity {
             valid = false;
         }
         if (valid){
+            //includes progress pop up
+            progressPopup.setMessage("Logging in...."); // msg dialog
+            progressPopup.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL); // Progress Dialog Style Spinner
+            progressPopup.setMax(100);
+            progressPopup.setCancelable(false);
+            progressPopup.show();
             saveEmail();
+            progressPopup.incrementProgressBy(50);
             mAuth.signInWithEmailAndPassword(inputted_email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -121,6 +134,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 //Toast.makeText(getApplicationContext(), "Logged in",Toast.LENGTH_SHORT).show();
                                 Intent passLogin = new Intent(LoginActivity.this, MainActivity.class);
+                                progressPopup.incrementProgressBy(50);
+                                progressPopup.dismiss();
                                 startActivity(passLogin);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -128,6 +143,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
+                                progressPopup.incrementProgressBy(50);
+                                progressPopup.dismiss();
                             }
                         }
                     });
