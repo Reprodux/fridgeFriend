@@ -22,15 +22,15 @@ public class Item {
     public Item() {}
 
     public Item(String name) {
-        new Item(name, 1L, "", null);
+        this(name, 1L, "", null);
     }
 
     public Item(String name, Long amount) {
-        new Item(name, amount, "", null);
+        this(name, amount, "", null);
     }
 
     public Item(String name, Long amount, String expiry) {
-        new Item(name, amount, expiry, null);
+        this(name, amount, expiry, null);
     }
 
     public Item(String name, Long amount, String expiry, String owner) {

@@ -104,6 +104,35 @@ public class CartDatabase {
     }
 
     /**
+     * Store (insert or update) items in a shopping cart in the db.
+     * item is updated if {@link ShoppingCartItem#getId()} > 0.
+     * If {@link ShoppingCartItem#getId()} = 0 then insert is performed instead and the key is updated
+     * @param context Context with access to the db
+     * @param items list of items to store
+     * @return true if the store was successful, false otherwise
+     */
+    public static boolean storeItems(@NonNull Context context, @NonNull List<ShoppingCartItem> items) {
+        boolean result = true;
+        try (CartDatabaseHelper helper = new CartDatabaseHelper(context)) {
+            try (SQLiteDatabase db = helper.getWritableDatabase()) {
+                for (ShoppingCartItem item: items) {
+                    if (item.getId() > 0) {
+                        int rowsChanged = db.update(CartDatabaseHelper.TABLE_NAME, item.getContentValues(), CartDatabaseHelper.KEY_ID + " = ?", new String[]{String.valueOf(item.getId())});
+                        result = result && rowsChanged > 0;
+                    } else {
+                        long id = db.insert(CartDatabaseHelper.TABLE_NAME, null, item.getContentValues());
+                        if (id > 0) {
+                            item.setId(id);
+                        }
+                        result = result && id > 0;
+                    }
+                }
+            }
+        }
+        return result && items.size() > 0;
+    }
+
+    /**
      * Remove an item from the db
      * @param context Context with access to the db
      * @param itemId Id (key) of item to delete
@@ -114,6 +143,20 @@ public class CartDatabase {
         try (CartDatabaseHelper helper = new CartDatabaseHelper(context)) {
             try (SQLiteDatabase db = helper.getWritableDatabase()) {
                 int rowsChanged = db.delete(CartDatabaseHelper.TABLE_NAME, CartDatabaseHelper.KEY_ID + " = ?", new String[]{String.valueOf(itemId)});
+                return rowsChanged > 0;
+            }
+        }
+    }
+
+    /**
+     * Remove all items from the db
+     * @param context Context with access to the db
+     * @return true if delete was successful, false otherwise
+     */
+    public static boolean clearCart(@NonNull Context context) {
+        try (CartDatabaseHelper helper = new CartDatabaseHelper(context)) {
+            try (SQLiteDatabase db = helper.getWritableDatabase()) {
+                int rowsChanged = db.delete(CartDatabaseHelper.TABLE_NAME, "1", null);
                 return rowsChanged > 0;
             }
         }

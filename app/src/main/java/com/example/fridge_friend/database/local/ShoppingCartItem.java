@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 public class ShoppingCartItem {
 
     private long id;
-    private String name;
+    private final String name;
     private int quantity;
     private boolean checked;
 
@@ -39,7 +39,7 @@ public class ShoppingCartItem {
      * @param amount item quantity
      */
     public ShoppingCartItem(@NonNull String name, int amount) {
-        new ShoppingCartItem(0, name, amount, false);
+        this(0, name, amount, false);
     }
 
     /**
@@ -52,11 +52,10 @@ public class ShoppingCartItem {
     }
 
     /**
-     * ONLY FOR INTERNAL USE!
      * Get the db key
      * @return db key, 0 if new > 0 if existing in db
      */
-    long getId() {
+    public long getId() {
         return id;
     }
 
