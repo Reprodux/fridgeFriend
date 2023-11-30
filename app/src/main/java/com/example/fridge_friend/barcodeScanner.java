@@ -69,10 +69,66 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
 
                 }
             });
+
+    public String capitializeWords(String word){
+        String[] words = word.split(" ");
+        String cleanWord = "";
+        for (String w : words) {
+            cleanWord += w.substring(0, 1).toUpperCase() + w.substring(1) + " ";
+        }
+        cleanWord = cleanWord.trim();
+        return cleanWord;
+    }
     @Override
     public void processFinish(String product_name, String product_code, List product_categories, List brands, HashMap product_facts) {
         Snackbar.make(findViewById(android.R.id.content), product_name, Snackbar.LENGTH_SHORT).show();
-        barcode_txt.setText(product_name);
+
+        String product_info = "";
+
+        if (product_name != null) {
+            product_info += "Name: " + product_name + "\n";
+
+            if (product_code != null) {
+                product_info += "Code: " + product_code + "\n";
+            }
+
+            if (product_categories != null) {
+                product_info += "Categories: " + "\n";
+
+                // Get shortest category
+                int shortest = 100;
+                int shortest_index = 0;
+                for (Object category : product_categories) {
+                    if (category.toString().length() < shortest) {
+                        shortest = category.toString().length();
+                        shortest_index = product_categories.indexOf(category);
+                    }
+                }
+
+                product_info += "   " + capitializeWords(product_categories.get(shortest_index).toString()) + "\n";
+            }
+
+            if (brands != null) {
+                product_info += "Brands: " + "\n";
+                for (Object brand : brands) {
+                    product_info += "   " + capitializeWords(brand.toString()) + "\n";
+                    break;
+                }
+            }
+
+            if (product_facts != null) {
+                product_info += "Facts (per 100g): " + "\n";
+                for (Object key : product_facts.keySet()) {
+                    String cleanKey = key.toString().replaceAll("_100g", "");
+                    cleanKey = cleanKey.replaceAll("-", " ");
+
+                    product_info += "   " + capitializeWords(cleanKey) + ": " + Math.round(Float.parseFloat(product_facts.get(key).toString())) + "\n";
+                }
+            }
+        }
+
+        barcode_txt.setText(product_info);
+
         Log.i(TAG, "processFinish in barcode scanner activity run");
     }
     @Override

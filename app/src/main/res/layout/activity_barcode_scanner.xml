@@ -11,15 +11,14 @@
     <TextView
         android:id="@+id/barcode_text"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="475dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
         android:padding="5dp"
         android:text="Barcode Text Here"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewQRCode"
@@ -49,12 +48,12 @@
         android:id="@+id/start_scan_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Press to Scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barcode_text"
         app:layout_constraintVertical_bias="0.505"
-        android:text="Press to Scan"
         app:srcCompat="@drawable/barcode" />
 
     <TextView
