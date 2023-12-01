@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fridge_friend.database.local.CartDatabase;
-import com.example.fridge_friend.database.local.CartDatabaseHelper;
 import com.example.fridge_friend.database.local.ShoppingCartItem;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,19 +32,16 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
 
     private final ActivityResultLauncher<ScanOptions> barcode_scanner = registerForActivityResult(new ScanContract(),
             result -> {
-                //Popup for progress bar substitute
-                ProgressDialog progressPopup = new ProgressDialog(this);
-                progressPopup.setMessage("Retrieving data...."); // msg dialog
-                progressPopup.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
-                progressPopup.setMax(100);
-                progressPopup.setCancelable(false);
-                progressPopup.show(); // Display Progress Dialog
-
-
 
                 if (result.getContents() == null) {
                     Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
                 } else {
+                    //Popup for progress bar substitute
+                    ProgressDialog progressPopup = new ProgressDialog(this);
+                    progressPopup.setMessage("Retrieving data...."); // msg dialog
+                    progressPopup.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                    progressPopup.setMax(100);
+                    progressPopup.setCancelable(false);
                     progressPopup.show(); // Display Progress Dialog
                     progressPopup.incrementProgressBy(60);
                     Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();

@@ -53,4 +53,11 @@
     <string name="join">join</string>
     <string name="clear_list">Clear Shopping List</string>
     <string name="item_data">(Insert Formatted Item Data here)</string>
+    <string name="error_loading_name">An Error occurred while loading name</string>
+    <string name="error_saving_changes">An Error occurred while saving changes</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="please_wait">Please wait....</string>
+    <string name="saving_changes">Saving changes....</string>
+    <string name="changes_saved">Changes Saved</string>
+    <string name="enter_name">Please enter a name</string>
 </resources>
