@@ -219,7 +219,7 @@ public class Database {
      */
     public static void setName(@NonNull Activity activity, @NonNull String name, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
-        dbc.getDatabase().child("users").child(dbc.getUid()).child("name").setValue(name)
+        dbc.getDatabase().child("user").child(dbc.getUid()).child("name").setValue(name)
                 .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
                 .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
                 .addOnFailureListener(activity, operationCompleteListener::onFailure);
@@ -235,8 +235,11 @@ public class Database {
      */
     public static void getUserName(@NonNull Activity activity, @NonNull String userId, @NonNull UserNameListener userNameListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
-        dbc.getDatabase().child("users").child(userId).child("name").get().addOnSuccessListener(activity, taskResult -> {
+        dbc.getDatabase().child("user").child(userId).child("name").get().addOnSuccessListener(activity, taskResult -> {
             String result = taskResult.getValue(String.class);
+            if (result == null || result.equals("")) {
+                result = userId;
+            }
             userNameListener.onResult(result, userId);
         }).addOnCanceledListener(activity, userNameListener::onCanceled).addOnFailureListener(activity, userNameListener::onFailure);
     }

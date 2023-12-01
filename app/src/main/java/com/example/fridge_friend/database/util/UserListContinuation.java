@@ -27,7 +27,7 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
         for(DataSnapshot snapshot: result.getChildren()) {
             String userId = snapshot.getValue(String.class);
             if (userId != null) {
-                tasks.add(ref.child("users").child(userId).child("name").get());
+                tasks.add(ref.child("user").child(userId).child("name").get());
             }
         }
         return Tasks.whenAllSuccess(tasks).continueWith(new ListMapping());
@@ -50,6 +50,9 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
                         String uid = parent.getKey();
                         if (uid != null) {
                             String name = ds.getValue(String.class);
+                            if (name == null || name.equals("")) {
+                                name = uid;
+                            }
                             result.put(uid, name);
                         }
                     }
