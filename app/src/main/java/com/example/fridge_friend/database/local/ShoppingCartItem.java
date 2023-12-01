@@ -15,6 +15,7 @@ public class ShoppingCartItem {
     private final String name;
     private int quantity;
     private boolean checked;
+    private String upc;
 
     /**
      * ONLY FOR INTERNAL USE!
@@ -26,11 +27,12 @@ public class ShoppingCartItem {
      * @see CartDatabase#getItem(Context, long)
      * @see CartDatabase#getItems(Context)
      */
-    ShoppingCartItem(long id, @NonNull String name, int quantity, boolean checked) {
+    ShoppingCartItem(long id, @NonNull String name, int quantity, boolean checked, String upc) {
         this.id = id;
         this.name = name;
         this.quantity = Math.max(quantity, 1);
         this.checked = checked;
+        this.upc = upc;
     }
 
     /**
@@ -38,8 +40,8 @@ public class ShoppingCartItem {
      * @param name item name
      * @param amount item quantity
      */
-    public ShoppingCartItem(@NonNull String name, int amount) {
-        this(0, name, amount, false);
+    public ShoppingCartItem(@NonNull String name, int amount, String upc) {
+        this(0, name, amount, false, upc);
     }
 
     /**
@@ -65,6 +67,14 @@ public class ShoppingCartItem {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Get item upc
+     * @return item upc
+     */
+    public String getUPC() {
+        return upc;
     }
 
     /**
@@ -122,6 +132,7 @@ public class ShoppingCartItem {
         values.put(CartDatabaseHelper.KEY_ITEM_NAME, name);
         values.put(CartDatabaseHelper.KEY_QUANTITY, quantity);
         values.put(CartDatabaseHelper.KEY_ITEM_CHECKED, checked);
+        values.put(CartDatabaseHelper.KEY_UPC, upc);
         return values;
     }
 }

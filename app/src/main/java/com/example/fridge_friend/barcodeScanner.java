@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fridge_friend.database.local.CartDatabase;
+import com.example.fridge_friend.database.local.CartDatabaseHelper;
+import com.example.fridge_friend.database.local.ShoppingCartItem;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.journeyapps.barcodescanner.ScanContract;
@@ -84,6 +87,7 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
     public void processFinish(String product_name, String product_code, List product_categories, List brands, HashMap product_facts) {
         Snackbar.make(findViewById(android.R.id.content), product_name, Snackbar.LENGTH_SHORT).show();
 
+
         String product_info = "";
 
         if (product_name != null) {
@@ -129,7 +133,15 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
         }
 
         barcode_txt.setText(product_info);
+        assert product_code != null;
+        ShoppingCartItem item = new ShoppingCartItem(product_name, 1, product_code);
 
+        boolean result = CartDatabase.storeItem(this, item);
+        long id = item.getId();
+        String upc = item.getUPC();
+        Log.i(TAG, "Stored item in database: " + String.valueOf(result));
+        Log.i(TAG, "Stored item id: " + String.valueOf(id));
+        Log.i(TAG, "Stored item id: " + String.valueOf(upc));
         Log.i(TAG, "processFinish in barcode scanner activity run");
     }
     @Override

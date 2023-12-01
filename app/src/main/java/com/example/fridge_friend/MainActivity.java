@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.fridge_friend.database.local.CartDatabase;
+import com.example.fridge_friend.database.local.CartDatabaseHelper;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppToolbar {
-
+    CartDatabaseHelper cartDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

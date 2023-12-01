@@ -1,7 +1,11 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.activity.OnBackPressedCallback;
@@ -18,7 +22,11 @@ import java.util.List;
 public class ShoppingListActivity extends AppToolbar implements ShoppingCartItemsAdapter.ItemClickListener {
 
     private ShoppingCartItemsAdapter adapter;
+    Context ShoppingListContext;
+
+
     private List<ShoppingCartItem> shoppingItems;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +36,9 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
         RecyclerView recyclerView = findViewById(R.id.recyclerViewShoppingItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        shoppingItems = CartDatabase.getItems(this);
-        if (shoppingItems.size() == 0) {
-            shoppingItems = createStubFridgeItemList();
-        }
+
+        shoppingItems = createStubFridgeItemList();
+
         adapter = new ShoppingCartItemsAdapter(this, shoppingItems);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
@@ -57,19 +64,16 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
         ShoppingCartItem item = shoppingItems.get(position);
         // Start the ItemDetailActivity
         Intent detailIntent = new Intent(this, ShoppingItemViewActivity.class);
-        detailIntent.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, item.getId());
+        String upc = item.getUPC();
+        detailIntent.putExtra("upc", upc);
+        Log.d(TAG,"ITEM ID sla " + upc);
         startActivity(detailIntent);
     }
 
     private List<ShoppingCartItem> createStubFridgeItemList() {
         // Create a stub list of fridge items
         List<ShoppingCartItem> items = new ArrayList<>();
-        items.add(new ShoppingCartItem("Apples", 5));
-        items.add(new ShoppingCartItem("Eggs", 12));
-        items.add(new ShoppingCartItem("Cheese Pizza", 1));
-        // items.add(new FridgeItem("2", "Eggs", "12 pack, free-range"));
-        // Add more items as needed
-        CartDatabase.storeItems(this, items);
+        items = CartDatabase.getItems(this);
         return items;
     }
 

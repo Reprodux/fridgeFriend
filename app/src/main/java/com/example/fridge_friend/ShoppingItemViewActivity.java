@@ -1,7 +1,10 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
@@ -11,7 +14,7 @@ public class ShoppingItemViewActivity extends AppToolbar {
     public static final String EXTRA_ITEM_ID = "EXTRA_ITEM_ID";
     private TextView textViewWelcomeUser;
     private TextView textViewItemName;
-    private TextView textViewItemQuantity;
+    private TextView textViewItemupc;
     private TextView textViewExpiryDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +23,15 @@ public class ShoppingItemViewActivity extends AppToolbar {
 
         //TODO: replace all this with formatted JSON code retrieved from API/Database
         //assume that intent.getStringExtra("barcode_str") should return the 13 digit barcode
+        Intent intent = getIntent();
+        String upc = intent.getStringExtra("upc");
 
 
-
-        // Bind the TextViews from the layout
-
+        Log.d(TAG,"ITEM ID DERTAILS " +upc);
         textViewItemName= findViewById(R.id.itemName);
-        textViewItemQuantity = findViewById(R.id.itemData);
+
+        textViewItemupc = findViewById(R.id.itemData);
+        textViewItemupc.setText(intent.getStringExtra("upc"));
 
 
 

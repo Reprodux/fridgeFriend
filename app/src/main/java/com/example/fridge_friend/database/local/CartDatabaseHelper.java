@@ -12,11 +12,12 @@ import androidx.annotation.NonNull;
 public class CartDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ShoppingCart.db";
-    private static final int VERSION_NUM = 1;
+    private static final int VERSION_NUM = 4;
     static final String KEY_ID = "id";
     static final String KEY_ITEM_NAME = "name";
     static final String KEY_ITEM_CHECKED = "checked";
     static final String KEY_QUANTITY = "quantity";
+    static final String KEY_UPC = "upc";
     static final String TABLE_NAME = "cart";
 
     public CartDatabaseHelper(@NonNull Context context) {
@@ -25,7 +26,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(@NonNull SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + " ("+ KEY_ID +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+ KEY_ITEM_NAME +" TEXT NOT NULL DEFAULT '', "
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + " ("+ KEY_ID +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+ KEY_ITEM_NAME +" TEXT NOT NULL DEFAULT '', "+ KEY_UPC +" TEXT NOT NULL DEFAULT '', "
                 + KEY_QUANTITY +" INTEGER NOT NULL DEFAULT 1 CHECK("+ KEY_QUANTITY +" >= 1), "
                 + KEY_ITEM_CHECKED+" BOOLEAN NOT NULL DEFAULT 0 CHECK ("+ KEY_ITEM_CHECKED +" IN (0, 1)))");
     }

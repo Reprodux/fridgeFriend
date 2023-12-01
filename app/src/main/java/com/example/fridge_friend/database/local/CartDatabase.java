@@ -24,26 +24,26 @@ public class CartDatabase {
         List<ShoppingCartItem> items = new ArrayList<>();
         try (CartDatabaseHelper helper = new CartDatabaseHelper(context)) {
             try (SQLiteDatabase db = helper.getReadableDatabase()) {
-                try (Cursor cursor = db.query(CartDatabaseHelper.TABLE_NAME, new String[]{
-                        CartDatabaseHelper.KEY_ITEM_NAME, CartDatabaseHelper.KEY_QUANTITY, CartDatabaseHelper.KEY_ITEM_CHECKED
-                }, null, null, null, null, null, null)) {
-                    if (cursor.moveToFirst()) {
-                        while (cursor.isAfterLast()) {
-                            int idIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ID);
-                            int nameIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_NAME);
-                            int quantityIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_QUANTITY);
-                            int checkedIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_CHECKED);
-                            long id = cursor.getLong(idIndex);
-                            String name = cursor.getString(nameIndex);
-                            int quantity = cursor.getInt(quantityIndex);
-                            boolean checked = cursor.getInt(checkedIndex) == 1;
-                            ShoppingCartItem item = new ShoppingCartItem(id, name, quantity, checked);
-                            items.add(item);
-                        }
-                    }
+                String query = "SELECT * FROM  " + CartDatabaseHelper.TABLE_NAME;
+                Cursor cursor = db.rawQuery(query,null);
+                while (cursor.moveToNext()){
+                    int idIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ID);
+                    int nameIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_NAME);
+                    int quantityIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_QUANTITY);
+                    int checkedIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_CHECKED);
+                    int upcIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_UPC);
+                    long id = cursor.getLong(idIndex);
+                    String name = cursor.getString(nameIndex);
+                    int quantity = cursor.getInt(quantityIndex);
+                    boolean checked = cursor.getInt(checkedIndex) == 1;
+                    String upc = cursor.getString(upcIndex);
+                    ShoppingCartItem item = new ShoppingCartItem(id, name, quantity, checked,upc);
+                    items.add(item);
                 }
             }
         }
+
+
         return items;
     }
 
@@ -52,28 +52,30 @@ public class CartDatabase {
      * @param context Context with access to the db
      * @param itemId Id of item to retrieve
      * @return Shopping cart item or null if the item doesn't exist in the db
+     * FOR SOME REASON IT DOESNT WORK YOU NEED TO USE A RAW QUERY INSTEAD
      */
     @Nullable
     public static ShoppingCartItem getItem(@NonNull Context context, long itemId) {
         try (CartDatabaseHelper helper = new CartDatabaseHelper(context)) {
             try (SQLiteDatabase db = helper.getReadableDatabase()) {
-                try (Cursor cursor = db.query(CartDatabaseHelper.TABLE_NAME, new String[]{
-                        CartDatabaseHelper.KEY_ITEM_NAME, CartDatabaseHelper.KEY_QUANTITY, CartDatabaseHelper.KEY_ITEM_CHECKED
-                }, CartDatabaseHelper.KEY_ID + " = ?", new String[]{String.valueOf(itemId)}, null, null, null, null)) {
-                    if (cursor.moveToFirst()) {
+                {
+                    String query = "SELECT * FROM  " + CartDatabaseHelper.TABLE_NAME + " WHERE " + CartDatabaseHelper.KEY_ID + " = " + String.valueOf(itemId);
+                    Cursor cursor = db.rawQuery(query,null);
+                    while (cursor.moveToNext()) {
                         int idIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ID);
                         int nameIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_NAME);
                         int quantityIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_QUANTITY);
                         int checkedIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_ITEM_CHECKED);
+                        int upcIndex = cursor.getColumnIndexOrThrow(CartDatabaseHelper.KEY_UPC);
                         long id = cursor.getLong(idIndex);
                         String name = cursor.getString(nameIndex);
                         int quantity = cursor.getInt(quantityIndex);
                         boolean checked = cursor.getInt(checkedIndex) == 1;
-                        return new ShoppingCartItem(id, name, quantity, checked);
-                    }
-                }
-            }
-        }
+                        String upc = cursor.getString(upcIndex);
+                        ShoppingCartItem item = new ShoppingCartItem(id, name, quantity, checked, upc);
+                        return item;
+                    }}}}
+
         return null;
     }
 
