@@ -58,6 +58,16 @@
     <string name="cancelled">Cancelled</string>
     <string name="please_wait">Please wait....</string>
     <string name="saving_changes">Saving changes....</string>
+    <string name="leaving_fridge">Leaving fridge....</string>
+    <string name="removing_user">Removing user....</string>
     <string name="changes_saved">Changes Saved</string>
     <string name="enter_name">Please enter a name</string>
+    <string name="item_icon_description_user">"A a person icon"</string>
+    <string name="error_loading_users">An Error occurred while loading users</string>
+    <string name="fridge_prefix">Fridge: %1$s</string>
+    <string name="username_prefix">User: %1$s</string>
+    <string name="remove_user">Remove User</string>
+    <string name="leave_fridge">Leave Fridge</string>
+    <string name="error_leaving_fridge">An Error occurred while leaving the fridge</string>
+    <string name="error_removing_user">An Error occurred while removing the user</string>
 </resources>

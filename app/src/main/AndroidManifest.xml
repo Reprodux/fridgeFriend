@@ -37,9 +37,13 @@
         android:theme="@style/Base.Theme.Fridge_friend"
         tools:targetApi="31">
         <activity
+            android:name=".UserDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".FridgeUserListActivity" />
+        <activity
             android:name=".ShoppingListActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -74,6 +78,10 @@
             android:parentActivityName=".FridgeListActivity" />
         <activity
             android:name=".FridgeListActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FridgeUserListActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
