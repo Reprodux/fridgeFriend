@@ -70,8 +70,9 @@ public abstract class AppToolbar extends AppCompatActivity implements ToolBarInt
         return handleMenuItemSelected(item);
     }
 
-    private void about() {
+    public void about() {
         // TODO: Implement proper about
-        Toast.makeText(this, R.string.about, Toast.LENGTH_SHORT).show();
+
     }
+
 }

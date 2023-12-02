@@ -1,5 +1,7 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 
@@ -165,5 +167,14 @@ public class UserSettingActivity extends AppToolbar {
             errorAlert.show();
         }
 
+    }
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((UserSettingActivity.this));
+        alert_builder.setTitle(R.string.user_settings_title).setMessage(R.string.userSettingsAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 }

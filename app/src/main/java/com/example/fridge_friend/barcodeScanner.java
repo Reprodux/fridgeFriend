@@ -42,11 +42,12 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
 
     private final ActivityResultLauncher<ScanOptions> barcode_scanner = registerForActivityResult(new ScanContract(),
             result -> {
-                barcode_bar.setVisibility(View.VISIBLE);
-                barcode_bar.setProgress(50);
+
                 if (result.getContents() == null) {
                     Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
                 } else {
+                    barcode_bar.setVisibility(View.VISIBLE);
+                    barcode_bar.setProgress(50);
                     //Popup for progress bar substitute
 
                     Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
@@ -158,7 +159,18 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
 
     }
 
+    //Overrides toolbars about to display info on current activity
+    @Override
+    public void about(){
+        AlertDialog.Builder alert_builder = new AlertDialog.Builder((barcodeScanner.this));
+        alert_builder.setTitle(R.string.barcode_scanner_title).setMessage(R.string.barcodeScannerAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
 
+        }).show();
+
+        //alert_builder.show();
+    }
     @Override
     protected void onPause() {
         super.onPause();

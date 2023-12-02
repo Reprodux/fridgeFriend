@@ -82,5 +82,14 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
             adapter.notifyItemRangeRemoved(0, size);
         });
     }
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((ShoppingListActivity.this));
+        alert_builder.setTitle(R.string.shopping_list_title).setMessage(R.string.shoppingListAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
+    }
 
 }

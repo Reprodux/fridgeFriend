@@ -1,5 +1,7 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AlertDialog;
 
 import android.app.Activity;
@@ -131,6 +133,16 @@ public class UserDetailsActivity extends AppToolbar {
             activity.setResult(Activity.RESULT_OK, intent);
             activity.finish();
         }
+    }
+
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((UserDetailsActivity.this));
+        alert_builder.setTitle(R.string.user_details_title).setMessage(R.string.userDetailsAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 
 }

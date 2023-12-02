@@ -1,5 +1,7 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -140,6 +142,16 @@ public class FridgeUserListActivity extends AppToolbar implements FridgeUsersAda
             errorAlert.show();
         }
 
+    }
+    //Overrides toolbars about to display info on current activity
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((FridgeUserListActivity.this));
+        alert_builder.setTitle(R.string.fridge_userList_title).setMessage(R.string.fridgeUserListAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 
 }
