@@ -33,22 +33,10 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewShoppingItems);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        shoppingItems = createStubFridgeItemList();
 
-        adapter = new ShoppingCartItemsAdapter(this, shoppingItems);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-        Button buttonClearList = findViewById(R.id.buttonClearShoppingList);
-        buttonClearList.setOnClickListener(v -> {
-            int size = shoppingItems.size();
-            CartDatabase.clearCart(this);
-            shoppingItems.clear();
-            adapter.notifyItemRangeRemoved(0, size);
-        });
+
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -75,6 +63,24 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
         List<ShoppingCartItem> items = new ArrayList<>();
         items = CartDatabase.getItems(this);
         return items;
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewShoppingItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        shoppingItems = createStubFridgeItemList();
+
+        adapter = new ShoppingCartItemsAdapter(this, shoppingItems);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+        Button buttonClearList = findViewById(R.id.buttonClearShoppingList);
+        buttonClearList.setOnClickListener(v -> {
+            int size = shoppingItems.size();
+            CartDatabase.clearCart(this);
+            shoppingItems.clear();
+            adapter.notifyItemRangeRemoved(0, size);
+        });
     }
 
 }

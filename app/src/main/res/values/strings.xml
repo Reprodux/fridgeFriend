@@ -60,4 +60,6 @@
     <string name="saving_changes">Saving changes....</string>
     <string name="changes_saved">Changes Saved</string>
     <string name="enter_name">Please enter a name</string>
+    <string name="retrieving_data">Retrieving Item Data...</string>
+    <string name="press_to_start">Press scan to scan product</string>
 </resources>

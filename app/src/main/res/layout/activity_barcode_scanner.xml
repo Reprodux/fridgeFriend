@@ -12,11 +12,13 @@
         android:id="@+id/barcode_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
         android:padding="5dp"
-        android:text="Barcode Text Here"
+        android:text="@string/press_to_start"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,19 +58,17 @@
         app:layout_constraintVertical_bias="0.505"
         app:srcCompat="@drawable/barcode" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="538dp"
-        android:layout_marginEnd="163dp"
-        android:layout_marginBottom="174dp"
-        android:text="Press to Scan"
-        android:textSize="20sp"
+    <ProgressBar
+        android:id="@+id/barcode_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="261dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="129dp"
+        android:layout_marginBottom="582dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/barcode_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/barcode_text"
         app:layout_constraintTop_toTopOf="parent" />
 
 
