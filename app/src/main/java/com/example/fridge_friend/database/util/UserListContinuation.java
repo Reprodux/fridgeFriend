@@ -23,9 +23,9 @@ public class UserListContinuation implements Continuation<DataSnapshot, Task<Map
     public Task<Map<String,String>> then(@NonNull Task<DataSnapshot> task) {
         List<Task<DataSnapshot>> tasks = new ArrayList<>();
         DataSnapshot result = task.getResult();
-        DatabaseReference ref = result.getRef();
+        DatabaseReference ref = result.getRef().getRoot();
         for(DataSnapshot snapshot: result.getChildren()) {
-            String userId = snapshot.getValue(String.class);
+            String userId = snapshot.getKey();
             if (userId != null) {
                 tasks.add(ref.child("user").child(userId).child("name").get());
             }

@@ -139,6 +139,25 @@ public class Database {
     }
 
     /**
+     * Attempt to remove the user from the given fridge
+     * @param activity Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.
+     *                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
+     * @param userId Id of the user to remove
+     * @param fridgeName Name of the fridge to remove user from
+     * @param operationCompleteListener Listener that will be notified of the result of the operation.
+     *                                  Operation may silently succeed if the user isn't in the given fridge or the fridge doesn't exist even though no work was done.
+     * @see OperationCompleteListener#onSuccess()
+     */
+    public static void removeFromFridge(@NonNull Activity activity, @NonNull String userId, @NonNull String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
+        DatabaseConnection dbc = DatabaseConnection.getConnection();
+        dbc.getDatabase().child("fridgeMembers").child(fridgeName).get()
+                .continueWithTask(new LeaveFridgeContinuation(fridgeName, userId))
+                .addOnSuccessListener(activity, unused -> operationCompleteListener.onSuccess())
+                .addOnCanceledListener(activity, operationCompleteListener::onCanceled)
+                .addOnFailureListener(activity, operationCompleteListener::onFailure);
+    }
+
+    /**
      * Get the list of items in the fridge.
      * Item ids are used as the keys in the resulting map
      * @param activity Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.
