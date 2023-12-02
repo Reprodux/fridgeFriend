@@ -1,11 +1,15 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
@@ -57,5 +61,16 @@ public class FridgeListActivity extends AppToolbar implements FridgeAdapter.Item
         fridgeNames.add("The Cool Keeper");
         fridgeNames.add("Icy Storage Unit");
         return fridgeNames;
+    }
+
+    //Overrides toolbars about to display info on current activity
+    @Override
+    public void about() {
+        AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeListActivity.this));
+        alert_builder.setTitle(R.string.fridge_list_title).setMessage(R.string.fridgeListAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 }

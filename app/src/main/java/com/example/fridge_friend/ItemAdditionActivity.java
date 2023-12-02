@@ -1,6 +1,9 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,5 +61,15 @@ public class ItemAdditionActivity extends AppToolbar {
 
         //finishing the activity to return to the previous screen
         finish();
+    }
+
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((ItemAdditionActivity.this));
+        alert_builder.setTitle(R.string.item_addition_title).setMessage(R.string.itemAddAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 }

@@ -27,7 +27,7 @@ public class ShoppingItemViewActivity extends AppToolbar {
         String upc = intent.getStringExtra("upc");
 
 
-        Log.d(TAG,"ITEM ID DERTAILS " +upc);
+        Log.d(TAG,"ITEM ID DETAILS " +upc);
         textViewItemName= findViewById(R.id.itemName);
 
         textViewItemupc = findViewById(R.id.itemData);
@@ -41,5 +41,15 @@ public class ShoppingItemViewActivity extends AppToolbar {
     public void onBackPressed(){
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((ShoppingItemViewActivity.this));
+        alert_builder.setTitle(R.string.shopping_item_detail_title).setMessage(R.string.shoppingItemDetailAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 }

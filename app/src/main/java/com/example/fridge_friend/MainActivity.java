@@ -59,7 +59,15 @@ public class MainActivity extends AppToolbar {
         Intent intent = new Intent(this, ShoppingListActivity.class);
         startActivity(intent);
     }
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((MainActivity.this));
+        alert_builder.setTitle(R.string.main_title).setMessage(R.string.mainAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
 
+        }).show();
+    }
     private void showToast(int resId) {
         Toast.makeText(this, resId, Toast.LENGTH_LONG).show();
     }

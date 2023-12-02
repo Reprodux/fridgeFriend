@@ -1,7 +1,11 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -62,6 +66,17 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         items.add(new FridgeItem("3", "Pizza", "Cheddar, 200g"));
         // Add more items as needed
         return items;
+    }
+
+    //Overrides toolbars about to display info on current activity
+    @Override
+    public void about() {
+        AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeDetailActivity.this));
+        alert_builder.setTitle(R.string.fridge_detail_ac_title).setMessage(R.string.fridgeDetailAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 
     @Override

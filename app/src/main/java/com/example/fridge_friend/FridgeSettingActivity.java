@@ -1,6 +1,11 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.CompoundButton;
@@ -49,7 +54,16 @@ public class FridgeSettingActivity extends AppToolbar {
             // Code to handle notifications disallowed
         }
     }
-    // Method to toggle the Notification Settings section
+    //Overrides toolbars about to display info on current activity
+    @Override
+    public void about() {
+        AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeSettingActivity.this));
+        alert_builder.setTitle(R.string.fridge_setting_title).setMessage(R.string.fridgeSettingAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
+    }
 
 
 }

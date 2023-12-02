@@ -1,8 +1,11 @@
 package com.example.fridge_friend;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
@@ -36,5 +39,15 @@ public class ItemDetailActivity extends AppToolbar {
         textViewItemOwner.setText(getString(R.string.item_owner, dummyOwner));
         textViewItemQuantity.setText(getString(R.string.item_quantity, dummyQuantity));
         textViewExpiryDate.setText(getString(R.string.item_expiry, dummyExpiryDate));
+    }
+
+    @Override
+    public void about() {
+        android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((ItemDetailActivity.this));
+        alert_builder.setTitle(R.string.item_detail_title).setMessage(R.string.itemDetailAbout);
+        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+            Log.i(TAG, "User clicked about");
+
+        }).show();
     }
 }
