@@ -21,7 +21,11 @@ import com.example.fridge_friend.database.listener.UserNameListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-/** @noinspection deprecation*/
+/**
+ * The type User setting activity.
+ *
+ * @noinspection deprecation
+ */
 public class UserSettingActivity extends AppToolbar {
 
     private LinearLayout layoutPersonalSettingsInfo;
@@ -54,7 +58,12 @@ public class UserSettingActivity extends AppToolbar {
         Database.getUserName(this, uid, new LoadingListener(this));
     }
 
-    // toggling the Personal Settings section
+    /**
+     * Toggle personal settings.
+     *
+     * @param view the view
+     */
+// toggling the Personal Settings section
     public void togglePersonalSettings(View view) {
         // Toggling the visibility of the expandable layout
         layoutPersonalSettingsInfo.setVisibility(
@@ -79,6 +88,12 @@ public class UserSettingActivity extends AppToolbar {
         }
     }
 
+    /**
+     * On checked changed.
+     *
+     * @param buttonView the button view
+     * @param isChecked  the is checked
+     */
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Handle switch toggle
         if (isChecked) {
@@ -88,7 +103,12 @@ public class UserSettingActivity extends AppToolbar {
         }
     }
 
-    // Method to toggle the Notification Settings section
+    /**
+     * Toggle notification settings.
+     *
+     * @param view the view
+     */
+// Method to toggle the Notification Settings section
     public void toggleNotificationSettings(View view) {
         layoutNotificationSettings.setVisibility(
                 layoutNotificationSettings.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
@@ -99,6 +119,11 @@ public class UserSettingActivity extends AppToolbar {
 
         private final UserSettingActivity activity;
 
+        /**
+         * Instantiates a new Saving listener.
+         *
+         * @param activity the activity
+         */
         SavingListener(UserSettingActivity activity) {
             this.activity = activity;
         }
@@ -134,6 +159,11 @@ public class UserSettingActivity extends AppToolbar {
 
         private final UserSettingActivity activity;
 
+        /**
+         * Instantiates a new Loading listener.
+         *
+         * @param activity the activity
+         */
         LoadingListener(UserSettingActivity activity) {
             this.activity = activity;
         }

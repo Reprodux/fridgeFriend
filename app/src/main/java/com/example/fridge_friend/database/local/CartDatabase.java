@@ -17,6 +17,7 @@ public class CartDatabase {
 
     /**
      * Get a list of items currently in the shopping cart from the db
+     *
      * @param context Context with access to the db
      * @return List of shopping cart items
      */
@@ -49,10 +50,10 @@ public class CartDatabase {
 
     /**
      * Get an item currently in the shopping cart from the db
+     *
      * @param context Context with access to the db
-     * @param itemId Id of item to retrieve
-     * @return Shopping cart item or null if the item doesn't exist in the db
-     * FOR SOME REASON IT DOESNT WORK YOU NEED TO USE A RAW QUERY INSTEAD
+     * @param itemId  Id of item to retrieve
+     * @return Shopping cart item or null if the item doesn't exist in the db FOR SOME REASON IT DOESNT WORK YOU NEED TO USE A RAW QUERY INSTEAD
      */
     @Nullable
     public static ShoppingCartItem getItem(@NonNull Context context, long itemId) {
@@ -83,8 +84,9 @@ public class CartDatabase {
      * Store (insert or update) a shopping cart item in the db.
      * item is updated if {@link ShoppingCartItem#getId()} > 0.
      * If {@link ShoppingCartItem#getId()} = 0 then insert is performed instead and the key is updated
+     *
      * @param context Context with access to the db
-     * @param item item to store
+     * @param item    item to store
      * @return true if the store was successful, false otherwise
      */
     public static boolean storeItem(@NonNull Context context, @NonNull ShoppingCartItem item) {
@@ -109,8 +111,9 @@ public class CartDatabase {
      * Store (insert or update) items in a shopping cart in the db.
      * item is updated if {@link ShoppingCartItem#getId()} > 0.
      * If {@link ShoppingCartItem#getId()} = 0 then insert is performed instead and the key is updated
+     *
      * @param context Context with access to the db
-     * @param items list of items to store
+     * @param items   list of items to store
      * @return true if the store was successful, false otherwise
      */
     public static boolean storeItems(@NonNull Context context, @NonNull List<ShoppingCartItem> items) {
@@ -136,8 +139,9 @@ public class CartDatabase {
 
     /**
      * Remove an item from the db
+     *
      * @param context Context with access to the db
-     * @param itemId Id (key) of item to delete
+     * @param itemId  Id (key) of item to delete
      * @return true if delete was successful, false otherwise
      */
     public static boolean deleteItem(@NonNull Context context, long itemId) {
@@ -152,6 +156,7 @@ public class CartDatabase {
 
     /**
      * Remove all items from the db
+     *
      * @param context Context with access to the db
      * @return true if delete was successful, false otherwise
      */

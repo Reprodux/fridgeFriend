@@ -16,7 +16,11 @@ import com.example.fridge_friend.database.listener.OperationCompleteListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-/** @noinspection deprecation*/
+/**
+ * The type User details activity.
+ *
+ * @noinspection deprecation
+ */
 public class UserDetailsActivity extends AppToolbar {
 
     private String fridgeName;
@@ -63,6 +67,11 @@ public class UserDetailsActivity extends AppToolbar {
 
         private final UserDetailsActivity activity;
 
+        /**
+         * Instantiates a new Leave listener.
+         *
+         * @param activity the activity
+         */
         LeaveListener(UserDetailsActivity activity) {
             this.activity = activity;
         }
@@ -101,6 +110,11 @@ public class UserDetailsActivity extends AppToolbar {
 
         private final UserDetailsActivity activity;
 
+        /**
+         * Instantiates a new Remove listener.
+         *
+         * @param activity the activity
+         */
         RemoveListener(UserDetailsActivity activity) {
             this.activity = activity;
         }

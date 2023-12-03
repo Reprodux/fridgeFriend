@@ -19,11 +19,12 @@ import com.example.fridge_friend.toolbar.AppToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Shopping list activity.
+ */
 public class ShoppingListActivity extends AppToolbar implements ShoppingCartItemsAdapter.ItemClickListener {
 
     private ShoppingCartItemsAdapter adapter;
-    Context ShoppingListContext;
-
 
     private List<ShoppingCartItem> shoppingItems;
 
@@ -32,10 +33,6 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
-
-
-
-
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override

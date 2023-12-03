@@ -11,6 +11,7 @@ public interface ItemListener extends BaseListener {
 
     /**
      * Called when the list of items is available from the db
+     *
      * @param result Map with item ids as keys and Items as values
      */
     void onResult(Map<String, Item> result);

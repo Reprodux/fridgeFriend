@@ -9,6 +9,7 @@ public interface BaseListener {
 
     /**
      * Called when a db operation fails
+     *
      * @param e exception that caused the failure
      */
     void onFailure(@NotNull Exception e);

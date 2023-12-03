@@ -5,6 +5,11 @@ package com.example.fridge_friend.database.errors;
  */
 public class FridgeInUseException extends Exception{
 
+    /**
+     * Instantiates a new Fridge in use exception.
+     *
+     * @param s the s
+     */
     public FridgeInUseException(String s) {
         super(s);
     }

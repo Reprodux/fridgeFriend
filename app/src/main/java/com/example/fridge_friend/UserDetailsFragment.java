@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type User details fragment.
+ */
 public class UserDetailsFragment extends Fragment {
 
     private String fridgeName;

@@ -20,6 +20,12 @@ public class CreateFridgeContinuation implements Continuation<DataSnapshot, Task
     private final String fridgeName;
     private final String uid;
 
+    /**
+     * Instantiates a new Create fridge continuation.
+     *
+     * @param fridgeName the fridge name
+     * @param uid        the uid
+     */
     public CreateFridgeContinuation(String fridgeName, String uid) {
         this.fridgeName = fridgeName;
         this.uid = uid;

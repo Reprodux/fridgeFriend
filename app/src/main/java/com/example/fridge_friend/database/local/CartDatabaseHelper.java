@@ -13,13 +13,36 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ShoppingCart.db";
     private static final int VERSION_NUM = 4;
+    /**
+     * The Key id.
+     */
     static final String KEY_ID = "id";
+    /**
+     * The Key item name.
+     */
     static final String KEY_ITEM_NAME = "name";
+    /**
+     * The Key item checked.
+     */
     static final String KEY_ITEM_CHECKED = "checked";
+    /**
+     * The Key quantity.
+     */
     static final String KEY_QUANTITY = "quantity";
+    /**
+     * The Key upc.
+     */
     static final String KEY_UPC = "upc";
+    /**
+     * The Table name.
+     */
     static final String TABLE_NAME = "cart";
 
+    /**
+     * Instantiates a new Cart database helper.
+     *
+     * @param context the context
+     */
     public CartDatabaseHelper(@NonNull Context context) {
         super(context, DATABASE_NAME, null, VERSION_NUM);
     }

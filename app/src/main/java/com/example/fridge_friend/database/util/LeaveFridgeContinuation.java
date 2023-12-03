@@ -20,6 +20,12 @@ public class LeaveFridgeContinuation implements Continuation<DataSnapshot, Task<
     private final String fridgeName;
     private final String uid;
 
+    /**
+     * Instantiates a new Leave fridge continuation.
+     *
+     * @param fridgeName the fridge name
+     * @param uid        the uid
+     */
     public LeaveFridgeContinuation(String fridgeName, String uid) {
         this.fridgeName = fridgeName;
         this.uid = uid;

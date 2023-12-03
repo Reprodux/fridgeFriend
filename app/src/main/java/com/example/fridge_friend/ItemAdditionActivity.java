@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
 
+/**
+ * The type Item addition activity.
+ */
 public class ItemAdditionActivity extends AppToolbar {
 
     private EditText editTextItemName;

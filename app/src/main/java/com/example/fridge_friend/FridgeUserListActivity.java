@@ -26,7 +26,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.HashMap;
 import java.util.Map;
 
-/** @noinspection deprecation*/
+/**
+ * The type Fridge user list activity.
+ *
+ * @noinspection deprecation
+ */
 public class FridgeUserListActivity extends AppToolbar implements FridgeUsersAdapter.ItemClickListener {
 
     private FridgeUsersAdapter adapter;
@@ -110,6 +114,11 @@ public class FridgeUserListActivity extends AppToolbar implements FridgeUsersAda
     private class LoadingListener implements UserListListener {
         private final FridgeUserListActivity activity;
 
+        /**
+         * Instantiates a new Loading listener.
+         *
+         * @param activity the activity
+         */
         LoadingListener(FridgeUserListActivity activity) {
             this.activity = activity;
         }

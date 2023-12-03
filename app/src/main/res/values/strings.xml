@@ -98,6 +98,7 @@
     <string name="userDetailsAbout">"This activity the user can view the users currently registered in a fridge, and have the option to remove the user from the fridge if need be. "</string>
     <string name="user_settings_title">User settings - Ver 3.</string>
     <string name="userSettingsAbout">This activity allows the user to change their username, a recommended action when first registering for an account.</string>
+    <string name="add_to_fridge">Add to Fridge</string>
 
     <string name="password">Password</string>
     <string name="login">Email</string>
