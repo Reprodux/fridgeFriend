@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     //Popup for progress bar substitute
 
 
-
     private FirebaseAuth mAuth;
 
     /**
