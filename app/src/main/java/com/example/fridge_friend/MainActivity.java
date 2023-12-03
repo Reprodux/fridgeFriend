@@ -20,7 +20,7 @@ public class MainActivity extends AppToolbar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Homepage");
+        getSupportActionBar().setTitle(R.string.title_main_activity);
     }
 
     public void checkData(View V){

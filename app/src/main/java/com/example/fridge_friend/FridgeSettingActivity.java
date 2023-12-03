@@ -59,7 +59,7 @@ public class FridgeSettingActivity extends AppToolbar {
     public void about() {
         AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeSettingActivity.this));
         alert_builder.setTitle(R.string.fridge_setting_title).setMessage(R.string.fridgeSettingAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
 
         }).show();

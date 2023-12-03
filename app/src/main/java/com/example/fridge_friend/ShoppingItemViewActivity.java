@@ -47,7 +47,7 @@ public class ShoppingItemViewActivity extends AppToolbar {
     public void about() {
         android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((ShoppingItemViewActivity.this));
         alert_builder.setTitle(R.string.shopping_item_detail_title).setMessage(R.string.shoppingItemDetailAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
 
         }).show();

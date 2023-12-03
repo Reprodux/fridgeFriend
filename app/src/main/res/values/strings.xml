@@ -99,4 +99,34 @@
     <string name="user_settings_title">User settings - Ver 3.</string>
     <string name="userSettingsAbout">This activity allows the user to change their username, a recommended action when first registering for an account.</string>
 
+    <string name="password">Password</string>
+    <string name="login">Email</string>
+    <string name="login_request">Login</string>
+    <string name="register_request">Register New Account</string>
+    <string name="login_title">Fridge Friend</string>
+    <string name="login_bar">Fridge Friend Login Page</string>
+
+    <string name="email_required">You must input email to login</string>
+    <string name="email_valid_required">Must be valid email format (i.e. user@email.com)</string>
+    <string name="email_required_create_account">You must input valid email to create account</string>
+    <string name="password_required">You must input password</string>
+    <string name="logging_in">Logging in...</string>
+    <string name="auth_failed">Authentication failed.</string>
+    <string name="default_email">email@domain.com</string>
+    <string name="auth_failed_password_length">Authentication failed, did you make your password 6 characters long?</string>
+    <string name="login_success">Successful sign-in</string>
+    <string name="login_failed">Failed sign-in</string>
+
+    <string name="title_main_activity">Homepage</string>
+    <string name="canceled">Cancelled</string>
+    <string name="scanned">Scanned: </string>
+    <string name="name">Name: </string>
+    <string name="code">Code: </string>
+    <string name="categories">Categories: </string>
+    <string name="brands">Brands: </string>
+    <string name="facts">Facts (per 100g): </string>
+    <string name="ok">Ok</string>
+    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <string name="item_saved">Item saved</string>
+
 </resources>

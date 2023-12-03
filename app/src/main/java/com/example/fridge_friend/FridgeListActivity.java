@@ -68,7 +68,7 @@ public class FridgeListActivity extends AppToolbar implements FridgeAdapter.Item
     public void about() {
         AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeListActivity.this));
         alert_builder.setTitle(R.string.fridge_list_title).setMessage(R.string.fridgeListAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
 
         }).show();

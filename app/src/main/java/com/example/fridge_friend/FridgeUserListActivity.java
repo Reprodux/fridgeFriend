@@ -148,7 +148,7 @@ public class FridgeUserListActivity extends AppToolbar implements FridgeUsersAda
     public void about() {
         android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((FridgeUserListActivity.this));
         alert_builder.setTitle(R.string.fridge_userList_title).setMessage(R.string.fridgeUserListAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
 
         }).show();

@@ -44,13 +44,13 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
             result -> {
 
                 if (result.getContents() == null) {
-                    Toast.makeText(barcodeScanner.this, "Cancelled", Toast.LENGTH_LONG).show();
+                    Toast.makeText(barcodeScanner.this, R.string.canceled, Toast.LENGTH_LONG).show();
                 } else {
                     barcode_bar.setVisibility(View.VISIBLE);
                     barcode_bar.setProgress(50);
                     //Popup for progress bar substitute
 
-                    Toast.makeText(barcodeScanner.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(barcodeScanner.this, R.string.scanned + result.getContents(), Toast.LENGTH_LONG).show();
 
                     barcode_txt.setText(getString(R.string.retrieving_data));
 
@@ -75,8 +75,6 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
     @Override
     public void processFinish(String product_name, String product_code, List product_categories, List brands, HashMap product_facts) {
         Snackbar.make(findViewById(android.R.id.content), product_name, Snackbar.LENGTH_SHORT).show();
-
-
 
         String product_info = "";
 

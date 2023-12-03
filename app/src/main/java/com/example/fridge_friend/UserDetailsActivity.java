@@ -139,7 +139,7 @@ public class UserDetailsActivity extends AppToolbar {
     public void about() {
         android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((UserDetailsActivity.this));
         alert_builder.setTitle(R.string.user_details_title).setMessage(R.string.userDetailsAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
 
         }).show();

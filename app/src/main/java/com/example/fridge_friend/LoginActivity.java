@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences userPrefs = getSharedPreferences(pref_file, MODE_PRIVATE);
         String email_key = getString(R.string.pref_email);
         //gets the saved pref email from shared pref file, if its not there use defaulted value inputted
-        String new_email_val = userPrefs.getString(email_key, "email@default.com");
+        String new_email_val = userPrefs.getString(email_key, getString(R.string.default_email));
         //loads the data into the edittext section
         ((EditText) findViewById(R.id.login_email)).setText(new_email_val);
     }
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Fridge Friend Login Page");
+            getSupportActionBar().setTitle(R.string.login_bar);
         }
         ColorDrawable colorDrawable
                 = new ColorDrawable(Color.parseColor("#e1ebf0"));
@@ -98,24 +98,24 @@ public class LoginActivity extends AppCompatActivity {
         //boolean tracker to prevent multiple popups and false positive input
         boolean valid = true;
         if(inputted_email.matches("")){
-            Toast.makeText(getApplicationContext(), "You must input email to login",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.email_required,Toast.LENGTH_SHORT).show();
             login_email_input.setError("Email Required");
             valid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(inputted_email).matches()) {
-            Toast.makeText(getApplicationContext(), "Must be valid email format (i.e. user@email.com)",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.email_valid_required,Toast.LENGTH_SHORT).show();
             login_email_input.setError("Invalid Email format");
             valid = false;
         }
         if(password.matches("")){
             if(valid){
-                Toast.makeText(getApplicationContext(), "You must input password",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.password_required,Toast.LENGTH_SHORT).show();
             }
             pass_input.setError("Password Required");
             valid = false;
         }
         if (valid){
             //includes progress pop up
-            progressPopup.setMessage("Logging in...."); // msg dialog
+            progressPopup.setMessage(getString(R.string.logging_in)); // msg dialog
             progressPopup.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL); // Progress Dialog Style Spinner
             progressPopup.setMax(100);
             progressPopup.setCancelable(false);
@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.makeText(LoginActivity.this, R.string.auth_failed,
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                                 progressPopup.incrementProgressBy(50);
@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // If sign in fails, display a message to the user.
             Log.w(TAG, "signInWithCustomToken:failure", task.getException());
-            Toast.makeText(LoginActivity.this, "Authentication failed.",
+            Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -199,17 +199,17 @@ public class LoginActivity extends AppCompatActivity {
         //boolean tracker to prevent multiple popups and false positive input
         boolean valid = true;
         if(inputted_email.matches("")){
-            Toast.makeText(getApplicationContext(), "You must input valid email to create account",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.email_required_create_account),Toast.LENGTH_SHORT).show();
             login_email_input.setError("Email Required");
             valid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(inputted_email).matches()) {
-            Toast.makeText(getApplicationContext(), "Must be valid email format (i.e. user@email.com)",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.email_valid_required),Toast.LENGTH_SHORT).show();
             login_email_input.setError("Invalid Email format");
             valid = false;
         }
         if(password.matches("")){
             if(valid){
-                Toast.makeText(getApplicationContext(), "You must input password",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.password_required),Toast.LENGTH_SHORT).show();
             }
             pass_input.setError("Password Required");
             valid = false;
@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed, did you make your password 6 characters long?",
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed_password_length),
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
@@ -240,10 +240,10 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if (user != null) {
 
-            Toast.makeText(LoginActivity.this, "Successful sign-in",
+            Toast.makeText(LoginActivity.this, getString(R.string.login_success),
                     Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(LoginActivity.this, "Failed sign-in",
+            Toast.makeText(LoginActivity.this, getString(R.string.login_failed),
                     Toast.LENGTH_SHORT).show();
         }
     }

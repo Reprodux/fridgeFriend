@@ -172,9 +172,8 @@ public class UserSettingActivity extends AppToolbar {
     public void about() {
         android.app.AlertDialog.Builder alert_builder = new android.app.AlertDialog.Builder((UserSettingActivity.this));
         alert_builder.setTitle(R.string.user_settings_title).setMessage(R.string.userSettingsAbout);
-        alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
             Log.i(TAG, "User clicked about");
-
         }).show();
     }
 }
