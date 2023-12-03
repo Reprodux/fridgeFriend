@@ -17,6 +17,9 @@ import com.example.fridge_friend.toolbar.AppToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Fridge list activity.
+ */
 public class FridgeListActivity extends AppToolbar implements FridgeAdapter.ItemClickListener {
 
     private RecyclerView recyclerView;

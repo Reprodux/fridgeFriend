@@ -14,7 +14,13 @@ import com.example.fridge_friend.database.local.CartDatabaseHelper;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppToolbar {
+    /**
+     * The Cart db.
+     */
     CartDatabaseHelper cartDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,11 @@ public class MainActivity extends AppToolbar {
         getSupportActionBar().setTitle("Homepage");
     }
 
+    /**
+     * Check data.
+     *
+     * @param V the v
+     */
     public void checkData(View V){
         FirebaseAuth.getInstance().signOut();
         Log.i(TAG, String.valueOf(R.string.signed_out));
@@ -30,6 +41,11 @@ public class MainActivity extends AppToolbar {
         finish();
     }
 
+    /**
+     * On my fridge.
+     *
+     * @param v the v
+     */
     public void onMyFridge(View v) {
         // TODO: Launch My Fridge Activity
         Log.i(TAG, String.valueOf(
@@ -39,6 +55,11 @@ public class MainActivity extends AppToolbar {
         MainActivity.this.startActivity(intent);
     }
 
+    /**
+     * On new fridge.
+     *
+     * @param v the v
+     */
     public void onNewFridge(View v) {
         // TODO: Launch New Fridge Activity
         Intent intent = new Intent(this, FridgeSettingActivity.class);
@@ -46,6 +67,11 @@ public class MainActivity extends AppToolbar {
 
     }
 
+    /**
+     * On barcode scan.
+     *
+     * @param v the v
+     */
     public void onBarcodeScan(View v) {
         Log.i(TAG, String.valueOf(R.string.barcode_scanner_clicked));
         showToast(R.string.barcode_scanner_clicked);
@@ -54,6 +80,11 @@ public class MainActivity extends AppToolbar {
         MainActivity.this.startActivity(intent);
     }
 
+    /**
+     * On shopping list.
+     *
+     * @param v the v
+     */
     public void onShoppingList(View v) {
         // TODO: Launch Shopping List Activity
         Intent intent = new Intent(this, ShoppingListActivity.class);

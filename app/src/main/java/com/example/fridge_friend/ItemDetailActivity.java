@@ -10,8 +10,14 @@ import android.widget.TextView;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
 
+/**
+ * The type Item detail activity.
+ */
 public class ItemDetailActivity extends AppToolbar {
 
+    /**
+     * The constant EXTRA_ITEM_ID.
+     */
     public static final String EXTRA_ITEM_ID = "EXTRA_ITEM_ID";
     private TextView textViewWelcomeUser;
     private TextView textViewItemOwner;

@@ -30,13 +30,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-/** @noinspection deprecation*/
+/**
+ * The type Barcode scanner.
+ *
+ * @noinspection deprecation
+ */
 public class barcodeScanner extends AppToolbar implements barcode_data_retrieval.response {
 
 
     private Button start_scan_btn;
     private TextView barcode_txt;
     private ProgressDialog progressPopup;
+    /**
+     * The Barcode bar.
+     */
     ProgressBar barcode_bar;
 
 
@@ -63,6 +70,12 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
                 }
             });
 
+    /**
+     * Capitialize words string.
+     *
+     * @param word the word
+     * @return the string
+     */
     public String capitializeWords(String word){
         String[] words = word.split(" ");
         String cleanWord = "";

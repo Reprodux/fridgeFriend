@@ -24,16 +24,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The type Login activity.
+ */
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
+    /**
+     * The Login request btn.
+     */
     Button login_request_btn;
+    /**
+     * The Login email input.
+     */
     EditText login_email_input;
+    /**
+     * The Pass input.
+     */
     EditText pass_input;
     //Popup for progress bar substitute
 
 
 
     private FirebaseAuth mAuth;
+
+    /**
+     * Load user data.
+     */
     void loadUserData() {
         Log.i(TAG, "loadUserData()");
         String pref_file = getString(R.string.pref_file);
@@ -44,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
         //loads the data into the edittext section
         ((EditText) findViewById(R.id.login_email)).setText(new_email_val);
     }
+
+    /**
+     * Save user data.
+     */
     public void saveUserData(){
         Log.i(TAG, "saveUserData()");
         //get shared pref file up
@@ -87,7 +107,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Check data.
+     *
+     * @param V the v
+     */
     public void checkData(View V){
 
         ProgressDialog progressPopup = new ProgressDialog(this);
@@ -152,6 +176,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * On complete.
+     *
+     * @param task the task
+     */
     public void onComplete(@NonNull Task<AuthResult> task) {
         if (task.isSuccessful()) {
             // Sign in success, update UI with the signed-in user's information
@@ -166,6 +195,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Save email.
+     */
     public void saveEmail(){
         saveUserData();
     }
@@ -191,6 +223,11 @@ public class LoginActivity extends AppCompatActivity {
         Log.i(TAG, "Stopped LoginActivity");
     }
 
+    /**
+     * Register account.
+     *
+     * @param v the v
+     */
     public void register_account(View v){
         Log.i(TAG, "Checking input");
         //declare variables

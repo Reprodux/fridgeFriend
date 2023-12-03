@@ -23,6 +23,7 @@ public class DatabaseConnection {
 
     /**
      * Get the current users user id
+     *
      * @return user id of the current user
      */
     @NonNull
@@ -32,6 +33,7 @@ public class DatabaseConnection {
 
     /**
      * Get the firebase database instance
+     *
      * @return Firebase database instance reference
      * @see com.google.firebase.database.DatabaseReference
      */
@@ -43,6 +45,7 @@ public class DatabaseConnection {
      * Acquire an authenticated database connection to firebase.
      * This function checks Firebase.getInstance().getUid() doesn't return null before returning references to Firebase components.
      * This consolidates the null check while also clearing the warnings in android studio.
+     *
      * @return A DataBaseConnection with a reference to Firebase along with the current users id after checking the user is logged in.
      * @throws IllegalStateException if the user isn't logged into firebase
      */

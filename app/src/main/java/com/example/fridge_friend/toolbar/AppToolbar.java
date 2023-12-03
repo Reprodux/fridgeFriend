@@ -70,6 +70,9 @@ public abstract class AppToolbar extends AppCompatActivity implements ToolBarInt
         return handleMenuItemSelected(item);
     }
 
+    /**
+     * About.
+     */
     public void about() {
         // TODO: Implement proper about
 

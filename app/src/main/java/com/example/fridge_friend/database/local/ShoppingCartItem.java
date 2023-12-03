@@ -20,12 +20,14 @@ public class ShoppingCartItem {
     /**
      * ONLY FOR INTERNAL USE!
      * Create a Shopping cart item from the db
-     * @param id db key
-     * @param name item name
+     *
+     * @param id       db key
+     * @param name     item name
      * @param quantity item quantity
-     * @param checked if the item is checked
-     * @see CartDatabase#getItem(Context, long)
-     * @see CartDatabase#getItems(Context)
+     * @param checked  if the item is checked
+     * @param upc      the upc
+     * @see CartDatabase#getItem(Context, long) CartDatabase#getItem(Context, long)
+     * @see CartDatabase#getItems(Context) CartDatabase#getItems(Context)
      */
     ShoppingCartItem(long id, @NonNull String name, int quantity, boolean checked, String upc) {
         this.id = id;
@@ -37,8 +39,10 @@ public class ShoppingCartItem {
 
     /**
      * Create new Shopping cart item
-     * @param name item name
+     *
+     * @param name   item name
      * @param amount item quantity
+     * @param upc    the upc
      */
     public ShoppingCartItem(@NonNull String name, int amount, String upc) {
         this(0, name, amount, false, upc);
@@ -47,6 +51,7 @@ public class ShoppingCartItem {
     /**
      * ONLY FOR INTERNAL USE!
      * Set the db key of the item
+     *
      * @param id db key
      */
     void setId(long id) {
@@ -55,6 +60,7 @@ public class ShoppingCartItem {
 
     /**
      * Get the db key
+     *
      * @return db key, 0 if new > 0 if existing in db
      */
     public long getId() {
@@ -63,6 +69,7 @@ public class ShoppingCartItem {
 
     /**
      * Get item name
+     *
      * @return item name
      */
     public String getName() {
@@ -71,6 +78,7 @@ public class ShoppingCartItem {
 
     /**
      * Get item upc
+     *
      * @return item upc
      */
     public String getUPC() {
@@ -79,6 +87,7 @@ public class ShoppingCartItem {
 
     /**
      * Get item quantity
+     *
      * @return item quantity > 0
      */
     public int getQuantity() {
@@ -87,6 +96,7 @@ public class ShoppingCartItem {
 
     /**
      * Get if the item is checked or not
+     *
      * @return true if checked, false if not
      */
     public boolean isChecked() {
@@ -96,8 +106,9 @@ public class ShoppingCartItem {
     /**
      * Set quantity of item
      * NOTE: This does not update the stored item in the db, it must be updated separately
+     *
      * @param quantity quantity to set >= 1
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) 
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void setQuantity(int quantity) {
         this.quantity = Math.max(quantity, 1);
@@ -106,7 +117,8 @@ public class ShoppingCartItem {
     /**
      * Check the item in the cart
      * NOTE: This does not update the stored item in the db, it must be updated separately
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) 
+     *
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void check() {
         this.checked = true;
@@ -115,7 +127,8 @@ public class ShoppingCartItem {
     /**
      * Uncheck the item in the cart
      * NOTE: This does not update the stored item in the db, it must be updated separately
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) 
+     *
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void uncheck() {
         this.checked = false;
@@ -124,8 +137,9 @@ public class ShoppingCartItem {
     /**
      * ONLY FOR INTERNAL USE!
      * Convert to ContentValues for saving
+     *
      * @return ContentValues that represent the Shopping cart item
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem)
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     ContentValues getContentValues() {
         ContentValues values = new ContentValues();

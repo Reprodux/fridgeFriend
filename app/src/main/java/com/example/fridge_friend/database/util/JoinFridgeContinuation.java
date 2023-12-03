@@ -20,6 +20,12 @@ public class JoinFridgeContinuation implements Continuation<DataSnapshot, Task<V
     private final String fridgeName;
     private final String uid;
 
+    /**
+     * Instantiates a new Join fridge continuation.
+     *
+     * @param fridgeName the fridge name
+     * @param uid        the uid
+     */
     public JoinFridgeContinuation(String fridgeName, String uid) {
         this.fridgeName = fridgeName;
         this.uid = uid;

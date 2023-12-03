@@ -14,6 +14,9 @@ import android.widget.Switch;
 
 import com.example.fridge_friend.toolbar.AppToolbar;
 
+/**
+ * The type Fridge setting activity.
+ */
 public class FridgeSettingActivity extends AppToolbar {
 
     private LinearLayout layoutPersonalSettingsInfo;
@@ -32,20 +35,38 @@ public class FridgeSettingActivity extends AppToolbar {
 
     }
 
-    // toggling the Personal Settings section
+    /**
+     * Toggle new fridge.
+     *
+     * @param view the view
+     */
+// toggling the Personal Settings section
     public void toggleNewFridge(View view) {
         // Toggling the visibility of the expandable layout
         layoutPersonalSettingsInfo.setVisibility(
                 layoutPersonalSettingsInfo.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
         );
     }
-    // toggling for the Notification Settings section
+
+    /**
+     * Toggle join fridge.
+     *
+     * @param view the view
+     */
+// toggling for the Notification Settings section
     public void toggleJoinFridge(View view) {
         // Toggle the visibility of the notification settings layout
         layoutNotificationSettings.setVisibility(
                 layoutNotificationSettings.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
         );
     }
+
+    /**
+     * On checked changed.
+     *
+     * @param buttonView the button view
+     * @param isChecked  the is_checked
+     */
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Handle switch toggle
         if(isChecked) {

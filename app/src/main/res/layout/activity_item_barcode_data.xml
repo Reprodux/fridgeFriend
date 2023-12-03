@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/purple_background"
     android:layout_height="match_parent"
+    android:background="@color/purple_background"
     android:padding="16dp"
     tools:context=".ShoppingItemViewActivity">
 
@@ -13,27 +13,52 @@
         android:id="@+id/itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/item_name"
         android:gravity="center"
+        android:padding="16dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Owner TextView -->
     <TextView
         android:id="@+id/itemData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/itemName"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="@string/retrieving_data"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/item_data" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemName" />
 
+    <ProgressBar
+        android:id="@+id/item_load_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="306dp"
+        android:layout_height="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/itemData"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/itemData"
+        app:layout_constraintTop_toBottomOf="@+id/itemData"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <Button
+        android:id="@+id/addToFridge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="623dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/add_to_fridge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/itemData"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/itemData"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

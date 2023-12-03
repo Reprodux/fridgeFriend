@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The type Barcode data retrieval.
+ */
 public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
 
 
@@ -27,12 +30,33 @@ public class barcode_data_retrieval extends AsyncTask<String, Void, String> {
     //replace variable barcode with sample_barcode for demoing(maybe)
     private final String sample_barcode = "060410010983";
 
+    /**
+     * The interface Response.
+     */
     public interface response {
+        /**
+         * Process finish.
+         *
+         * @param product_name       the product name
+         * @param product_code       the product code
+         * @param product_categories the product categories
+         * @param brands             the brands
+         * @param product_facts      the product facts
+         */
         void processFinish(String product_name, String product_code, List product_categories,
                            List brands, HashMap product_facts);
     }
+
+    /**
+     * The Jso nresponse.
+     */
     public response JSONresponse = null;
 
+    /**
+     * Instantiates a new Barcode data retrieval.
+     *
+     * @param JSONresponse the jso nresponse
+     */
     public barcode_data_retrieval(response JSONresponse){
         this.JSONresponse = JSONresponse;
     }

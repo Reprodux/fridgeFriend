@@ -17,22 +17,49 @@ public class Item {
     /**
      * NOT FOR NORMAL USAGE.
      * Required for Firebase to be able to deserialize Items from the db
+     *
      * @deprecated
      */
     public Item() {}
 
+    /**
+     * Instantiates a new Item.
+     *
+     * @param name the name
+     */
     public Item(String name) {
         this(name, 1L, "", null);
     }
 
+    /**
+     * Instantiates a new Item.
+     *
+     * @param name   the name
+     * @param amount the amount
+     */
     public Item(String name, Long amount) {
         this(name, amount, "", null);
     }
 
+    /**
+     * Instantiates a new Item.
+     *
+     * @param name   the name
+     * @param amount the amount
+     * @param expiry the expiry
+     */
     public Item(String name, Long amount, String expiry) {
         this(name, amount, expiry, null);
     }
 
+    /**
+     * Instantiates a new Item.
+     *
+     * @param name   the name
+     * @param amount the amount
+     * @param expiry the expiry
+     * @param owner  the owner
+     */
     public Item(String name, Long amount, String expiry, String owner) {
         this.name = name;
         this.amount = amount;
@@ -42,6 +69,7 @@ public class Item {
 
     /**
      * Get the name of the item
+     *
      * @return name of item
      */
     public String getName() {
@@ -50,6 +78,7 @@ public class Item {
 
     /**
      * Get the amount of item in fridge
+     *
      * @return amount >= 0
      */
     public Long getAmount() {
@@ -58,6 +87,7 @@ public class Item {
 
     /**
      * Get the items expiry date
+     *
      * @return Items expiry date or empty string if none stored
      */
     public String getExpiry() {
@@ -67,6 +97,7 @@ public class Item {
     /**
      * Get the owner of the item.
      * Name of owner must be fetched separately
+     *
      * @return id of the item owner or null if there is no owner
      */
     public String getOwner() { return owner; }
@@ -83,6 +114,7 @@ public class Item {
     /**
      * Increase the amount of items in the fridge by a positive number.
      * NOTE: This does not update the stored item in the db, it must be updated separately
+     *
      * @param amount amount to increase by
      */
     @Exclude
@@ -104,6 +136,7 @@ public class Item {
     /**
      * Decrease the amount of items in the fridge by a positive number.
      * NOTE: This does not update the stored item in the db, it must be updated separately
+     *
      * @param amount amount to decrease by
      */
     @Exclude
@@ -116,6 +149,7 @@ public class Item {
     /**
      * Set the expiry date of the item.
      * NOTE: This does not update the stored item in the db, it must be updated separately
+     *
      * @param expiry date string to set as the expiry
      */
     @Exclude
@@ -131,6 +165,7 @@ public class Item {
      * Set the owner of the item.
      * NOTE: This does not update the stored item in the db, it must be updated separately.
      * NOTE 2: The db will reject updates if the owner of the item doesn't have access to the fridge
+     *
      * @param owner owner id to set as owner
      */
     @Exclude
