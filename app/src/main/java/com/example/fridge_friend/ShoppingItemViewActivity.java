@@ -306,7 +306,7 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
         input.setRawInputType(Configuration.KEYBOARD_12KEY);
         input.setText("1");
         select_date.setLayoutParams(selectDateParam);
-        select_date.setText("Enter the Expiry Date");
+        select_date.setText("Enter the Expiry Date DD/MM/YYYY");
         date.setLayoutParams(dateParam);
         date.setRawInputType(Configuration.KEYBOARD_12KEY);
         date.setHint("DD/MM/YYYY");
@@ -389,7 +389,7 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
         @Override
         public void onResult(String name, String id) {
             owner = name;
-            //Toast.makeText(activity, owner + " Added " + amount+ " " + p_name + " with date " + date_str, Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, owner + " Added " + amount+ " " + p_name + " with date " + date_str, Toast.LENGTH_SHORT).show();
         }
 
         @Override
