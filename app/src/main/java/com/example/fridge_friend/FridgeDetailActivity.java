@@ -65,6 +65,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
 
         buttonAddItem.setOnClickListener(v -> {
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
+            addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId);
             startActivity(addItemIntent);
         });
     }
@@ -108,21 +109,19 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         Item selectedItem = items.get(position);
         // Start the ItemAdditionActivity
         Intent addItemIntent = new Intent(this, ItemAdditionActivity.class);
+        Intent itemDetailIntent = new Intent(this, ItemDetailActivity.class);
+
         addItemIntent.putExtra("EXTRA_ITEM_NAME", selectedItem.getName());
         // Pass the fridge ID to the ItemAdditionActivity
         addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId); // Make sure fridgeId is the ID of the current fridge
         startActivity(addItemIntent);
+        itemDetailIntent.putExtra("EXTRA_ITEM_NAME", selectedItem.getName());
+        itemDetailIntent.putExtra("EXTRA_ITEM_QUANTITY", selectedItem.getAmount());
+        itemDetailIntent.putExtra("EXTRA_ITEM_EXPIRY_DATE", selectedItem.getExpiry());
+        startActivity(itemDetailIntent);
     }
 
-//    private List<FridgeItem> createStubFridgeItemList() {
-//        // Create a stub list of fridge items
-//        List<FridgeItem> items = new ArrayList<>();
-//        items.add(new FridgeItem("1", "Apples", "Expires on: 2023-05-01"));
-//        items.add(new FridgeItem("2", "Eggs", "12 pack, free-range"));
-//        items.add(new FridgeItem("3", "Pizza", "Cheddar, 200g"));
-//        // Add more items as needed
-//        return items;
-//    }
+
 
     //Overrides toolbars about to display info on current activity
     @Override

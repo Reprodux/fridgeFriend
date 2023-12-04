@@ -1,6 +1,7 @@
 package com.example.fridge_friend;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,6 +71,7 @@ public class ItemAdditionActivity extends AppToolbar {
         // Get the fridge ID from the intent or from a selected item in the previous activity
         String fridgeId = getIntent().getStringExtra("EXTRA_FRIDGE_ID");
         if(fridgeId == null || fridgeId.isEmpty()) {
+            Log.e("FridgeError", "Fridge ID is null or empty");
             Toast.makeText(this, "Error: Fridge ID not found", Toast.LENGTH_LONG).show();
             return;
         }
@@ -94,7 +96,5 @@ public class ItemAdditionActivity extends AppToolbar {
         });
 
 
-        //finishing the activity to return to the previous screen
-        finish();
     }
 }
