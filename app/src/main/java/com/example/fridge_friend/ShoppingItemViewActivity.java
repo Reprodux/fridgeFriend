@@ -54,6 +54,9 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
     private TextView textViewExpiryDate;
     private Button addToFridge;
     private String fridgeChosen;
+    /**
+     * The Add req.
+     */
     boolean add_req;
     private String p_name;
     private String date_str;
@@ -360,6 +363,12 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
 
     //function to verify if the date inputted is of valid format DD/MM/YYYY
 
+    /**
+     * Is valid date boolean.
+     *
+     * @param date the date
+     * @return the boolean
+     */
     public boolean isValidDate(String date) {
         //date is of format DD/MM/YYYY
         if (date.matches("")){

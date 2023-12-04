@@ -25,6 +25,9 @@ import com.example.fridge_friend.toolbar.AppToolbar;
 
 import java.util.List;
 
+/**
+ * The type Fridge setting activity.
+ */
 public class FridgeSettingActivity extends AppToolbar {
 
     private LinearLayout layoutPersonalSettingsInfo;
@@ -138,7 +141,12 @@ public class FridgeSettingActivity extends AppToolbar {
         });
     }
 
-    /*
+    /**
+     * Toggle join fridge.
+     *
+     * @param view the view
+     */
+/*
     private void fetchFridgesAndSetUpAdapter() {
         Database.listFridges(this, new FridgeListListener() {
             @Override
@@ -227,6 +235,13 @@ public class FridgeSettingActivity extends AppToolbar {
                 layoutNotificationSettings.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
         );
     }
+
+    /**
+     * On checked changed.
+     *
+     * @param buttonView the button view
+     * @param isChecked  the is checked
+     */
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Handle switch toggle
         if(isChecked) {

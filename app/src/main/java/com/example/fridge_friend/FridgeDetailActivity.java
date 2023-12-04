@@ -155,7 +155,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         } else {
             Log.e("FridgeDetailActivity", "Fridge name not found in intent extras");
             // Optionally, show a Toast message to inform the user
-            Toast.makeText(this, "Error: Fridge name not found", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Error: Fridge name not found", Toast.LENGTH_SHORT).show();
         }
 
         Button buttonAddItem = findViewById(R.id.buttonAddItem);

@@ -38,7 +38,13 @@ public class ItemDetailActivity extends AppToolbar {
     private TextView textViewItemQuantity;
     private TextView textViewExpiryDate;
     private Button delete_btn;
+    /**
+     * The Progress popup.
+     */
     ProgressDialog progressPopup;
+    /**
+     * The Intent.
+     */
     Intent intent;
     private String username;
     @Override
@@ -116,7 +122,6 @@ public class ItemDetailActivity extends AppToolbar {
                 Log.i(TAG, intent.getStringExtra("EXTRA_FRIDGE_NAME"));
                 Log.i(TAG, intent.getStringExtra("ID"));
                 Database.removeItem(this, intent.getStringExtra("EXTRA_FRIDGE_NAME"), intent.getStringExtra("ID"), new RemoveListener(this));
-                Toast.makeText(this, "Deleting Item", Toast.LENGTH_SHORT).show();
             }
 
           });

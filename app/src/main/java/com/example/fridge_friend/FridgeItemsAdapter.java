@@ -11,13 +11,22 @@ import com.example.fridge_friend.database.Item;
 
 import java.util.List;
 
+/**
+ * The type Fridge items adapter.
+ */
 public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.ViewHolder> {
 
     private List<Item> items;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // Constructor should match the class name and use List<FridgeItem>
+    /**
+     * Instantiates a new Fridge items adapter.
+     *
+     * @param context the context
+     * @param items   the items
+     */
+// Constructor should match the class name and use List<FridgeItem>
     public FridgeItemsAdapter(Context context, List<Item> items) {
         this.mInflater = LayoutInflater.from(context);
         this.items = items; // Corrected variable name
@@ -48,15 +57,34 @@ public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.
 //        return fridgeItems.get(id); // Should return a FridgeItem
 //    }
 
-    // Parent activity will implement this method to respond to click events
+    /**
+     * The interface Item click listener.
+     */
+// Parent activity will implement this method to respond to click events
     public interface ItemClickListener {
+        /**
+         * On item click.
+         *
+         * @param position the position
+         */
         void onItemClick(int position); // Simplified to a single method
     }
 
-    // Stores and recycles views as they are scrolled off screen
+    /**
+     * The type View holder.
+     */
+// Stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        /**
+         * The Text view item name.
+         */
         TextView textViewItemName; // This ID should match the one in item_fridge_detail.xml
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             textViewItemName = itemView.findViewById(R.id.textViewItemName); // Corrected ID
@@ -71,13 +99,23 @@ public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.
         }
     }
 
+    /**
+     * Sets items.
+     *
+     * @param items the items
+     */
     public void setItems(List<Item> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
 
-    // Allows click events to be caught
+    /**
+     * Sets click listener.
+     *
+     * @param itemClickListener the item click listener
+     */
+// Allows click events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }

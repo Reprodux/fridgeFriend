@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
+/**
+ * The type Item addition activity.
+ */
 public class ItemAdditionActivity extends AppToolbar {
 
     private EditText editTextItemName;
@@ -147,6 +150,10 @@ public class ItemAdditionActivity extends AppToolbar {
         }
 
     }
+
+    /**
+     * The Tw.
+     */
     TextWatcher tw = new TextWatcher() {
         private String cur = "";
         private String format_date = "DDMMYYYY";
