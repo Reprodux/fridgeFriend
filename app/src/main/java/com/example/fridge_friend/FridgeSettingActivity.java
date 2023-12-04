@@ -109,7 +109,7 @@ public class FridgeSettingActivity extends AppToolbar {
             }
         });
         // Fetching the list of fridges and set up the adapter
-        //fetchFridgesAndSetUpAdapter();
+        fetchFridgesAndSetUpAdapter();
 
 
     }
@@ -134,7 +134,7 @@ public class FridgeSettingActivity extends AppToolbar {
                 //log error
                 Log.e("CreateFridgeError", "Failed to create a new fridge: " + e.getMessage(), e);
 
-                Toast.makeText(FridgeSettingActivity.this, "Failed to create new fridge: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(FridgeSettingActivity.this, "Fridge with same name may exist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -144,9 +144,9 @@ public class FridgeSettingActivity extends AppToolbar {
     /**
      * Toggle join fridge.
      *
-     * @param view the view
+     * @param 
      */
-/*
+
     private void fetchFridgesAndSetUpAdapter() {
         Database.listFridges(this, new FridgeListListener() {
             @Override
@@ -159,19 +159,12 @@ public class FridgeSettingActivity extends AppToolbar {
                 autoCompleteFridgeTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autoCompleteFridgeTextView.showDropDown();
+                        //autoCompleteFridgeTextView.showDropDown();
                     }
                 });
 
-                autoCompleteFridgeTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String selectedFridge = (String) parent.getItemAtPosition(position);
-                        // Calling joinFridge to add the fridge to the user's list in the database
-                        joinFridge(selectedFridge);
 
-                    }
-                });
+
             }
             private void joinFridge(String fridgeName) {
                 Database.joinFridge(FridgeSettingActivity.this, fridgeName, new OperationCompleteListener() {
@@ -223,11 +216,9 @@ public class FridgeSettingActivity extends AppToolbar {
         layoutPersonalSettingsInfo.setVisibility(
                 layoutPersonalSettingsInfo.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
         );
-        if (!isVisible) {
-            autoCompleteFridgeTextView.showDropDown();
-        }
+
     }
-    */
+
     // toggling for the Notification Settings section
     public void toggleJoinFridge(View view) {
         // Toggle the visibility of the notification settings layout
