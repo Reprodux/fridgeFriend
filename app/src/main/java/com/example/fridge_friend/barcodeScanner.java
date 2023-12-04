@@ -90,63 +90,75 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
         Snackbar.make(findViewById(android.R.id.content), product_name, Snackbar.LENGTH_SHORT).show();
 
         String product_info = "";
+        try {
+            if (product_name != null) {
+                product_info += "<b>Name: </b>" + product_name + "<br>";
 
-        if (product_name != null) {
-            product_info += "<b>Name: </b>" + product_name + "<br>";
+                if (product_code != null) {
+                    product_info += "<b>Code: </b>" + product_code + "<br>";
+                }
 
-            if (product_code != null) {
-                product_info += "<b>Code: </b>" + product_code + "<br>";
-            }
+                if (product_categories != null) {
+                    product_info += "<b>Categories: </b>" + "<br>";
 
-            if (product_categories != null) {
-                product_info += "<b>Categories: </b>" + "<br>";
+                    // Get shortest category
+                    int shortest = 100;
+                    int shortest_index = 0;
+                    for (Object category : product_categories) {
+                        if (category.toString().length() < shortest) {
+                            shortest = category.toString().length();
+                            shortest_index = product_categories.indexOf(category);
+                        }
+                    }
 
-                // Get shortest category
-                int shortest = 100;
-                int shortest_index = 0;
-                for (Object category : product_categories) {
-                    if (category.toString().length() < shortest) {
-                        shortest = category.toString().length();
-                        shortest_index = product_categories.indexOf(category);
+                    product_info += "   " + capitializeWords(product_categories.get(shortest_index).toString()) + "<br>";
+                }
+
+                if (brands != null) {
+                    product_info += "<b>Brands: </b>" + "<br>";
+                    for (Object brand : brands) {
+                        product_info += "   " + capitializeWords(brand.toString()) + "<br>";
+                        break;
                     }
                 }
 
-                product_info += "   " + capitializeWords(product_categories.get(shortest_index).toString()) + "<br>";
-            }
+                if (product_facts != null) {
+                    product_info += "<b>Facts (per 100g): </b>" + "<br>";
+                    for (Object key : product_facts.keySet()) {
+                        String cleanKey = key.toString().replaceAll("_100g", "");
+                        cleanKey = cleanKey.replaceAll("-", " ");
 
-            if (brands != null) {
-                product_info += "<b>Brands: </b>" + "<br>";
-                for (Object brand : brands) {
-                    product_info += "   " + capitializeWords(brand.toString()) + "<br>";
-                    break;
+                        product_info += "   <b>" + capitializeWords(cleanKey) + ": </b>" + Math.round(Float.parseFloat(product_facts.get(key).toString())) + "<br>";
+                    }
                 }
+                barcode_bar.setProgress(100);
+                barcode_bar.setVisibility(View.INVISIBLE);
             }
 
-            if (product_facts != null) {
-                product_info += "<b>Facts (per 100g): </b>" + "<br>";
-                for (Object key : product_facts.keySet()) {
-                    String cleanKey = key.toString().replaceAll("_100g", "");
-                    cleanKey = cleanKey.replaceAll("-", " ");
 
-                    product_info += "   <b>" + capitializeWords(cleanKey) + ": </b>" + Math.round(Float.parseFloat(product_facts.get(key).toString())) + "<br>";
-                }
-            }
+            barcode_txt.setGravity(0);
+            barcode_txt.setText(Html.fromHtml(product_info));
+            assert product_code != null;
+            ShoppingCartItem item = new ShoppingCartItem(product_name, 1, product_code);
+
+            boolean result = CartDatabase.storeItem(this, item);
+            long id = item.getId();
+            String upc = item.getUPC();
+            Log.i(TAG, "Stored item in database: " + String.valueOf(result));
+            Log.i(TAG, "Stored item id: " + String.valueOf(id));
+            Log.i(TAG, "Stored item id: " + String.valueOf(upc));
+            Log.i(TAG, "processFinish in barcode scanner activity run");
+        } catch (Exception e) {
+            AlertDialog.Builder alert_builder = new AlertDialog.Builder((barcodeScanner.this));
+            alert_builder.setTitle(R.string.barcode_scanner_title).setMessage("This item does not exist in OpenFoodFacts API as of right now");
+            alert_builder.setPositiveButton("Ok", (dialogInterface, id) -> {
+                Log.i(TAG, "User scanned unsupported item");
+
+            }).show();
             barcode_bar.setProgress(100);
             barcode_bar.setVisibility(View.INVISIBLE);
+            barcode_txt.setText(R.string.press_to_start);
         }
-
-        barcode_txt.setGravity(0);
-        barcode_txt.setText(Html.fromHtml(product_info));
-        assert product_code != null;
-        ShoppingCartItem item = new ShoppingCartItem(product_name, 1, product_code);
-
-        boolean result = CartDatabase.storeItem(this, item);
-        long id = item.getId();
-        String upc = item.getUPC();
-        Log.i(TAG, "Stored item in database: " + String.valueOf(result));
-        Log.i(TAG, "Stored item id: " + String.valueOf(id));
-        Log.i(TAG, "Stored item id: " + String.valueOf(upc));
-        Log.i(TAG, "processFinish in barcode scanner activity run");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -144,7 +144,7 @@ public class FridgeSettingActivity extends AppToolbar {
     /**
      * Toggle join fridge.
      *
-     * @param 
+     * @param
      */
 
     private void fetchFridgesAndSetUpAdapter() {
