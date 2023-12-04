@@ -5,7 +5,6 @@ import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -21,34 +19,33 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fridge_friend.database.Database;
+import com.example.fridge_friend.database.Item;
+import com.example.fridge_friend.database.listener.BaseListener;
 import com.example.fridge_friend.database.listener.FridgeListListener;
+import com.example.fridge_friend.database.listener.ItemListener;
+import com.example.fridge_friend.database.listener.OperationCompleteListener;
 import com.example.fridge_friend.database.listener.UserNameListener;
-import com.example.fridge_friend.database.local.CartDatabase;
 import com.example.fridge_friend.database.local.ShoppingCartItem;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The type Shopping item view activity.
  */
-public class ShoppingItemViewActivity extends AppToolbar implements barcode_data_retrieval.response, FridgeListListener {
+public abstract class ShoppingItemViewActivity extends AppToolbar implements barcode_data_retrieval.response, FridgeListListener, OperationCompleteListener {
 
     private TextView textViewWelcomeUser;
     private TextView textViewItemName;
@@ -62,6 +59,7 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
     private String date_str;
     private int amount;
     private String owner;
+    private Item item;
 
 
 
@@ -331,6 +329,9 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
                 String uid = FirebaseAuth.getInstance().getUid();
                 Database.getUserName(this, uid, new LoadingListener(this));
 
+
+
+
             } else {
                 //highlight date box and tell user that valid date format is needed
                 date.setBackgroundColor(R.color.off_red);
@@ -388,8 +389,12 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
 
         @Override
         public void onResult(String name, String id) {
+            progressPopup.show();
             owner = name;
-            Toast.makeText(activity, owner + " Added " + amount+ " " + p_name + " with date " + date_str, Toast.LENGTH_SHORT).show();
+            item = new Item(p_name, Long.valueOf(amount), date_str, owner);
+            Database.addItem(activity, fridgeChosen, item, new AddItemListener(activity));
+            progressPopup.dismiss();
+            Toast.makeText(activity, "Added " + amount+ " " + p_name, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -409,4 +414,49 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
         }
 
     }
+
+    private class AddItemListener implements OperationCompleteListener {
+        private final ShoppingItemViewActivity activity;
+
+        /**
+         * Instantiates a new Saving listener.
+         *
+         * @param activity the activity
+         */
+        AddItemListener(ShoppingItemViewActivity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        public void onSuccess() {
+            if (activity.isDestroyed() || activity.isFinishing()) return;
+            progressPopup.dismiss();
+            Toast.makeText(activity, R.string.changes_saved, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onCanceled() {
+            if (activity.isDestroyed() || activity.isFinishing()) return;
+            progressPopup.dismiss();
+            Toast.makeText(activity, R.string.cancelled, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            if (activity.isDestroyed() || activity.isFinishing()) return;
+            Log.e("Item Adding", "Item Adding Error!", e);
+            progressPopup.dismiss();
+            androidx.appcompat.app.AlertDialog.Builder errorAlert = new androidx.appcompat.app.AlertDialog.Builder(activity);
+            errorAlert.setMessage(R.string.error_saving_changes);
+            errorAlert.setPositiveButton(android.R.string.ok, (dialog, which) -> finish());
+            errorAlert.show();
+        }
+    }
+
+
+
+
+
+
 }
+
