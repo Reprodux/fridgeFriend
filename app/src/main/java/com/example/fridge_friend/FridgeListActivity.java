@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.example.fridge_friend.toolbar.AppToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class FridgeListActivity extends AppToolbar implements FridgeAdapter.ItemClickListener {
 
@@ -39,14 +41,19 @@ public class FridgeListActivity extends AppToolbar implements FridgeAdapter.Item
 
         // Setting the click listener for the adapter
         adapter.setClickListener(this);
-
-
+        ProgressDialog progressPopup; // Progress Dialog Object
+        progressPopup = new ProgressDialog(this);
+        progressPopup.setMessage(getString(R.string.retrieving_data)); // msg dialog
+        progressPopup.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressPopup.setCancelable(false);
+        progressPopup.show();
 
         Database.listFridges(this, new FridgeListListener(){
             @Override
             public void onListResult(List<String> fridgeNames){
                 //updating the adapter with the retrieved fridge names
                 adapter.updateData(fridgeNames);
+                progressPopup.dismiss();
             }
 
             @Override

@@ -63,7 +63,7 @@
         <activity
             android:name=".ItemDetailActivity"
             android:exported="false"
-            android:parentActivityName=".FridgeDetailActivity" />
+            android:parentActivityName=".FridgeListActivity" />
         <activity
             android:name=".ShoppingItemViewActivity"
             android:exported="false"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import com.example.fridge_friend.database.Database;
 import com.example.fridge_friend.database.Item;
 import com.example.fridge_friend.database.listener.ItemListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
     private FridgeItemsAdapter adapter;
     private List<Item> items;
     private String fridgeId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +69,10 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         Button buttonAddItem = findViewById(R.id.buttonAddItem);
 
         buttonAddItem.setOnClickListener(v -> {
+
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
             addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId);
-            startActivity(addItemIntent);
+            startActivityForResult(addItemIntent, 1);
         });
     }
     private void loadFridgeItems(String fridgeId) {
@@ -99,7 +105,46 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
             }
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
 
+        super.onActivityResult(requestCode, resultCode, data);
+        setContentView(R.layout.activity_fridge_detail);
+        Log.i(TAG, "onaactivytResult lanuched");
+        //setting up recycle view and adapter
+        recyclerView = findViewById(R.id.recyclerViewFridgeItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        items = new ArrayList<>();
+        adapter = new FridgeItemsAdapter(this, items);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        // Getting the fridge name from the intent
+        fridgeId = data.getStringExtra("EXTRA_FRIDGE_NAME");
+        Log.i(TAG, "onaactivytResult lanuched");
+        Log.i(TAG, fridgeId);
+
+
+        if (fridgeId != null) {
+            loadFridgeItems(fridgeId);
+            Log.d("FridgeDetailActivity", "Fridge ID retrieved from intent: " + fridgeId);
+        } else {
+            Log.e("FridgeDetailActivity", "Fridge name not found in intent extras");
+            // Optionally, show a Toast message to inform the user
+            Toast.makeText(this, "Error: Fridge name not found", Toast.LENGTH_SHORT).show();
+        }
+
+        Button buttonAddItem = findViewById(R.id.buttonAddItem);
+
+        buttonAddItem.setOnClickListener(v -> {
+
+            Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
+            startActivityForResult(addItemIntent, 1);
+        });
+
+    }
 
 
     // ItemClickListener implementation
@@ -108,18 +153,19 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         // Get the clicked item
         Item selectedItem = items.get(position);
         // Start the ItemAdditionActivity
-        Intent addItemIntent = new Intent(this, ItemAdditionActivity.class);
-        Intent itemDetailIntent = new Intent(this, ItemDetailActivity.class);
+        Intent addItemIntent = new Intent(this, ItemDetailActivity.class);
+
 
         addItemIntent.putExtra("EXTRA_ITEM_NAME", selectedItem.getName());
+        addItemIntent.putExtra("OWNER", selectedItem.getOwner());
+        addItemIntent.putExtra("EXPIRATION", selectedItem.getExpiry());
+        addItemIntent.putExtra("QUANTITY", selectedItem.getAmount());
+        //addItemIntent.putExtra("ITEM_ID", selectedItem.getId());
         // Pass the fridge ID to the ItemAdditionActivity
-        addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId); // Make sure fridgeId is the ID of the current fridge
-        startActivity(addItemIntent);
-        itemDetailIntent.putExtra("EXTRA_ITEM_NAME", selectedItem.getName());
-        itemDetailIntent.putExtra("EXTRA_ITEM_QUANTITY", selectedItem.getAmount());
-        itemDetailIntent.putExtra("EXTRA_ITEM_EXPIRY_DATE", selectedItem.getExpiry());
-        startActivity(itemDetailIntent);
+        addItemIntent.putExtra("EXTRA_FRIDGE_NAME", fridgeId); // Make sure fridgeId is the ID of the current fridge
+        startActivityForResult(addItemIntent, 1);
     }
+
 
 
 

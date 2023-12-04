@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * The type Shopping item view activity.
  */
-public abstract class ShoppingItemViewActivity extends AppToolbar implements barcode_data_retrieval.response, FridgeListListener, OperationCompleteListener {
+public class ShoppingItemViewActivity extends AppToolbar implements barcode_data_retrieval.response, FridgeListListener, OperationCompleteListener {
 
     private TextView textViewWelcomeUser;
     private TextView textViewItemName;
@@ -371,6 +371,11 @@ public abstract class ShoppingItemViewActivity extends AppToolbar implements bar
             return false;
         }
         return true;
+
+    }
+
+    @Override
+    public void onSuccess() {
 
     }
 

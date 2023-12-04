@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/purple_background"
     android:layout_height="match_parent"
+    android:background="@color/purple_background"
     android:padding="16dp"
     tools:context=".ItemDetailActivity">
 
@@ -13,49 +13,61 @@
         android:id="@+id/textViewWelcomeUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/profile_setting_welcome"
         android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/profile_setting_welcome"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Owner TextView -->
     <TextView
         android:id="@+id/textViewItemOwner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewWelcomeUser"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/item_owner"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/item_owner" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewWelcomeUser" />
 
     <!-- Quantity TextView -->
     <TextView
         android:id="@+id/textViewItemQuantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewItemOwner"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/item_quantity"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/item_quantity"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewItemOwner" />
 
     <!-- Expiry Date TextView -->
     <TextView
         android:id="@+id/textViewExpiryDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewItemQuantity"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/item_expiry"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/item_expiry"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewItemQuantity" />
+
+    <Button
+        android:id="@+id/item_delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="606dp"
+        android:layout_marginBottom="61dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewWelcomeUser"
+        app:layout_constraintStart_toStartOf="@+id/textViewWelcomeUser"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

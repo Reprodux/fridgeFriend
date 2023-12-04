@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fridge_friend.database.Database;
 import com.example.fridge_friend.database.Item;
 import com.example.fridge_friend.database.listener.OperationCompleteListener;
+import com.example.fridge_friend.database.listener.UserNameListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ItemAdditionActivity extends AppToolbar {
 
@@ -21,6 +23,8 @@ public class ItemAdditionActivity extends AppToolbar {
     private EditText editTextItemQuantity;
     private EditText editTextExpiryDate;
     private Button buttonSave;
+
+    private String owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class ItemAdditionActivity extends AppToolbar {
 
         // Initialize the Save Button
         buttonSave = findViewById(R.id.buttonSave);
+        String uid = FirebaseAuth.getInstance().getUid();
+        Database.getUserName(this, uid, new ItemAdditionActivity.LoadingListener(this));
 
         // Setting the button click listener
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +101,41 @@ public class ItemAdditionActivity extends AppToolbar {
             }
         });
 
+
+    }
+    private class LoadingListener implements UserNameListener {
+
+        private final ItemAdditionActivity activity;
+
+        /**
+         * Instantiates a new Loading listener.
+         *
+         * @param activity the activity
+         */
+        LoadingListener( ItemAdditionActivity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        public void onResult(String name, String id) {
+            owner = name;
+        }
+
+        @Override
+        public void onCanceled() {
+            if (activity.isDestroyed() || activity.isFinishing()) return;
+            Toast.makeText(activity, R.string.cancelled, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            if (activity.isDestroyed() || activity.isFinishing()) return;
+            Log.e("ShoppingItemViewActivity", "Loading Error!", e);
+            androidx.appcompat.app.AlertDialog.Builder errorAlert = new androidx.appcompat.app.AlertDialog.Builder(activity);
+            errorAlert.setMessage(R.string.error_loading_name);
+            errorAlert.setPositiveButton(android.R.string.ok, (dialog, which) -> finish());
+            errorAlert.show();
+        }
 
     }
 }
