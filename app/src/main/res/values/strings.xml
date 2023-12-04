@@ -28,7 +28,7 @@
     <string name="item_addition_activity_heading">Add New Item To The Fridge</string>
     <string name="item_name_hint">Enter item name</string>
     <string name="item_quantity_hint">Enter quantity</string>
-    <string name="expiry_date_hint">Enter expiry date (YYYY-MM-DD)</string>
+    <string name="expiry_date_hint">Enter expiry date (DD/MM/YYYY)</string>
     <string name="save">Save</string>
 
 

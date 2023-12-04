@@ -34,7 +34,8 @@ public class FridgeSettingActivity extends AppToolbar {
     private EditText editTextNewFridgeName;
     private Button buttonCreateNewFridge;
 
-    private AutoCompleteTextView autoCompleteFridgeTextView;
+    private EditText autoCompleteFridgeTextView;
+    private String fridgeName;
     private ArrayAdapter<String> autoCompleteAdapter;
 
     @Override
@@ -68,14 +69,44 @@ public class FridgeSettingActivity extends AppToolbar {
 
         });
         autoCompleteFridgeTextView = findViewById(R.id.autoCompleteFridgeTextView);
-        autoCompleteFridgeTextView.setOnClickListener(new View.OnClickListener() {
+        Button join = findViewById(R.id.buttonRequestJoinFridge);
+
+        join.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                autoCompleteFridgeTextView.showDropDown();
+                fridgeName = autoCompleteFridgeTextView.getText().toString();
+                Database.joinFridge(FridgeSettingActivity.this, fridgeName, new OperationCompleteListener() {
+
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(FridgeSettingActivity.this, "Joined fridge successfully", Toast.LENGTH_SHORT).show();
+
+                        // Redirecting user to FridgeDetailActivity
+                        Intent intent = new Intent(FridgeSettingActivity.this, FridgeDetailActivity.class);
+                        intent.putExtra("EXTRA_FRIDGE_NAME", fridgeName);
+                        startActivity(intent);
+
+                        finish();
+
+
+                    }
+
+                    @Override
+                    public void onCanceled() {
+                        // Handling the operation being cancelled
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handling the failure case, such as if the fridge does not exist
+                        Toast.makeText(FridgeSettingActivity.this, "Failed to join fridge: " + fridgeName, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         // Fetching the list of fridges and set up the adapter
-        fetchFridgesAndSetUpAdapter();
+        //fetchFridgesAndSetUpAdapter();
 
 
     }
@@ -101,10 +132,13 @@ public class FridgeSettingActivity extends AppToolbar {
                 Log.e("CreateFridgeError", "Failed to create a new fridge: " + e.getMessage(), e);
 
                 Toast.makeText(FridgeSettingActivity.this, "Failed to create new fridge: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
 
         });
     }
+
+    /*
     private void fetchFridgesAndSetUpAdapter() {
         Database.listFridges(this, new FridgeListListener() {
             @Override
@@ -112,7 +146,7 @@ public class FridgeSettingActivity extends AppToolbar {
 
                 autoCompleteAdapter = new ArrayAdapter<>(FridgeSettingActivity.this,
                         android.R.layout.simple_dropdown_item_1line, fridgeNames);
-                autoCompleteFridgeTextView.setAdapter(autoCompleteAdapter);
+                //autoCompleteFridgeTextView.setAdapter(autoCompleteAdapter);
 
                 autoCompleteFridgeTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -185,6 +219,7 @@ public class FridgeSettingActivity extends AppToolbar {
             autoCompleteFridgeTextView.showDropDown();
         }
     }
+    */
     // toggling for the Notification Settings section
     public void toggleJoinFridge(View view) {
         // Toggle the visibility of the notification settings layout

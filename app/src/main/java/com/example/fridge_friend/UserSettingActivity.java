@@ -42,7 +42,7 @@ public class UserSettingActivity extends AppToolbar {
             finish();
             return;
         }
-
+        getSupportActionBar().setTitle(getString(R.string.personal_settings));
         // Initializing the hidden layout for personal settings
         layoutPersonalSettingsInfo = findViewById(R.id.layoutPersonalSettingsInfo);
         // Initialize the hidden layout for notifications

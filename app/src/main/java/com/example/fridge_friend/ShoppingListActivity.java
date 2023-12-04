@@ -33,7 +33,7 @@ public class ShoppingListActivity extends AppToolbar implements ShoppingCartItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
-
+        getSupportActionBar().setTitle(getString(R.string.shopping_list));
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {

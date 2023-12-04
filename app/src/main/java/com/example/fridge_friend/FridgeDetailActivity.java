@@ -66,7 +66,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
 
         // Getting the fridge name from the intent
         fridgeId = getIntent().getStringExtra("EXTRA_FRIDGE_NAME");
-
+        getSupportActionBar().setTitle(fridgeId);
 
         if (fridgeId != null) {
             loadFridgeItems(fridgeId);

@@ -3,6 +3,8 @@ package com.example.fridge_friend;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,8 @@ import com.example.fridge_friend.database.listener.OperationCompleteListener;
 import com.example.fridge_friend.database.listener.UserNameListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Calendar;
 
 public class ItemAdditionActivity extends AppToolbar {
 
@@ -37,6 +41,7 @@ public class ItemAdditionActivity extends AppToolbar {
         editTextItemName = findViewById(R.id.editTextItemName);
         editTextItemQuantity = findViewById(R.id.editTextItemQuantity);
         editTextExpiryDate = findViewById(R.id.editTextExpiryDate);
+        editTextExpiryDate.addTextChangedListener(tw);
 
         // Initialize the Save Button
         buttonSave = findViewById(R.id.buttonSave);
@@ -142,4 +147,60 @@ public class ItemAdditionActivity extends AppToolbar {
         }
 
     }
+    TextWatcher tw = new TextWatcher() {
+        private String cur = "";
+        private String format_date = "DDMMYYYY";
+        private Calendar cal = Calendar.getInstance();
+        @Override
+        public void onTextChanged(CharSequence str, int start, int before, int count) {
+            if (!str.toString().equals(cur)) {
+                String clean = str.toString().replaceAll("[^\\d.]|\\.", "");
+                String cleanC = cur.replaceAll("[^\\d.]|\\.", "");
+
+                int len = clean.length();
+                int selection = len;
+                for (int i = 2; i <= len && i < 6; i += 2) {
+                    selection++;
+                }
+                //Fix for pressing delete next to a forward slash
+                if (clean.equals(cleanC)) selection--;
+
+                if (clean.length() < 8){
+                    clean = clean + format_date .substring(clean.length());
+                }else{
+                    //Ensures proper inputting of numbers
+                    int day  = Integer.parseInt(clean.substring(0,2));
+                    int mon  = Integer.parseInt(clean.substring(2,4));
+                    int year = Integer.parseInt(clean.substring(4,8));
+
+                    mon = mon < 1 ? 1 : mon > 12 ? 12 : mon;
+                    cal.set(Calendar.MONTH, mon-1);
+                    year = (year<1900)?1900:(year>2100)?2100:year;
+                    cal.set(Calendar.YEAR, year);
+
+                    //with leap years - otherwise, date e.g. 29/02/2012
+                    //would be automatically corrected to 28/02/2012
+
+                    day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                    clean = String.format("%02d%02d%02d",day, mon, year);
+                }
+
+                clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                        clean.substring(2, 4),
+                        clean.substring(4, 8));
+
+                selection = selection < 0 ? 0 : selection;
+                cur = clean;
+                editTextExpiryDate.setText(cur);
+                editTextExpiryDate.setSelection(selection < cur.length() ? selection : cur.length());
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {}
+    };
+
 }

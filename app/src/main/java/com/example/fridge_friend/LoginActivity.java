@@ -1,6 +1,8 @@
 package com.example.fridge_friend;
 
 
+import static android.app.ProgressDialog.show;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -153,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
+                                //updateUI(user);
 
                                 //Toast.makeText(getApplicationContext(), "Logged in",Toast.LENGTH_SHORT).show();
                                 Intent passLogin = new Intent(LoginActivity.this, MainActivity.class);
@@ -276,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if (user != null) {
 
-            Toast.makeText(LoginActivity.this, getString(R.string.login_success),
+            Toast.makeText(LoginActivity.this, "Successful Register",
                     Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(LoginActivity.this, getString(R.string.login_failed),

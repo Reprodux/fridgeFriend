@@ -57,7 +57,7 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
                     barcode_bar.setProgress(50);
                     //Popup for progress bar substitute
 
-                    Toast.makeText(barcodeScanner.this, R.string.scanned + result.getContents(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(barcodeScanner.this, R.string.scanned + result.getContents(), Toast.LENGTH_LONG).show();
 
                     barcode_txt.setText(getString(R.string.retrieving_data));
 
@@ -156,6 +156,7 @@ public class barcodeScanner extends AppToolbar implements barcode_data_retrieval
         start_scan_btn = findViewById(R.id.start_scan_btn);
         barcode_bar = findViewById(R.id.barcode_bar);
         barcode_bar.setVisibility(View.INVISIBLE);
+        getSupportActionBar().setTitle(getString(R.string.barcode_scanner));
         start_scan_btn.setOnClickListener((view -> {
 
             ScanOptions options = new ScanOptions();

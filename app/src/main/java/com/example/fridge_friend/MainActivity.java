@@ -36,7 +36,7 @@ public class MainActivity extends AppToolbar {
      */
     public void checkData(View V){
         FirebaseAuth.getInstance().signOut();
-        Log.i(TAG, String.valueOf(R.string.signed_out));
+        //Log.i(TAG, String.valueOf(R.string.signed_out));
         showToast(R.string.signed_out);
         finish();
     }
@@ -48,9 +48,8 @@ public class MainActivity extends AppToolbar {
      */
     public void onMyFridge(View v) {
         // TODO: Launch My Fridge Activity
-        Log.i(TAG, String.valueOf(
-                R.string.my_fridges_clicked));
-        showToast(R.string.my_fridges_clicked);
+        //Log.i(TAG, String.valueOf(R.string.my_fridges_clicked));
+        //showToast(R.string.my_fridges_clicked);
         Intent intent = new Intent(this, FridgeListActivity.class);
         MainActivity.this.startActivity(intent);
     }
@@ -74,7 +73,7 @@ public class MainActivity extends AppToolbar {
      */
     public void onBarcodeScan(View v) {
         Log.i(TAG, String.valueOf(R.string.barcode_scanner_clicked));
-        showToast(R.string.barcode_scanner_clicked);
+        //showToast(R.string.barcode_scanner_clicked);
 
         Intent intent = new Intent(this, barcodeScanner.class);
         MainActivity.this.startActivity(intent);

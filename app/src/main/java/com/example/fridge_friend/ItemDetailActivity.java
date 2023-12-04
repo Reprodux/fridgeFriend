@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.fridge_friend.database.Database;
 import com.example.fridge_friend.database.listener.OperationCompleteListener;
+import com.example.fridge_friend.database.listener.UserNameListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -39,6 +40,7 @@ public class ItemDetailActivity extends AppToolbar {
     private Button delete_btn;
     ProgressDialog progressPopup;
     Intent intent;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class ItemDetailActivity extends AppToolbar {
         String uid = FirebaseAuth.getInstance().getUid();
         Log.i(TAG, "uid: " + uid);
         p_name = "<b>" + p_name +"</b>";
-        Log.i(TAG, owner);
+
         owner = "<b>Owner: </b>" + owner;
 
         if (expiry.matches("")) {
@@ -78,23 +80,46 @@ public class ItemDetailActivity extends AppToolbar {
         //set delete_btn to delete current item from current fridge
         Log.i(TAG, textViewItemOwner.getText().toString());
 
+        textViewWelcomeUser.setText(Html.fromHtml(p_name));
+        textViewItemOwner.setText(Html.fromHtml(owner));
+        textViewItemQuantity.setText(Html.fromHtml(str_amount));
+        textViewExpiryDate.setText(Html.fromHtml(expiry));
+        Database.getUserName(this, uid, new UserNameListener() {
+            @Override
+            public void onResult(String name, String id) {
+                username = name;
+                username = "<b>Owner: </b>" + username;
+                Log.i(TAG, "username: " + username);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+
+            @Override
+            public void onCanceled() {
+
+            }
+        });
+
+
+        String finalOwner = owner;
         delete_btn.setOnClickListener(v -> {
             //if the item owner text view is not the owner, then write a toast saying that this isnt the current owners item
-
+            if(!username.matches(finalOwner)){
                 Toast.makeText(this, "This is not your item to delete!", Toast.LENGTH_SHORT).show();
-
+            }
+            else{
                 progressPopup.show();
                 Toast.makeText(this, "Removing item...", Toast.LENGTH_SHORT).show();
                 Log.i(TAG, intent.getStringExtra("EXTRA_FRIDGE_NAME"));
                 Log.i(TAG, intent.getStringExtra("ID"));
                 Database.removeItem(this, intent.getStringExtra("EXTRA_FRIDGE_NAME"), intent.getStringExtra("ID"), new RemoveListener(this));
-            });
+                Toast.makeText(this, "Deleting Item", Toast.LENGTH_SHORT).show();
+            }
 
-
-        textViewWelcomeUser.setText(Html.fromHtml(p_name));
-        textViewItemOwner.setText(Html.fromHtml(owner));
-        textViewItemQuantity.setText(Html.fromHtml(str_amount));
-        textViewExpiryDate.setText(Html.fromHtml(expiry));
+          });
     }
 
     @Override
