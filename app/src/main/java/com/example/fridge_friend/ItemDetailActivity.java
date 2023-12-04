@@ -65,6 +65,7 @@ public class ItemDetailActivity extends AppToolbar {
         p_name = "<b>" + p_name +"</b>";
         Log.i(TAG, owner);
         owner = "<b>Owner: </b>" + owner;
+
         if (expiry.matches("")) {
 
             expiry = "N/A";

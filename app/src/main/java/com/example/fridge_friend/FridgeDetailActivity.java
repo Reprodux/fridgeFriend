@@ -82,6 +82,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         buttonAddItem.setOnClickListener(v -> {
 
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
+            addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId);
             startActivityForResult(addItemIntent, 1);
         });
 
@@ -162,6 +163,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         buttonAddItem.setOnClickListener(v -> {
 
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
+            addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId);
             startActivityForResult(addItemIntent, 1);
         });
 

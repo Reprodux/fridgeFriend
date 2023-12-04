@@ -1,5 +1,7 @@
 package com.example.fridge_friend;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,7 +42,9 @@ public class ItemAdditionActivity extends AppToolbar {
         buttonSave = findViewById(R.id.buttonSave);
         String uid = FirebaseAuth.getInstance().getUid();
         Database.getUserName(this, uid, new ItemAdditionActivity.LoadingListener(this));
-
+        Intent intent = getIntent();
+        setResult(Activity.RESULT_OK,
+                new Intent().putExtra("EXTRA_FRIDGE_NAME", intent.getStringExtra("EXTRA_FRIDGE_NAME")));
         // Setting the button click listener
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
