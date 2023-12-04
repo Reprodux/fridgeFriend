@@ -73,7 +73,7 @@ public class ItemAdditionActivity extends AppToolbar {
 
         //Implementing the logic to save the item to the database
         // Create a new Item object
-        Item newItem = new Item(itemName, itemQuantity, expiryDate);
+        Item newItem = new Item(itemName, itemQuantity, expiryDate, owner);
         // Get the fridge ID from the intent or from a selected item in the previous activity
         String fridgeId = getIntent().getStringExtra("EXTRA_FRIDGE_ID");
         if(fridgeId == null || fridgeId.isEmpty()) {

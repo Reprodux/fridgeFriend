@@ -27,6 +27,7 @@ import com.journeyapps.barcodescanner.ScanOptions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The type Fridge detail activity.
@@ -36,6 +37,7 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
     private RecyclerView recyclerView;
     private FridgeItemsAdapter adapter;
     private List<Item> items;
+    private List<String> ids;
     private String fridgeId;
 
 
@@ -43,11 +45,20 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fridge_detail);
+        items = new ArrayList<>();
+
+
+    }
+
+    @Override
+    public void onResume(){
+
+        super.onResume();
 
         //setting up recycle view and adapter
         recyclerView = findViewById(R.id.recyclerViewFridgeItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        ids = new ArrayList<>();
         items = new ArrayList<>();
         adapter = new FridgeItemsAdapter(this, items);
         adapter.setClickListener(this);
@@ -67,12 +78,18 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         }
 
         Button buttonAddItem = findViewById(R.id.buttonAddItem);
-
+        Button buttonUsers = findViewById(R.id.userListBtn);
         buttonAddItem.setOnClickListener(v -> {
 
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
-            addItemIntent.putExtra("EXTRA_FRIDGE_ID", fridgeId);
             startActivityForResult(addItemIntent, 1);
+        });
+
+        buttonUsers.setOnClickListener(v -> {
+
+            Intent usersIntent = new Intent(FridgeDetailActivity.this, FridgeUserListActivity.class);
+            usersIntent.putExtra("fridgeName", fridgeId);
+            startActivityForResult(usersIntent, 1);
         });
     }
     private void loadFridgeItems(String fridgeId) {
@@ -86,6 +103,10 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
                 items.clear();
                 if (result != null) {
                     items.addAll(result.values());
+                    for (String key : result.keySet()){
+                        ids.add(key);
+                    }
+
                 } else {
                     // Handle the case where result is null, maybe show a message
                     Log.d("FridgeDetailActivity", "No items found for this fridge.");
@@ -123,8 +144,8 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
 
         // Getting the fridge name from the intent
         fridgeId = data.getStringExtra("EXTRA_FRIDGE_NAME");
-        Log.i(TAG, "onaactivytResult lanuched");
-        Log.i(TAG, fridgeId);
+
+        //Log.i(TAG, fridgeId);
 
 
         if (fridgeId != null) {
@@ -137,11 +158,18 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         }
 
         Button buttonAddItem = findViewById(R.id.buttonAddItem);
-
+        Button buttonUsers = findViewById(R.id.userListBtn);
         buttonAddItem.setOnClickListener(v -> {
 
             Intent addItemIntent = new Intent(FridgeDetailActivity.this, ItemAdditionActivity.class);
             startActivityForResult(addItemIntent, 1);
+        });
+
+        buttonUsers.setOnClickListener(v -> {
+
+            Intent usersIntent = new Intent(FridgeDetailActivity.this, FridgeUserListActivity.class);
+            usersIntent.putExtra("fridgeName", fridgeId);
+            startActivityForResult(usersIntent, 1);
         });
 
     }
@@ -156,10 +184,12 @@ public class FridgeDetailActivity extends AppToolbar implements FridgeItemsAdapt
         Intent addItemIntent = new Intent(this, ItemDetailActivity.class);
 
 
+
         addItemIntent.putExtra("EXTRA_ITEM_NAME", selectedItem.getName());
         addItemIntent.putExtra("OWNER", selectedItem.getOwner());
         addItemIntent.putExtra("EXPIRATION", selectedItem.getExpiry());
         addItemIntent.putExtra("QUANTITY", selectedItem.getAmount());
+        addItemIntent.putExtra("ID", ids.get(position));
         //addItemIntent.putExtra("ITEM_ID", selectedItem.getId());
         // Pass the fridge ID to the ItemAdditionActivity
         addItemIntent.putExtra("EXTRA_FRIDGE_NAME", fridgeId); // Make sure fridgeId is the ID of the current fridge

@@ -362,6 +362,10 @@ public class ShoppingItemViewActivity extends AppToolbar implements barcode_data
 
     public boolean isValidDate(String date) {
         //date is of format DD/MM/YYYY
+        if (date.matches("")){
+            date_str = "N/A";
+            return true;
+        }
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         format.setLenient(false);
         try {
