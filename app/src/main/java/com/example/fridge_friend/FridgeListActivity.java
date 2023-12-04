@@ -80,10 +80,11 @@ public class FridgeListActivity extends AppToolbar implements FridgeAdapter.Item
 
     @Override
     public void onJoinFridgeClick(View view, int position) {
+        String fridgeId = adapter.getItem(position);
         // Handling the plus click that opens item addition form
         Intent intent = new Intent(FridgeListActivity.this, ItemAdditionActivity.class);
 
-        intent.putExtra("EXTRA_FRIDGE_ID", selectedFridgeId); // Pass the selected fridge ID
+        intent.putExtra("EXTRA_FRIDGE_ID", fridgeId); // Pass the selected fridge ID
         Log.d("FridgeListActivity", "Passing Fridge ID to ItemAdditionActivity: " + selectedFridgeId);
         startActivity(intent);
     }
