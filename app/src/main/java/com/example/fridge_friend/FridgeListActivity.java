@@ -1,29 +1,28 @@
 package com.example.fridge_friend;
 
-import static android.content.ContentValues.TAG;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.fridge_friend.database.Database;
+import com.example.fridge_friend.database.listener.FridgeListListener;
 import com.example.fridge_friend.toolbar.AppToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The type Fridge list activity.
- */
 public class FridgeListActivity extends AppToolbar implements FridgeAdapter.ItemClickListener {
 
     private RecyclerView recyclerView;
     private FridgeAdapter adapter;
+
+    private String selectedFridgeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,47 +32,61 @@ public class FridgeListActivity extends AppToolbar implements FridgeAdapter.Item
         recyclerView = findViewById(R.id.recyclerViewFridges);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Fetching fridge names
-        List<String> fridgeNames = getFridgeNames();
 
-        // setting up RecyclerView with the data
-        adapter = new FridgeAdapter(this, fridgeNames);
-        adapter.setClickListener(this); // Set the click listener for the adapter
+        //initializing an adapter with an empty list
+        adapter = new FridgeAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
+        // Setting the click listener for the adapter
+        adapter.setClickListener(this);
+
+
+
+        Database.listFridges(this, new FridgeListListener(){
+            @Override
+            public void onListResult(List<String> fridgeNames){
+                //updating the adapter with the retrieved fridge names
+                adapter.updateData(fridgeNames);
+            }
+
+            @Override
+            public void onCanceled(){
+                //handling operation when cancelled
+            }
+            @Override
+            public void onFailure(@NonNull Exception e){
+                //handling failure in fetching fridge names
+            }
+
+        });
     }
 
     @Override
     public void onFridgeClick(View view, int position) {
-        // Handling the fridge click that opens FridgeDetailActivity
+        // Get the fridge name from the adapter using the position
+        selectedFridgeId = adapter.getItem(position);
+        Log.d("FridgeListActivity", "Selected Fridge ID: " + selectedFridgeId);
+
+        // Create an intent for starting the FridgeDetailActivity
         Intent intent = new Intent(FridgeListActivity.this, FridgeDetailActivity.class);
+
+        // Put the fridge name into the intent as an extra
+        intent.putExtra("EXTRA_FRIDGE_NAME", selectedFridgeId);
+
+        // Start the FridgeDetailActivity with the intent
         startActivity(intent);
+
     }
 
     @Override
     public void onJoinFridgeClick(View view, int position) {
-        // Handling the join fridge click (e.g., update the database)
+        // Handling the plus click that opens item addition form
+        Intent intent = new Intent(FridgeListActivity.this, ItemAdditionActivity.class);
+
+        intent.putExtra("EXTRA_FRIDGE_ID", selectedFridgeId); // Pass the selected fridge ID
+        Log.d("FridgeListActivity", "Passing Fridge ID to ItemAdditionActivity: " + selectedFridgeId);
+        startActivity(intent);
     }
 
-    private List<String> getFridgeNames() {
-        //Implement database or network call to fetch fridge names
-        // Temporary stub for development
-        List<String> fridgeNames = new ArrayList<>();
-        fridgeNames.add("ChillMaster 3000");
-        fridgeNames.add("Frosty's Safe Haven");
-        fridgeNames.add("Arctic Enclave");
-        fridgeNames.add("The Cool Keeper");
-        fridgeNames.add("Icy Storage Unit");
-        return fridgeNames;
-    }
 
-    //Overrides toolbars about to display info on current activity
-    @Override
-    public void about() {
-        AlertDialog.Builder alert_builder = new AlertDialog.Builder((FridgeListActivity.this));
-        alert_builder.setTitle(R.string.fridge_list_title).setMessage(R.string.fridgeListAbout);
-        alert_builder.setPositiveButton(R.string.ok, (dialogInterface, id) -> {
-            Log.i(TAG, "User clicked about");
-
-        }).show();
-    }
 }

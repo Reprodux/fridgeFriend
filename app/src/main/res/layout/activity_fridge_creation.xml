@@ -103,14 +103,20 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- New Fridge Name Field -->
-        <EditText
-            android:id="@+id/editTextExistingFridgeID"
+<!--        <EditText-->
+<!--            android:id="@+id/editTextExistingFridgeID"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/existing_fridge_name"-->
+<!--            android:inputType="textPersonName" />-->
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteFridgeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/existing_fridge_name"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
-        <!-- Save Button -->
+        <!-- Join Button -->
         <Button
             android:id="@+id/buttonRequestJoinFridge"
             android:layout_width="wrap_content"
