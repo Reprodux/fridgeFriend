@@ -31,12 +31,13 @@ public class LeaveFridgeContinuation implements Continuation<DataSnapshot, Task<
             long count = result.getChildrenCount();
             Map<String, Object> updates = new HashMap<>();
             DatabaseReference root = result.getRef().getRoot();
-            updates.put("/fridgeMembers/" + fridgeName + "/" + uid, null);
             if (count == 1) {
                 // remove fridge
                 updates.put("/fridges" + fridgeName, null);
                 // Remove members node when count becomes 0
                 updates.put("/fridgeMembers/" + fridgeName, null);
+            } else {
+                updates.put("/fridgeMembers/" + fridgeName + "/" + uid, null);
             }
             updates.put("/userAccess/" + uid + "/" + fridgeName, null);
             return root.updateChildren(updates);

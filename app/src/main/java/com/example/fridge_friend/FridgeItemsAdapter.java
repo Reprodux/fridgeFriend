@@ -6,44 +6,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fridge_friend.database.Item;
+
 import java.util.List;
 
 public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.ViewHolder> {
 
-    private List<FridgeItem> fridgeItems; // This should be List<FridgeItem>
+    private List<Item> items;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // Constructor should match the class name and use List<FridgeItem>
-    public FridgeItemsAdapter(Context context, List<FridgeItem> fridgeItems) {
+    public FridgeItemsAdapter(Context context, List<Item> items) {
         this.mInflater = LayoutInflater.from(context);
-        this.fridgeItems = fridgeItems; // Corrected variable name
+        this.items = items; // Corrected variable name
     }
 
     // Inflate the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_fridge_detail, parent, false); // Make sure to use the correct layout file
+        View view = mInflater.inflate(R.layout.item_fridge_detail, parent, false);
         return new ViewHolder(view);
     }
 
     // Bind data to each item
     @Override
-    public void onBindViewHolder(FridgeItemsAdapter.ViewHolder holder, int position) {
-        FridgeItem item = fridgeItems.get(position);
-        holder.textViewItemName.setText(item.getName()); // Make sure this ID exists in item_fridge_detail.xml
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Item currentItem = items.get(position);
+        holder.textViewItemName.setText(currentItem.getName());
     }
 
     // Total number of rows
     @Override
     public int getItemCount() {
-        return fridgeItems.size(); // Corrected variable name
+        return items.size(); // Corrected variable name
     }
 
     // Convenience method for getting data at click position
-    public FridgeItem getItem(int id) {
-        return fridgeItems.get(id); // Should return a FridgeItem
-    }
+//    public FridgeItem getItem(int id) {
+//        return fridgeItems.get(id); // Should return a FridgeItem
+//    }
 
     // Parent activity will implement this method to respond to click events
     public interface ItemClickListener {
@@ -67,6 +70,12 @@ public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.
             }
         }
     }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
 
     // Allows click events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {

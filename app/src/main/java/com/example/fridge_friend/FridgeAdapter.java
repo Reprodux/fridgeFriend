@@ -65,6 +65,7 @@ public class FridgeAdapter extends RecyclerView.Adapter<FridgeAdapter.ViewHolder
             myImageView.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View view) {
             if (mClickListener != null) {
@@ -76,6 +77,14 @@ public class FridgeAdapter extends RecyclerView.Adapter<FridgeAdapter.ViewHolder
             }
         }
     }
+
+    //updating data in the adapter
+    public void updateData(List<String> newFridgeNames){
+        this.mFridgeNames = newFridgeNames;
+        notifyDataSetChanged();
+    }
+
+
 
     // Allows clicks events to be caught, should be public
     public void setClickListener(ItemClickListener itemClickListener) {
