@@ -31,8 +31,7 @@
     <string name="item_quantity_hint">Entrez la quantité</string>
     <string name="expiry_date_hint">Entrez la date d\'expiration (JJ/MM/AAAA)</string>
     <string name="save">Enregistrer</string>
-    <string name="add_to_fridge">Ajouter au réfrigérateur</string>
-    <string name="cancel">Annuler</string>
+
 
     <string name="pref_file">fichier_de_préférences</string>
     <string name="pref_email">email_préféré</string>
@@ -76,30 +75,33 @@
     <string name="error_removing_user">Une erreur s\'est produite lors de la suppression de l\'utilisateur</string>
     <string name="User">"Utilisateur: "</string>
     <string name="delete_user">Supprimer l\'utilisateur</string>
-    <string name="barcodeScannerAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="barcode_scanner_title">Scanner de code à barres</string>
-    <string name="fridge_detail_ac_title">Détail du réfrigérateur</string>
-    <string name="fridgeDetailAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="fridge_list_title">Liste des réfrigérateurs</string>
-    <string name="fridgeListAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="fridge_setting_title">Paramètres du réfrigérateur</string>
-    <string name="fridgeSettingAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="fridge_userList_title">Liste des utilisateurs du réfrigérateur</string>
-    <string name="fridgeUserListAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="item_addition_title">Ajout d\'un article</string>
-    <string name="itemAddAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="item_detail_title">Détail de l\'article</string>
-    <string name="itemDetailAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="main_title">Page principale</string>
-    <string name="mainAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="shopping_item_detail_title">Détail de l\'article</string>
-    <string name="shoppingItemDetailAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="shopping_list_title">Liste de courses</string>
-    <string name="shoppingListAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="user_details_title">Détails de l\'utilisateur</string>
-    <string name="userDetailsAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Mobile Development.</string>
-    <string name="user_settings_title">Paramètres de l\'utilisateur</string>
-    <string name="userSettingsAbout">Cette application a été créée par l\'équipe 4 de l\'Université de Limerick pour le module CS4084 - Développement mobile.</string>
+    <string name="barcodeScannerAbout">Cette activité permet à l\'utilisateur de scanner les codes-barres de divers produits alimentaires et d\'afficher leurs données. Les données sont récupérées à partir de l\'API OpenFoodsFacts, une API open source pour consulter des informations sur les aliments. Ces données peuvent également être réaccédées depuis l\'activité de la liste de courses.\n</string>
+    <string name="barcode_scanner_title">Scanner de codes-barres - Ver. 3</string>
+    <string name="fridge_detail_ac_title">Activité de détail du réfrigérateur Ver. 2</string>
+    <string name="fridgeDetailAbout">Cette activité permet à l\'utilisateur de voir tous les articles présents dans ce réfrigérateur spécifique. En appuyant sur un article, l\'utilisateur peut voir les détails de l\'article. \nTOUS LES ARTICLES EN ROUGE SONT DES ARTICLES 4 JOURS AVANT LEUR DATE D\'EXPIRATION.</string>
+    <string name="fridge_list_title">Liste de réfrigérateurs - Version 3</string>
+    <string name="fridgeListAbout">Cette activité permet à l\'utilisateur de voir les réfrigérateurs auxquels il est actuellement connecté. En cliquant sur le nom d\'un réfrigérateur, l\'utilisateur peut voir les articles alimentaires de ce réfrigérateur. Sinon, il peut appuyer sur le "+" à côté du réfrigérateur cible pour ajouter un article au réfrigérateur cible.</string>
+    <string name="fridge_setting_title">Activité des paramètres du réfrigérateur - Version 2</string>
+    <string name="fridgeSettingAbout">Depuis cette activité, l\'utilisateur peut créer un nouveau réfrigérateur ou ajouter un nouveau réfrigérateur à rejoindre. Appuyez sur l\'une des lignes pour voir les champs déroulants et effectuer l\'une ou l\'autre tâche.</string>
+    <string name="fridge_userList_title">Liste d\'utilisateurs du réfrigérateur - Ver. 1</string>
+    <string name="fridgeUserListAbout">"Dans cette activité, l\'utilisateur peut voir les utilisateurs actuellement enregistrés dans un réfrigérateur et a la possibilité de les supprimer du réfrigérateur en cas de besoin."</string>
+    <string name="item_addition_title">Ajout d\'article - Ver 2.</string>
+    <string name="itemAddAbout">Cette activité permet à l\'utilisateur d\'ajouter un aliment personnalisé. Ici, il peut saisir un nom, une quantité et une date d\'expiration de l\'article alimentaire.</string>
+    <string name="item_detail_title">Article du réfrigérateur - Version 2</string>
+    <string name="itemDetailAbout">Cette activité permet à l\'utilisateur de voir les détails de l\'article actuellement consulté. Vous pouvez voir le nom et la quantité de l\'article, ainsi que son propriétaire actuel. Vous pouvez également supprimer cet article.</string>
+    <string name="main_title">Page principale - Ver 2.</string>
+    <string name="mainAbout">C\'est la page d\'accueil. D\'ici, vous pouvez accéder à toutes les activités possibles à utiliser. \n \tScanner de codes-barres : Scan des codes-barres d\'articles\n \tListe de courses : Voir les codes-barres précédemment scannés\n \tNouveau réfrigérateur : Créer ou rejoindre un réfrigérateur\n \tMes réfrigérateurs : Voir les détails des réfrigérateurs joints \n\n (Toutes les activités créées par Brian, Eric, Naimo, Sterling)</string>
+    <string name="shopping_item_detail_title">Vue détaillée de l\'article acheté - Ver 3.</string>
+    <string name="shoppingItemDetailAbout">Cette activité permet à l\'utilisateur de voir les données d\'un article spécifique de la liste de courses. Les données sont récupérées à partir de l\'API OpenFoodsFacts, une API open source pour consulter des informations sur les aliments. Ces données peuvent également être ajoutées à un réfrigérateur de choix.</string>
+    <string name="shopping_list_title">Liste de courses - Ver 2.</string>
+    <string name="shoppingListAbout">Cette activité permet à l\'utilisateur de voir les articles qu\'il a récemment scannés pour examen. Ici, la suppression de la liste de courses est possible avec le bouton en bas, ou appuyez sur un article pour voir les détails de l\'article.</string>
+    <string name="user_details_title">Liste d\'utilisateurs du réfrigérateur - Ver. 1</string>
+    <string name="userDetailsAbout">"Dans cette activité, l\'utilisateur peut voir les utilisateurs actuellement enregistrés dans un réfrigérateur et a la possibilité de les supprimer du réfrigérateur en cas de besoin."</string>
+    <string name="user_settings_title">Paramètres de l\'utilisateur - Ver 3.</string>
+    <string name="userSettingsAbout">Cette activité permet à l\'utilisateur de changer son nom d\'utilisateur, une action recommandée lors de l\'inscription initiale.</string>
+    <string name="add_to_fridge">Ajouter au réfrigérateur</string>
+    <string name="cancel">Annuler</string>
+
 
     <string name="password">Mot de passe</string>
     <string name="login">E-mail</string>
