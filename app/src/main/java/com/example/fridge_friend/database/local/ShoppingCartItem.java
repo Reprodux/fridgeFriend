@@ -26,8 +26,8 @@ public class ShoppingCartItem {
      * @param quantity item quantity
      * @param checked  if the item is checked
      * @param upc      the upc
-     * @see CartDatabase#getItem(Context, long) CartDatabase#getItem(Context, long)CartDatabase#getItem(Context, long)
-     * @see CartDatabase#getItems(Context) CartDatabase#getItems(Context)CartDatabase#getItems(Context)
+     * @see CartDatabase#getItem(Context, long) CartDatabase#getItem(Context, long)CartDatabase#getItem(Context, long)CartDatabase#getItem(Context, long)
+     * @see CartDatabase#getItems(Context) CartDatabase#getItems(Context)CartDatabase#getItems(Context)CartDatabase#getItems(Context)
      */
     ShoppingCartItem(long id, @NonNull String name, int quantity, boolean checked, String upc) {
         this.id = id;
@@ -108,7 +108,7 @@ public class ShoppingCartItem {
      * NOTE: This does not update the stored item in the db, it must be updated separately
      *
      * @param quantity quantity to set >= 1
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void setQuantity(int quantity) {
         this.quantity = Math.max(quantity, 1);
@@ -118,7 +118,7 @@ public class ShoppingCartItem {
      * Check the item in the cart
      * NOTE: This does not update the stored item in the db, it must be updated separately
      *
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void check() {
         this.checked = true;
@@ -128,7 +128,7 @@ public class ShoppingCartItem {
      * Uncheck the item in the cart
      * NOTE: This does not update the stored item in the db, it must be updated separately
      *
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     public void uncheck() {
         this.checked = false;
@@ -139,7 +139,7 @@ public class ShoppingCartItem {
      * Convert to ContentValues for saving
      *
      * @return ContentValues that represent the Shopping cart item
-     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
+     * @see CartDatabase#storeItem(Context, ShoppingCartItem) CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)CartDatabase#storeItem(Context, ShoppingCartItem)
      */
     ContentValues getContentValues() {
         ContentValues values = new ContentValues();

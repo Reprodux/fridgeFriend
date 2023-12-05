@@ -109,7 +109,11 @@ public class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAdapter.
          * The Text view item name.
          */
         TextView textViewItemName; // This ID should match the one in item_fridge_detail.xml
+        /**
+         * The Text view expiry date.
+         */
         TextView textViewExpiryDate;
+
         /**
          * Instantiates a new View holder.
          *
