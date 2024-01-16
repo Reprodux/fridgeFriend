@@ -26,4 +26,10 @@ Fridge Friend is an Android app designed to help users manage the contents of th
 This project is a work-in-progress and part of a course assignment. It's intended as a prototype to demonstrate the concept.
 
 
+![Homepage image.png](Homepage image.png)
+![Fridges Page.png](Fridges Page.png)
+![Expired Items Page.png](Expired Items Page.png)
+![Fridge Detail image.png](Fridge Detail image.png)
+
+
 
