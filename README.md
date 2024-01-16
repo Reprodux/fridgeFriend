@@ -29,8 +29,7 @@ through the receive receipt use case. Instructions for this process follow:
 3. Navigate through your device's file system to find the receipt files and click on one to import it
 4. Repeat this process for as many receipts you want to import to your account
 
-
-![Homepage image.png](Homepage image.png)
-![Fridges Page.png](Fridges Page.png)
-![Expired Items Page.png](Expired Items Page.png)
-![Fridge Detail image.png](Fridge Detail image.png)
+![Homepage image](Homepage_image.png)
+![Fridges Page](Fridges_Page.png)
+![Expired Items Page](Expired_Items_Page.png)
+![Fridge Detail image](Fridge_Detail_image.png)
