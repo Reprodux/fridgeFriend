@@ -35,7 +35,7 @@ public class Database {
      *
      * @param activity           Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeListListener Listener that will receive the list of fridges once available
-     * @see FridgeListListener#onListResult(List) FridgeListListener#onListResult(List)FridgeListListener#onListResult(List)
+     * @see FridgeListListener#onListResult(List) FridgeListListener#onListResult(List)FridgeListListener#onListResult(List)FridgeListListener#onListResult(List)
      */
     public static void listFridges(@NonNull Activity activity, @NonNull FridgeListListener fridgeListListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -54,7 +54,7 @@ public class Database {
      * @param activity          Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param upc               Universal Product Code (or more generally the key/name) of the API result to retrieve
      * @param apiResultListener Listener that will receive the API result once it's available
-     * @see APIResultListener#onResult(String) APIResultListener#onResult(String)APIResultListener#onResult(String)
+     * @see APIResultListener#onResult(String) APIResultListener#onResult(String)APIResultListener#onResult(String)APIResultListener#onResult(String)
      */
     public static void getAPIResult(@NonNull Activity activity, @NonNull String upc, @NonNull APIResultListener apiResultListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -71,7 +71,7 @@ public class Database {
      * @param upc                       Universal Product Code (or more generally the key/name) to store the API result under
      * @param apiResult                 API result string to store
      * @param operationCompleteListener Listener that will be notified when the operation has completed
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void putAPIResult(@NonNull Activity activity, @NonNull String upc, String apiResult, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -88,8 +88,8 @@ public class Database {
      * @param activity                  Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeName                Name of the fridge to attempt to join
      * @param operationCompleteListener Listener that will be notified of the result of the operation.                                  Operation may fail because the given fridge was not found, in which case a {@link FridgeNotFoundException} will be passed to onFailure
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
-     * @see OperationCompleteListener#onFailure(Exception) OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onFailure(Exception) OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)
      */
     public static void joinFridge(@NonNull Activity activity, @NonNull String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -106,8 +106,8 @@ public class Database {
      * @param activity                  Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeName                Name of the fridge to attempt to create
      * @param operationCompleteListener Listener that will be notified of the result of the operation.                                  Operation may fail because the given name is already in use by another fridge, in which case a {@link FridgeInUseException} will be passed to onFailure
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
-     * @see OperationCompleteListener#onFailure(Exception) OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onFailure(Exception) OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)OperationCompleteListener#onFailure(Exception)
      */
     public static void newFridge(@NonNull Activity activity, @NonNull String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -124,7 +124,7 @@ public class Database {
      * @param activity                  Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeName                Name of the fridge to leave
      * @param operationCompleteListener Listener that will be notified of the result of the operation.                                  Operation may silently succeed if the user isn't in the given fridge or the fridge doesn't exist even though no work was done.
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void leaveFridge(@NonNull Activity activity, @NonNull String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -142,7 +142,7 @@ public class Database {
      * @param userId                    Id of the user to remove
      * @param fridgeName                Name of the fridge to remove user from
      * @param operationCompleteListener Listener that will be notified of the result of the operation.                                  Operation may silently succeed if the user isn't in the given fridge or the fridge doesn't exist even though no work was done.
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void removeFromFridge(@NonNull Activity activity, @NonNull String userId, @NonNull String fridgeName, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -160,7 +160,7 @@ public class Database {
      * @param activity     Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeName   Name of the fridge to get the items of
      * @param itemListener Listener to receive the list once it's been retrieved from the db
-     * @see ItemListener#onResult(Map) ItemListener#onResult(Map)ItemListener#onResult(Map)
+     * @see ItemListener#onResult(Map) ItemListener#onResult(Map)ItemListener#onResult(Map)ItemListener#onResult(Map)
      */
     public static void getItems(@NonNull Activity activity, @NonNull String fridgeName, @NonNull ItemListener itemListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -177,7 +177,7 @@ public class Database {
      * @param fridgeName                Fridge to add the item to
      * @param item                      Item to add to the fridge
      * @param operationCompleteListener Listener that will be notified when operation completes
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void addItem(@NonNull Activity activity, @NonNull String fridgeName, @NonNull Item item, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -195,7 +195,7 @@ public class Database {
      * @param fridgeName                Fridge to remove the item from
      * @param itemId                    id of the item to remove
      * @param operationCompleteListener Listener that will be notified when operation completes
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void removeItem(@NonNull Activity activity, @NonNull String fridgeName, @NonNull String itemId, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -213,7 +213,7 @@ public class Database {
      * @param itemId                    id of the item to update
      * @param item                      Item to update the db with
      * @param operationCompleteListener Listener that will be notified when operation completes
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void updateItem(@NonNull Activity activity, @NonNull String fridgeName, @NonNull String itemId, @NonNull Item item, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -230,7 +230,7 @@ public class Database {
      * @param activity                  Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param name                      Name to store for the user
      * @param operationCompleteListener Listener that will be notified when operation completes
-     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
+     * @see OperationCompleteListener#onSuccess() OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()OperationCompleteListener#onSuccess()
      */
     public static void setName(@NonNull Activity activity, @NonNull String name, @NonNull OperationCompleteListener operationCompleteListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -246,7 +246,7 @@ public class Database {
      * @param activity         Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param userId           id of the user who's name to retrieve
      * @param userNameListener Listener to receive the retrieved user name along with the user id
-     * @see UserNameListener#onResult(String, String) UserNameListener#onResult(String, String)UserNameListener#onResult(String, String)
+     * @see UserNameListener#onResult(String, String) UserNameListener#onResult(String, String)UserNameListener#onResult(String, String)UserNameListener#onResult(String, String)
      */
     public static void getUserName(@NonNull Activity activity, @NonNull String userId, @NonNull UserNameListener userNameListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();
@@ -265,7 +265,7 @@ public class Database {
      * @param activity         Activity whose lifecycle to attach the listeners to. If the activity is stopped the listeners will be automatically removed from the underlying task.                 Leaving the calling activity safe to reference Views in the callbacks without risk of activity leaks
      * @param fridgeName       Name of fridge to get users of
      * @param userListListener Listener to receive the list of users from the db along with their user ids
-     * @see UserListListener#onResult(Map) UserListListener#onResult(Map)UserListListener#onResult(Map)
+     * @see UserListListener#onResult(Map) UserListListener#onResult(Map)UserListListener#onResult(Map)UserListListener#onResult(Map)
      */
     public static void getUsersInFridge(@NonNull Activity activity, @NonNull String fridgeName, @NonNull UserListListener userListListener) {
         DatabaseConnection dbc = DatabaseConnection.getConnection();

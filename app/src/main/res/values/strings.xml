@@ -77,7 +77,7 @@
     <string name="barcodeScannerAbout">This activity allows the user to scan barcodes of various food items and view its data. Data is retrieved from OpenFoodsFacts API, an open source API for view food information. This data can also be reaccessed from the Shopping List Activity.\n</string>
     <string name="barcode_scanner_title">Barcode Scanner - Ver. 3</string>
     <string name="fridge_detail_ac_title">Fridge Detail Activity Ver. 2</string>
-    <string name="fridgeDetailAbout">This activity allows the user to view all items that are in this specific fridge. Pressing on an item allows the user to see the details of the item.</string>
+    <string name="fridgeDetailAbout">This activity allows the user to view all items that are in this specific fridge. Pressing on an item allows the user to see the details of the item \nANY ITEMS IN RED ARE ITEMS 4 DAYS BEFORE THEIR EXPIRATION.</string>
     <string name="fridge_list_title">Fridge List - Version 3</string>
     <string name="fridgeListAbout">This activity allows the user to view their fridges they are currently joined with. Clicking on a fridge name allows the user to view their food items. Otherwise, they can press on the \"+\" beside their target fridge to add an item to the target fridge.</string>
     <string name="fridge_setting_title">Fridge Settings Activity - Version 2</string>
@@ -130,6 +130,6 @@
     <string name="ok">Ok</string>
     <string name="fill_in_all_fields">Please fill in all fields</string>
     <string name="item_saved">Item saved</string>
-    <string name="Users">Users</string>
+    <string name="Users" translatable="false">Users</string>
 
 </resources>
